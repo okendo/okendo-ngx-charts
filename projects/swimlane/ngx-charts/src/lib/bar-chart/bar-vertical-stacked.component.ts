@@ -68,35 +68,35 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
           (dimensionsChanged)="updateYAxisWidth($event)"
         ></svg:g>
         <svg:g *ngIf="!isSSR">
+        <svg:g
+          *ngFor="let group of results; let index = index; trackBy: trackBy"
+          [@animationState]="'active'"
+          [attr.transform]="groupTransform(group)"
+        >
           <svg:g
-            *ngFor="let group of results; let index = index; trackBy: trackBy"
-            [@animationState]="'active'"
-            [attr.transform]="groupTransform(group)"
-          >
-            <svg:g
-              ngx-charts-series-vertical
+            ngx-charts-series-vertical
               [type]="barChartType.Stacked"
-              [xScale]="xScale"
-              [yScale]="yScale"
-              [activeEntries]="activeEntries"
-              [colors]="colors"
-              [series]="group.series"
-              [dims]="dims"
-              [gradient]="gradient"
-              [tooltipDisabled]="tooltipDisabled"
-              [tooltipTemplate]="tooltipTemplate"
-              [showDataLabel]="showDataLabel"
-              [dataLabelFormatting]="dataLabelFormatting"
-              [seriesName]="group.name"
-              [animations]="animations"
-              [noBarWhenZero]="noBarWhenZero"
-              (select)="onClick($event, group)"
-              (activate)="onActivate($event, group)"
-              (deactivate)="onDeactivate($event, group)"
-              (dataLabelHeightChanged)="onDataLabelMaxHeightChanged($event, index)"
+            [xScale]="xScale"
+            [yScale]="yScale"
+            [activeEntries]="activeEntries"
+            [colors]="colors"
+            [series]="group.series"
+            [dims]="dims"
+            [gradient]="gradient"
+            [tooltipDisabled]="tooltipDisabled"
+            [tooltipTemplate]="tooltipTemplate"
+            [showDataLabel]="showDataLabel"
+            [dataLabelFormatting]="dataLabelFormatting"
+            [seriesName]="group.name"
+            [animations]="animations"
+            [noBarWhenZero]="noBarWhenZero"
+            (select)="onClick($event, group)"
+            (activate)="onActivate($event, group)"
+            (deactivate)="onDeactivate($event, group)"
+            (dataLabelHeightChanged)="onDataLabelMaxHeightChanged($event, index)"
             ></svg:g>
-          </svg:g>
         </svg:g>
+      </svg:g>
         <svg:g *ngIf="isSSR">
           <svg:g
             *ngFor="let group of results; let index = index; trackBy: trackBy"
@@ -176,6 +176,7 @@ export class BarVerticalStackedComponent extends BaseChartComponent {
   @Input() dataLabelFormatting: any;
   @Input() noBarWhenZero: boolean = true;
   @Input() wrapTicks = false;
+  @Input() barMaxWidth: number = 100;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
@@ -303,7 +304,12 @@ export class BarVerticalStackedComponent extends BaseChartComponent {
 
   getXScale(): any {
     const spacing = this.groupDomain.length / (this.dims.width / this.barPadding + 1);
-    return scaleBand().rangeRound([0, this.dims.width]).paddingInner(spacing).domain(this.groupDomain);
+    const maxWidth = Math.min(this.barMaxWidth * this.groupDomain.length, this.dims.width);
+
+    return scaleBand()
+      .rangeRound([0, this.barMaxWidth ? maxWidth : this.dims.width])
+      .paddingInner(spacing)
+      .domain(this.groupDomain);
   }
 
   getYScale(): any {
