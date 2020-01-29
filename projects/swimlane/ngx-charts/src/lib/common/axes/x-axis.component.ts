@@ -64,6 +64,7 @@ export class XAxisComponent implements OnChanges {
   @Input() xOrient: Orientation = Orientation.Bottom;
   @Input() xAxisOffset: number = 0;
   @Input() wrapTicks = false;
+  @Input() chartLeftOffset: number = 0;
 
   @Output() dimensionsChanged = new EventEmitter();
 
@@ -87,7 +88,7 @@ export class XAxisComponent implements OnChanges {
   }
 
   update(): void {
-    this.transform = `translate(0,${this.xAxisOffset + this.padding + this.dims.height})`;
+    this.transform = `translate(${this.chartLeftOffset} ,${this.xAxisOffset + this.padding + this.dims.height})`;
 
     if (typeof this.xAxisTickCount !== 'undefined') {
       this.tickArguments = [this.xAxisTickCount];
