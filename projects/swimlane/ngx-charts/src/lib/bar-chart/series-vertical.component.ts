@@ -1,12 +1,16 @@
 import { Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { formatLabel, escapeLabel } from '../common/label.helper';
-import { DataItem } from '../models/chart-data.model';
-
-export enum D0Types {
-  positive = 'positive',
-  negative = 'negative'
-}
+import { DataItem, StringOrNumberOrDate } from '../models/chart-data.model';
+import { PlacementTypes } from '../common/tooltip/position';
+import { StyleTypes } from '../common/tooltip/style.type';
+import { ColorHelper } from '../common/color.helper';
+import { BarChartType } from './types/bar-chart-type.enum';
+import { D0Types } from './types/d0-type.enum';
+import { Bar } from './types/bar.model';
+import { ViewDimensions } from '../common/types/view-dimension.interface';
+import { BarOrientation } from '../common/types/bar-orientation.enum';
+import { ScaleType } from '../common/types/scale-type.enum';
 
 @Component({
   selector: 'g[ngx-charts-series-vertical]',
@@ -23,7 +27,7 @@ export enum D0Types {
       [fill]="bar.color"
       [stops]="bar.gradientStops"
       [data]="bar.data"
-      [orientation]="'vertical'"
+      [orientation]="barOrientation.Vertical"
       [roundEdges]="bar.roundEdges"
       [gradient]="gradient"
       [ariaLabel]="bar.ariaLabel"
@@ -51,7 +55,7 @@ export enum D0Types {
         [barHeight]="b.height"
         [value]="b.total"
         [valueFormatting]="dataLabelFormatting"
-        [orientation]="'vertical'"
+        [orientation]="barOrientation.Vertical"
         (dimensionsChanged)="dataLabelHeightChanged.emit({ size: $event, index: i })"
       />
     </svg:g>
@@ -69,15 +73,15 @@ export enum D0Types {
   ]
 })
 export class SeriesVerticalComponent implements OnChanges {
-  @Input() dims;
-  @Input() type = 'standard';
-  @Input() series;
+  @Input() dims: ViewDimensions;
+  @Input() type: BarChartType = BarChartType.Standard;
+  @Input() series: DataItem[];
   @Input() xScale;
   @Input() yScale;
-  @Input() colors;
+  @Input() colors: ColorHelper;
   @Input() gradient: boolean;
-  @Input() activeEntries: any[];
-  @Input() seriesName: string;
+  @Input() activeEntries: DataItem[];
+  @Input() seriesName: StringOrNumberOrDate;
   @Input() tooltipDisabled: boolean = false;
   @Input() tooltipTemplate: TemplateRef<any>;
   @Input() roundEdges: boolean;
@@ -87,18 +91,18 @@ export class SeriesVerticalComponent implements OnChanges {
   @Input() noBarWhenZero: boolean = true;
   @Input() chartLeftOffset: number = 0;
 
-  @Output() select = new EventEmitter();
+  @Output() select: EventEmitter<DataItem> = new EventEmitter();
   @Output() activate = new EventEmitter();
   @Output() deactivate = new EventEmitter();
   @Output() dataLabelHeightChanged = new EventEmitter();
 
-  tooltipPlacement: string;
-  tooltipType: string;
+  tooltipPlacement: PlacementTypes;
+  tooltipType: StyleTypes;
 
-  bars: any;
-  x: any;
-  y: any;
+  bars: Bar[];
   barsForDataLabels: Array<{ x: number; y: number; width: number; height: number; total: number; series: string }> = [];
+
+  barOrientation = BarOrientation;
 
   ngOnChanges(changes): void {
     this.update();
@@ -120,7 +124,7 @@ export class SeriesVerticalComponent implements OnChanges {
     let d0Type = D0Types.positive;
 
     let total;
-    if (this.type === 'normalized') {
+    if (this.type === BarChartType.Normalized) {
       total = this.series.map(d => d.value).reduce((sum, d) => sum + d, 0);
     }
 
@@ -134,7 +138,7 @@ export class SeriesVerticalComponent implements OnChanges {
     }
 
     this.bars = this.series.map((d, index) => {
-      let value = d.value;
+      let value = d.value as any;
       const label = this.getLabel(d);
       const formattedLabel = formatLabel(label);
       let roundEdges;
@@ -160,7 +164,7 @@ export class SeriesVerticalComponent implements OnChanges {
         y: 0
       };
 
-      if (this.type === 'standard') {
+      if (this.type === BarChartType.Standard) {
         bar.height = Math.abs(this.yScale(value) - this.yScale(yScaleMin));
         bar.x = this.xScale(label);
 
@@ -169,7 +173,7 @@ export class SeriesVerticalComponent implements OnChanges {
         } else {
           bar.y = this.yScale(value);
         }
-      } else if (this.type === 'stacked') {
+      } else if (this.type === BarChartType.Stacked) {
         const offset0 = d0[d0Type];
         const offset1 = offset0 + value;
         d0[d0Type] += value;
@@ -179,7 +183,7 @@ export class SeriesVerticalComponent implements OnChanges {
         bar.y = this.yScale(offset1);
         bar.offset0 = offset0;
         bar.offset1 = offset1;
-      } else if (this.type === 'normalized') {
+      } else if (this.type === BarChartType.Normalized) {
         let offset0 = d0[d0Type];
         let offset1 = offset0 + value;
         d0[d0Type] += value;
@@ -200,10 +204,10 @@ export class SeriesVerticalComponent implements OnChanges {
         value = (offset1 - offset0).toFixed(2) + '%';
       }
 
-      if (this.colors.scaleType === 'ordinal') {
+      if (this.colors.scaleType === ScaleType.Ordinal) {
         bar.color = this.colors.getColor(label);
       } else {
-        if (this.type === 'standard') {
+        if (this.type === BarChartType.Standard) {
           bar.color = this.colors.getColor(value);
           bar.gradientStops = this.colors.getLinearGradientStops(value);
         } else {
@@ -214,7 +218,7 @@ export class SeriesVerticalComponent implements OnChanges {
 
       let tooltipLabel = formattedLabel;
       bar.ariaLabel = formattedLabel + ' ' + value.toLocaleString();
-      if (this.seriesName) {
+      if (this.seriesName !== null && this.seriesName !== undefined) {
         tooltipLabel = `${this.seriesName} • ${formattedLabel}`;
         bar.data.series = this.seriesName;
         bar.ariaLabel = this.seriesName + ' ' + bar.ariaLabel;
@@ -224,7 +228,9 @@ export class SeriesVerticalComponent implements OnChanges {
         ? undefined
         : `
         <span class="tooltip-label">${escapeLabel(tooltipLabel)}</span>
-        <span class="tooltip-val">${value.toLocaleString()}</span>
+        <span class="tooltip-val">${
+          this.dataLabelFormatting ? this.dataLabelFormatting(value) : value.toLocaleString()
+        }</span>
       `;
 
       return bar;
@@ -233,8 +239,8 @@ export class SeriesVerticalComponent implements OnChanges {
     this.updateDataLabels();
   }
 
-  updateDataLabels() {
-    if (this.type === 'stacked') {
+  updateDataLabels(): void {
+    if (this.type === BarChartType.Stacked) {
       this.barsForDataLabels = [];
       const section: any = {};
       section.series = this.seriesName;
@@ -253,7 +259,7 @@ export class SeriesVerticalComponent implements OnChanges {
     } else {
       this.barsForDataLabels = this.series.map(d => {
         const section: any = {};
-        section.series = this.seriesName ? this.seriesName : d.label;
+        section.series = this.seriesName ?? d.label;
         section.total = d.value;
         section.x = this.xScale(d.label);
         section.y = this.yScale(0);
@@ -264,16 +270,18 @@ export class SeriesVerticalComponent implements OnChanges {
     }
   }
 
-  updateTooltipSettings() {
-    this.tooltipPlacement = this.tooltipDisabled ? undefined : 'top';
-    this.tooltipType = this.tooltipDisabled ? undefined : 'tooltip';
+  updateTooltipSettings(): void {
+    this.tooltipPlacement = this.tooltipDisabled ? undefined : PlacementTypes.Top;
+    this.tooltipType = this.tooltipDisabled ? undefined : StyleTypes.tooltip;
   }
 
-  isActive(entry): boolean {
+  isActive(entry: DataItem): boolean {
     if (!this.activeEntries) return false;
-    const item = this.activeEntries.find(d => {
-      return entry.name === d.name && entry.series === d.series;
+
+    const item = this.activeEntries.find(active => {
+      return entry.name === active.name && entry.value === active.value;
     });
+
     return item !== undefined;
   }
 
@@ -281,18 +289,18 @@ export class SeriesVerticalComponent implements OnChanges {
     this.select.emit(data);
   }
 
-  getLabel(dataItem): string {
+  getLabel(dataItem: DataItem): StringOrNumberOrDate {
     if (dataItem.label) {
       return dataItem.label;
     }
     return dataItem.name;
   }
 
-  trackBy(index, bar): string {
+  trackBy(index: number, bar: Bar): string {
     return bar.label;
   }
 
-  trackDataLabelBy(index, barLabel) {
+  trackDataLabelBy(index: number, barLabel: any): string {
     return index + '#' + barLabel.series + '#' + barLabel.total;
   }
 }

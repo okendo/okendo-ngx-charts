@@ -11,23 +11,16 @@ import {
 import { interpolate } from 'd3-interpolate';
 import { select } from 'd3-selection';
 import { arc } from 'd3-shape';
-
 import { id } from '../utils/id';
-/* tslint:disable */
-import { MouseEvent } from '../events';
+import { DataItem } from '../models/chart-data.model';
+import { BarOrientation } from '../common/types/bar-orientation.enum';
 
 @Component({
   selector: 'g[ngx-charts-pie-arc]',
   template: `
     <svg:g class="arc-group">
       <svg:defs *ngIf="gradient">
-        <svg:g
-          ngx-charts-svg-radial-gradient
-          [color]="fill"
-          orientation="vertical"
-          [name]="radialGradientId"
-          [startOpacity]="startOpacity"
-        />
+        <svg:g ngx-charts-svg-radial-gradient [color]="fill" [name]="radialGradientId" [startOpacity]="startOpacity" />
       </svg:defs>
       <svg:path
         [attr.d]="path"
@@ -45,15 +38,15 @@ import { MouseEvent } from '../events';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PieArcComponent implements OnChanges {
-  @Input() fill;
+  @Input() fill: string;
   @Input() startAngle: number = 0;
   @Input() endAngle: number = Math.PI * 2;
-  @Input() innerRadius;
-  @Input() outerRadius;
+  @Input() innerRadius: number;
+  @Input() outerRadius: number;
   @Input() cornerRadius: number = 0;
-  @Input() value;
-  @Input() max;
-  @Input() data;
+  @Input() value: number;
+  @Input() max: number;
+  @Input() data: DataItem;
   @Input() explodeSlices: boolean = false;
   @Input() gradient: boolean = false;
   @Input() animate: boolean = true;
@@ -65,13 +58,15 @@ export class PieArcComponent implements OnChanges {
   @Output() deactivate = new EventEmitter();
   @Output() dblclick = new EventEmitter();
 
+  barOrientation = BarOrientation;
+
   element: HTMLElement;
   path: any;
   startOpacity: number;
   radialGradientId: string;
-  linearGradientId: string;
   gradientFill: string;
   initialized: boolean = false;
+
   private _timeout;
 
   constructor(element: ElementRef) {
@@ -82,11 +77,11 @@ export class PieArcComponent implements OnChanges {
     this.update();
   }
 
-  getGradient() {
+  getGradient(): string {
     return this.gradient ? this.gradientFill : this.fill;
   }
 
-  getPointerEvents() {
+  getPointerEvents(): string {
     return this.pointerEvents ? 'auto' : 'none';
   }
 
@@ -114,10 +109,7 @@ export class PieArcComponent implements OnChanges {
       outerRadius = (this.outerRadius * this.value) / this.max;
     }
 
-    return arc()
-      .innerRadius(this.innerRadius)
-      .outerRadius(outerRadius)
-      .cornerRadius(this.cornerRadius);
+    return arc().innerRadius(this.innerRadius).outerRadius(outerRadius).cornerRadius(this.cornerRadius);
   }
 
   loadAnimation(): void {
@@ -129,23 +121,23 @@ export class PieArcComponent implements OnChanges {
 
     node
       .transition()
-      .attrTween('d', function(d) {
+      .attrTween('d', function (d) {
         (<any>this)._current = (<any>this)._current || d;
         const copyOfD = Object.assign({}, d);
         copyOfD.endAngle = copyOfD.startAngle;
         const interpolater = interpolate(copyOfD, copyOfD);
         (<any>this)._current = interpolater(0);
-        return function(t) {
+        return function (t) {
           return calc(interpolater(t));
         };
       })
       .transition()
       .duration(750)
-      .attrTween('d', function(d) {
+      .attrTween('d', function (d) {
         (<any>this)._current = (<any>this)._current || d;
         const interpolater = interpolate((<any>this)._current, d);
         (<any>this)._current = interpolater(0);
-        return function(t) {
+        return function (t) {
           return calc(interpolater(t));
         };
       });
@@ -161,11 +153,11 @@ export class PieArcComponent implements OnChanges {
     node
       .transition()
       .duration(750)
-      .attrTween('d', function(d) {
+      .attrTween('d', function (d) {
         (<any>this)._current = (<any>this)._current || d;
         const interpolater = interpolate((<any>this)._current, d);
         (<any>this)._current = interpolater(0);
-        return function(t) {
+        return function (t) {
           return calc(interpolater(t));
         };
       });
@@ -176,7 +168,7 @@ export class PieArcComponent implements OnChanges {
     this._timeout = setTimeout(() => this.select.emit(this.data), 200);
   }
 
-  onDblClick(event: MouseEvent) {
+  onDblClick(event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
     clearTimeout(this._timeout);
