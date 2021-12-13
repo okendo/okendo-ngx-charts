@@ -28,6 +28,8 @@ import {
               [scaleType]="scaleType"
               [curve]="curve"
               [animations]="animations"
+              [gradient]="gradient"
+              [trueZero]="trueZero"
             />
           </svg:g>
         </svg:g>
@@ -44,6 +46,8 @@ export class SparklineComponent extends BaseChartComponent {
   @Input() schemeType: ScaleType = ScaleType.Linear;
   @Input() valueDomain: number[];
   @Input() animations: boolean = true;
+  @Input() gradient: boolean;
+  @Input() trueZero: boolean;
 
   dims: ViewDimensions;
   xSet: any;
@@ -59,7 +63,7 @@ export class SparklineComponent extends BaseChartComponent {
 
   update(): void {
     super.update();
-
+   
     this.dims = calculateViewDimensions({
       width: this.width,
       height: this.height,

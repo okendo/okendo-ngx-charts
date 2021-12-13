@@ -16,6 +16,7 @@ export interface SingleSeries extends Array<DataItem> {}
 export interface Series {
   name: StringOrNumberOrDate;
   series: DataItem[];
+  extra?: any;
 }
 
 export interface MultiSeries extends Array<Series> {}

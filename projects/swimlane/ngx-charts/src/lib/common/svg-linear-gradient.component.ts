@@ -20,6 +20,7 @@ export class SvgLinearGradientComponent implements OnChanges {
   @Input() orientation = BarOrientation.Vertical;
   @Input() name: string;
   @Input() stops: Gradient[];
+  @Input() gradientDirection: string;
 
   x1: string;
   x2: string;
@@ -31,11 +32,28 @@ export class SvgLinearGradientComponent implements OnChanges {
     this.x2 = '0%';
     this.y1 = '0%';
     this.y2 = '0%';
-
+        
     if (this.orientation === BarOrientation.Horizontal) {
       this.x2 = '100%';
     } else if (this.orientation === BarOrientation.Vertical) {
-      this.y1 = '100%';
+      switch (this.gradientDirection) {
+        case 'down':
+          this.y2 = '0%';
+          this.y1 = '100%';
+          break;
+        case 'up':
+          this.y2 = '100%';
+          this.y1 = '0%';
+          break;
+        case 'none':
+          this.y2 = '0%';
+          this.y1 = '0%';
+          break;
+        default:
+          this.y2 = '0%';
+          this.y1 = '100%';
+          break;
+      }
     }
   }
 }

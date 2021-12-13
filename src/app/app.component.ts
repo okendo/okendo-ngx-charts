@@ -79,16 +79,19 @@ export class AppComponent implements OnInit {
   width: number = 700;
   height: number = 300;
   fitContainer: boolean = false;
-
+  margins: [number, number, number, number];
+  
   // options
   showXAxis = true;
   showYAxis = true;
-  gradient = false;
+  gradient = true;
   showLegend = true;
   legendTitle = 'Legend';
   legendPosition = LegendPosition.Right;
   showXAxisLabel = true;
+  tooltipBarDisabled = true;
   tooltipDisabled = false;
+  trueZero = true;
   showText = true;
   xAxisLabel = 'Country';
   showYAxisLabel = true;
@@ -474,7 +477,7 @@ export class AppComponent implements OnInit {
 
     this.dateDataWithRange = generateData(2, true);
 
-    if (this.chart.inputFormat === 'calendarData') this.calendarData = this.getCalendarData();
+    if (this.chart.inputFormat === 'calendarData') this.calendarData = this.getCalendarData();    
   }
 
   applyDimensions() {
@@ -706,7 +709,7 @@ export class AppComponent implements OnInit {
         value: this.mathFunction(t)
       };
     });
-
+    
     return [
       {
         name: this.mathText,

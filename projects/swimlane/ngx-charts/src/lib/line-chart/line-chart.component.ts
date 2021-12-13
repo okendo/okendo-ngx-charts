@@ -91,6 +91,8 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
               [rangeFillOpacity]="rangeFillOpacity"
               [hasRange]="hasRange"
               [animations]="animations"
+              [gradient]="gradient"
+              [trueZero]="trueZero"
             />
           </svg:g>
 
@@ -118,6 +120,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
                 [scaleType]="scaleType"
                 [visibleValue]="hoveredVertical"
                 [activeEntries]="activeEntries"
+                [tooltipBarDisabled]="tooltipBarDisabled"
                 [tooltipDisabled]="tooltipDisabled"
                 [tooltipTemplate]="tooltipTemplate"
                 (select)="onClick($event)"
@@ -152,6 +155,8 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
             [curve]="curve"
             [hasRange]="hasRange"
             [animations]="animations"
+            [gradient]="gradient"
+            [trueZero]="trueZero"
           />
         </svg:g>
       </svg:g>
@@ -204,7 +209,9 @@ export class LineChartComponent extends BaseChartComponent {
   @Input() xAxisTicks: any[];
   @Input() yAxisTicks: any[];
   @Input() roundDomains: boolean = false;
+  @Input() tooltipBarDisabled: boolean = false;
   @Input() tooltipDisabled: boolean = false;
+  @Input() trueZero: boolean;
   @Input() showRefLines: boolean = false;
   @Input() referenceLines: any;
   @Input() showRefLabels: boolean = true;
@@ -249,7 +256,7 @@ export class LineChartComponent extends BaseChartComponent {
 
   update(): void {
     super.update();
-
+    
     this.dims = calculateViewDimensions({
       width: this.width,
       height: this.height,

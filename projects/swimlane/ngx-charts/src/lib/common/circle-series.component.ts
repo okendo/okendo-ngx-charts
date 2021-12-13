@@ -55,7 +55,7 @@ export interface Circle {
         />
       </defs>
       <svg:rect
-        *ngIf="barVisible && type === 'standard'"
+        *ngIf="!tooltipBarDisabled && barVisible && type === 'standard'"
         [@animationState]="'active'"
         [attr.x]="circle.cx - circle.radius"
         [attr.y]="circle.cy"
@@ -109,6 +109,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
   @Input() scaleType: ScaleType;
   @Input() visibleValue: boolean;
   @Input() activeEntries: any[];
+  @Input() tooltipBarDisabled: boolean = false;
   @Input() tooltipDisabled: boolean = false;
   @Input() tooltipTemplate: TemplateRef<any>;
 

@@ -34,6 +34,7 @@ export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy {
   @Input() schemeType: ScaleType = ScaleType.Ordinal;
   @Input() customColors: any;
   @Input() animations: boolean = true;
+  @Input() chartContainer: ElementRef;
 
   @Output() select = new EventEmitter();
 
@@ -113,11 +114,11 @@ export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy {
   getContainerDims(): ViewDimensions {
     let width;
     let height;
-    const hostElem = this.chartElement.nativeElement;
+    const hostElem = this.chartContainer ?? this.chartElement?.nativeElement;
 
-    if (isPlatformBrowser(this.platformId) && hostElem.parentNode !== null) {
+    if (hostElem && hostElem.parentNode !== null) {
       // Get the container dimensions
-      const dims = hostElem.parentNode.getBoundingClientRect();
+      const dims = this.chartContainer ? hostElem.getBoundingClientRect() : hostElem.parentNode.getBoundingClientRect();
       width = dims.width;
       height = dims.height;
     }

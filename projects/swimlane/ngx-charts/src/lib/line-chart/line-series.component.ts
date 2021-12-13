@@ -30,7 +30,8 @@ import { Gradient } from '../common/types/gradient.interface';
         [fill]="hasGradient ? gradientUrl : colors.getColor(data.name)"
         [opacity]="0.25"
         [startOpacity]="0"
-        [gradient]="true"
+        [gradient]="gradient"
+        [gradientDirection]="gradientDirection"
         [stops]="areaGradientStops"
         [class.active]="isActive(data)"
         [class.inactive]="isInactive(data)"
@@ -73,6 +74,8 @@ export class LineSeriesComponent implements OnChanges {
   @Input() rangeFillOpacity: number;
   @Input() hasRange: boolean;
   @Input() animations: boolean = true;
+  @Input() gradient: boolean;
+  @Input() trueZero: boolean;
 
   path: string;
   outerPath: string;
@@ -83,6 +86,7 @@ export class LineSeriesComponent implements OnChanges {
   gradientStops: Gradient[];
   areaGradientStops: Gradient[];
   stroke: string;
+  gradientDirection: string;
 
   barOrientation = BarOrientation;
 
@@ -92,12 +96,12 @@ export class LineSeriesComponent implements OnChanges {
 
   update(): void {
     this.updateGradients();
-
+    
     const data = this.sortData(this.data.series);
-
+    
     const lineGen = this.getLineGenerator();
     this.path = lineGen(data) || '';
-
+    
     const areaGen = this.getAreaGenerator();
     this.areaPath = areaGen(data) || '';
 
@@ -108,7 +112,7 @@ export class LineSeriesComponent implements OnChanges {
 
     if (this.hasGradient) {
       this.stroke = this.gradientUrl;
-      const values = this.data.series.map(d => d.value);
+      const values = this.data.series.map(d => d.value);      
       const max = Math.max(...values);
       const min = Math.min(...values);
       if (max === min) {
@@ -161,10 +165,10 @@ export class LineSeriesComponent implements OnChanges {
       const label = d.name;
       return this.xScale(label);
     };
-
+  
     return area<any>()
       .x(xProperty)
-      .y0(() => this.yScale.range()[0])
+      .y0(() => this.trueZero ? this.yScale(0) : this.yScale.range()[0])
       .y1(d => this.yScale(d.value))
       .curve(this.curve);
   }
@@ -182,20 +186,22 @@ export class LineSeriesComponent implements OnChanges {
   }
 
   updateGradients() {
+    this.gradientDirection = this.data.extra?.gradientDirection;
+
     if (this.colors.scaleType === ScaleType.Linear) {
       this.hasGradient = true;
       this.gradientId = 'grad' + id().toString();
       this.gradientUrl = `url(#${this.gradientId})`;
-      const values = this.data.series.map(d => d.value);
+      const values = this.data.series.map(d => d.value);     
       const max = Math.max(...values);
       const min = Math.min(...values);
       this.gradientStops = this.colors.getLinearGradientStops(max, min);
-      this.areaGradientStops = this.colors.getLinearGradientStops(max);
+      this.areaGradientStops = this.colors.getLinearGradientStops(max);      
     } else {
       this.hasGradient = false;
       this.gradientStops = undefined;
       this.areaGradientStops = undefined;
-    }
+    }    
   }
 
   isActive(entry): boolean {

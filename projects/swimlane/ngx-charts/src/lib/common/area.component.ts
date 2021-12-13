@@ -12,6 +12,7 @@ import { Gradient } from './types/gradient.interface';
       <svg:g
         ngx-charts-svg-linear-gradient
         [orientation]="barOrientation.Vertical"
+        [gradientDirection]="gradientDirection"
         [name]="gradientId"
         [stops]="gradientStops"
       />
@@ -31,6 +32,7 @@ export class AreaComponent implements OnChanges {
   @Input() gradient: boolean = false;
   @Input() stops: Gradient[];
   @Input() animations: boolean = true;
+  @Input() gradientDirection: string;
 
   @Output() select = new EventEmitter();
 
@@ -50,7 +52,7 @@ export class AreaComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.update();
-
+        
     if (!this.animationsLoaded) {
       this.loadAnimation();
       this.animationsLoaded = true;

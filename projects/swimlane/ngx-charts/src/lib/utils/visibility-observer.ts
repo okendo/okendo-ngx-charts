@@ -28,7 +28,7 @@ export class VisibilityObserver {
     });
   }
 
-  runCheck(): void {
+  runCheck(): void {    
     const check = () => {
       if (!this.element) {
         return;
@@ -42,13 +42,13 @@ export class VisibilityObserver {
         this.onVisibilityChange();
       } else {
         clearTimeout(this.timeout);
-        this.zone.runOutsideAngular(() => {
+        this.zone?.runOutsideAngular(() => {
           this.timeout = setTimeout(() => check(), 100);
         });
       }
     };
 
-    this.zone.runOutsideAngular(() => {
+    this.zone?.runOutsideAngular(() => {
       this.timeout = setTimeout(() => check());
     });
   }

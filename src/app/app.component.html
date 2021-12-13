@@ -301,6 +301,7 @@
         [gradient]="gradient"
         [tooltipDisabled]="tooltipDisabled"
         [tooltipText]="pieTooltipText"
+        [margins]="margins"
         (dblclick)="dblclick($event)"
         (select)="select($event)"
         (activate)="activate($event)"
@@ -365,9 +366,11 @@
         [curve]="curve"
         [rangeFillOpacity]="rangeFillOpacity"
         [roundDomains]="roundDomains"
+        [tooltipBarDisabled]="tooltipBarDisabled"
         [tooltipDisabled]="tooltipDisabled"
         [trimXAxisTicks]="trimXAxisTicks"
         [trimYAxisTicks]="trimYAxisTicks"
+        [trueZero]="trueZero"
         [rotateXAxisTicks]="rotateXAxisTicks"
         [maxXAxisTickLength]="maxXAxisTickLength"
         [maxYAxisTickLength]="maxYAxisTickLength"
@@ -998,6 +1001,8 @@
         [results]="sparklineData"
         [animations]="animations"
         [curve]="curve"
+        [gradient]="gradient"
+        [trueZero]="trueZero"
       >
       </ngx-charts-sparkline>
       <ngx-charts-timeline-filter-bar-chart
