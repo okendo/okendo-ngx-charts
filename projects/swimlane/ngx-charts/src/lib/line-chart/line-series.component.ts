@@ -69,7 +69,7 @@ export class LineSeriesComponent implements OnChanges {
   @Input() rangeFillOpacity: number;
   @Input() hasRange: boolean;
   @Input() animations: boolean = true;
-  @Input() gradient: boolean;
+  @Input() gradient: boolean = true;
   @Input() trueZero: boolean;
 
   path: string;

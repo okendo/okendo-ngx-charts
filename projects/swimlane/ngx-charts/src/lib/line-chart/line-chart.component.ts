@@ -188,7 +188,7 @@ export class LineChartComponent extends BaseChartComponent {
   @Input() yAxisLabel;
   @Input() autoScale;
   @Input() timeline;
-  @Input() gradient: boolean;
+  @Input() gradient: boolean = true;
   @Input() showGridLines: boolean = true;
   @Input() curve: any = curveLinear;
   @Input() activeEntries: any[] = [];
