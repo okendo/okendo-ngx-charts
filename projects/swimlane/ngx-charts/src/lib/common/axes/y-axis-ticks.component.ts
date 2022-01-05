@@ -26,16 +26,16 @@ import { TextAnchor } from '../types/text-anchor.enum';
       <svg:g *ngFor="let tick of ticks" class="tick" [attr.transform]="transform(tick)">
         <ng-container *ngIf="tickFormat(tick) as tickFormatted">
           <title>{{ tickFormatted }}</title>
-          <svg:text
-            stroke-width="0.01"
-            [attr.dy]="dy"
-            [attr.x]="x1"
-            [attr.y]="y1"
-            [attr.text-anchor]="textAnchor"
-            [style.font-size]="'12px'"
-          >
+        <svg:text
+          stroke-width="0.01"
+          [attr.dy]="dy"
+          [attr.x]="x1"
+          [attr.y]="y1"
+          [attr.text-anchor]="textAnchor"
+          [style.font-size]="'12px'"
+        >
             <ng-container *ngIf="wrapTicks; then tmplMultilineTick; else tmplSinglelineTick"></ng-container>
-          </svg:text>
+        </svg:text>
 
           <ng-template #tmplMultilineTick>
             <ng-container *ngIf="tickChunks(tick) as tickLines">
@@ -204,7 +204,7 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
 
             if (chunksLength === 1) {
               return positionMiddle;
-            }
+        }
 
             const bandWidth = scale.bandwidth();
             const heightOfLines = chunksLength * 8;
@@ -323,7 +323,7 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
     const maxChars = Math.max(...this.ticks.map(t => this.tickTrim(this.tickFormat(t)).length));
     const charWidth = 7;
     return maxChars * charWidth;
-  }
+}
 
   tickChunks(label: string): string[] {
     if (label.toString().length > this.maxTickLength && this.scale.bandwidth) {

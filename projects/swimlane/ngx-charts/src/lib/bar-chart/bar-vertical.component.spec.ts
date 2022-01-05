@@ -183,7 +183,7 @@ describe('<ngx-charts-bar-vertical>', () => {
         'printing and',
         'typesetting...'
       ]);
-    });
+});
 
     it('should show a max of 5 lines for a wrapped tick', () => {
       TestBed.overrideComponent(TestComponent, {

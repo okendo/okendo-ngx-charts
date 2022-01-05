@@ -30,7 +30,8 @@ import { Gradient } from '../common/types/gradient.interface';
         [fill]="hasGradient ? gradientUrl : colors.getColor(data.name)"
         [opacity]="0.25"
         [startOpacity]="0"
-        [gradient]="true"
+        [gradient]="gradient"
+        [gradientDirection]="gradientDirection"
         [stops]="areaGradientStops"
         [class.active]="isActive(data)"
         [class.inactive]="isInactive(data)"
@@ -74,6 +75,8 @@ export class LineSeriesComponent implements OnChanges {
   @Input() rangeFillOpacity: number;
   @Input() hasRange: boolean;
   @Input() animations: boolean = true;
+  @Input() gradient: boolean = true;
+  @Input() trueZero: boolean;
 
   path: string;
   outerPath: string;
@@ -84,6 +87,7 @@ export class LineSeriesComponent implements OnChanges {
   gradientStops: Gradient[];
   areaGradientStops: Gradient[];
   stroke: string;
+  gradientDirection: string;
 
   barOrientation = BarOrientation;
 
@@ -165,7 +169,7 @@ export class LineSeriesComponent implements OnChanges {
 
     return area<any>()
       .x(xProperty)
-      .y0(() => this.yScale.range()[0])
+      .y0(() => this.trueZero ? this.yScale(0) : this.yScale.range()[0])
       .y1(d => this.yScale(d.value))
       .curve(this.curve);
   }

@@ -122,6 +122,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
   @Input() scaleType: ScaleType;
   @Input() visibleValue: boolean;
   @Input() activeEntries: any[];
+  @Input() tooltipBarDisabled: boolean = false;
   @Input() tooltipDisabled: boolean = false;
   @Input() tooltipTemplate: TemplateRef<any>;
 
@@ -149,7 +150,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
 
     if (isPlatformServer(this.platformId)) {
       this.isSSR = true;
-    }
+  }
   }
 
   ngOnChanges(): void {

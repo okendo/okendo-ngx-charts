@@ -133,7 +133,7 @@ const twoPI = 2 * Math.PI;
               (activate)="onActivate($event)"
               (deactivate)="onDeactivate($event)"
             />
-          </svg:g>
+      </svg:g>
         </svg:g>
       </svg:g>
     </ngx-charts-chart>

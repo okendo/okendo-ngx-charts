@@ -28,6 +28,8 @@ import {
               [scaleType]="scaleType"
               [curve]="curve"
               [animations]="animations"
+              [gradient]="gradient"
+              [trueZero]="trueZero"
             />
           </svg:g>
         </svg:g>
@@ -45,7 +47,9 @@ export class SparklineComponent extends BaseChartComponent {
   @Input() schemeType: ScaleType = ScaleType.Ordinal;
   @Input() valueDomain: number[];
   @Input() animations: boolean = true;
-
+  @Input() gradient: boolean = true;
+  @Input() trueZero: boolean;
+  
   dims: ViewDimensions;
   xSet: any;
   xDomain: any;

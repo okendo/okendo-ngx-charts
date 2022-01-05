@@ -39,9 +39,9 @@ export function getScale(
       return scaleTime().range(range).domain(domain);
     case ScaleType.Linear: {
       const scale = scaleLinear().range(range).domain(domain);
-      if (roundDomains) {
+    if (roundDomains) {
         return scale.nice();
-      }
+    }
       return scale;
     }
     case ScaleType.Ordinal:

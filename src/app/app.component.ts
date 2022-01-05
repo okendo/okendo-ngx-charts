@@ -81,7 +81,8 @@ export class AppComponent implements OnInit {
   width: number = 700;
   height: number = 300;
   fitContainer: boolean = false;
-
+  margins: [number, number, number, number];
+  
   // options
   showXAxis = true;
   showYAxis = true;
@@ -90,7 +91,9 @@ export class AppComponent implements OnInit {
   legendTitle = 'Legend';
   legendPosition = LegendPosition.Right;
   showXAxisLabel = true;
+  tooltipBarDisabled = false;
   tooltipDisabled = false;
+  trueZero = false;
   showText = true;
   xAxisLabel = 'Country';
   showYAxisLabel = true;

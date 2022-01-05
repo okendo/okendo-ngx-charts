@@ -56,17 +56,17 @@ export class ColorHelper {
         break;
       case ScaleType.Linear:
         {
-          const colorDomain = [...scheme.domain];
-          if (colorDomain.length === 1) {
-            colorDomain.push(colorDomain[0]);
-            this.colorDomain = colorDomain;
-          }
+      const colorDomain = [...scheme.domain];
+      if (colorDomain.length === 1) {
+        colorDomain.push(colorDomain[0]);
+        this.colorDomain = colorDomain;
+      }
 
-          const points = range(0, 1, 1.0 / colorDomain.length);
+      const points = range(0, 1, 1.0 / colorDomain.length);
           colorScale = scaleLinear()
             .range(colorDomain as any)
             .domain(points);
-        }
+    }
         break;
       default:
         break;

@@ -309,6 +309,7 @@
         [gradient]="gradient"
         [tooltipDisabled]="tooltipDisabled"
         [tooltipText]="pieTooltipText"
+        [margins]="margins"
         (dblclick)="dblclick($event)"
         (select)="select($event)"
         (activate)="activate($event)"
@@ -373,9 +374,11 @@
         [curve]="curve"
         [rangeFillOpacity]="rangeFillOpacity"
         [roundDomains]="roundDomains"
+        [tooltipBarDisabled]="tooltipBarDisabled"
         [tooltipDisabled]="tooltipDisabled"
         [trimXAxisTicks]="trimXAxisTicks"
         [trimYAxisTicks]="trimYAxisTicks"
+        [trueZero]="trueZero"
         [rotateXAxisTicks]="rotateXAxisTicks"
         [maxXAxisTickLength]="maxXAxisTickLength"
         [maxYAxisTickLength]="maxYAxisTickLength"
@@ -1045,6 +1048,8 @@
         [results]="sparklineData"
         [animations]="animations"
         [curve]="curve"
+        [gradient]="gradient"
+        [trueZero]="trueZero"
       >
       </ngx-charts-sparkline>
       <ngx-charts-timeline-filter-bar-chart
@@ -1142,7 +1147,7 @@
       <small class="version">{{ APP_VERSION }}</small>
       <small class="subtitle">Angular Chart Framework</small>
     </h1>
-    <div style="margin: 20px">
+    <div style="margin: 20px;">
       <h3>Chart Type</h3>
       <select [ngModel]="chartType" (ngModelChange)="selectChart($event)">
         <ng-template ngFor let-group [ngForOf]="chartGroups">
@@ -1159,7 +1164,7 @@
         <option [value]="'light'">Light</option>
       </select>
 
-      <h3 (click)="dataVisible = !dataVisible" style="cursor: pointer">
+      <h3 (click)="dataVisible = !dataVisible" style="cursor: pointer;">
         <span [class.arrow-down]="dataVisible" [class.arrow-right]="!dataVisible"> </span>
         <strong>Data</strong>
       </h3>
@@ -1189,7 +1194,7 @@
         </div>
       </div>
       <div>
-        <h3 (click)="dimVisible = !dimVisible" style="cursor: pointer">
+        <h3 (click)="dimVisible = !dimVisible" style="cursor: pointer;">
           <span [class.arrow-down]="dimVisible" [class.arrow-right]="!dimVisible"> </span>
           <strong>Dimensions</strong>
         </h3>
@@ -1208,7 +1213,7 @@
           </div>
         </div>
       </div>
-      <h3 (click)="colorVisible = !colorVisible" style="cursor: pointer">
+      <h3 (click)="colorVisible = !colorVisible" style="cursor: pointer;">
         <span [class.arrow-down]="colorVisible" [class.arrow-right]="!colorVisible"> </span>
         <strong>Color Scheme</strong>
       </h3>
@@ -1239,7 +1244,7 @@
         </div>
       </div>
 
-      <h3 (click)="optsVisible = !optsVisible" style="cursor: pointer">
+      <h3 (click)="optsVisible = !optsVisible" style="cursor: pointer;">
         <span [class.arrow-down]="optsVisible" [class.arrow-right]="!optsVisible"> </span>
         <strong>Options</strong>
       </h3>
@@ -1358,7 +1363,7 @@
           <label>Legend Position:</label><br />
           <select style="margin-left: 10px" [(ngModel)]="legendPosition">
             <option value="right">Right</option>
-            <option value="below">Below</option></select
+            <option value="below">Below</option> </select
           ><br />
         </div>
         <div *ngIf="chart.options.includes('tooltipDisabled')">

@@ -32,7 +32,8 @@ export class AreaComponent implements OnChanges {
   @Input() gradient: boolean = false;
   @Input() stops: Gradient[];
   @Input() animations: boolean = true;
-
+  @Input() gradientDirection: string;
+  
   @Output() select = new EventEmitter();
 
   element: HTMLElement;

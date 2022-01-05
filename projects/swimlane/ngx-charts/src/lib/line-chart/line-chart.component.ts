@@ -83,21 +83,23 @@ import { isPlatformServer } from '@angular/common';
         ></svg:g>
         <svg:g [attr.clip-path]="clipPath">
           <svg:g *ngIf="!isSSR">
-            <svg:g *ngFor="let series of results; trackBy: trackBy" [@animationState]="'active'">
-              <svg:g
-                ngx-charts-line-series
-                [xScale]="xScale"
-                [yScale]="yScale"
-                [colors]="colors"
-                [data]="series"
-                [activeEntries]="activeEntries"
-                [scaleType]="scaleType"
-                [curve]="curve"
-                [rangeFillOpacity]="rangeFillOpacity"
-                [hasRange]="hasRange"
-                [animations]="animations"
-              />
-            </svg:g>
+          <svg:g *ngFor="let series of results; trackBy: trackBy" [@animationState]="'active'">
+            <svg:g
+              ngx-charts-line-series
+              [xScale]="xScale"
+              [yScale]="yScale"
+              [colors]="colors"
+              [data]="series"
+              [activeEntries]="activeEntries"
+              [scaleType]="scaleType"
+              [curve]="curve"
+              [rangeFillOpacity]="rangeFillOpacity"
+              [hasRange]="hasRange"
+              [animations]="animations"
+              [gradient]="gradient"
+              [trueZero]="trueZero"
+            />
+          </svg:g>
           </svg:g>
           <svg:g *ngIf="isSSR">
             <svg:g *ngFor="let series of results; trackBy: trackBy">
@@ -141,6 +143,7 @@ import { isPlatformServer } from '@angular/common';
                 [scaleType]="scaleType"
                 [visibleValue]="hoveredVertical"
                 [activeEntries]="activeEntries"
+                [tooltipBarDisabled]="tooltipBarDisabled"
                 [tooltipDisabled]="tooltipDisabled"
                 [tooltipTemplate]="tooltipTemplate"
                 (select)="onClick($event)"
@@ -212,7 +215,7 @@ export class LineChartComponent extends BaseChartComponent implements OnInit {
   @Input() yAxisLabel: string;
   @Input() autoScale: boolean;
   @Input() timeline: boolean;
-  @Input() gradient: boolean;
+  @Input() gradient: boolean = true;
   @Input() showGridLines: boolean = true;
   @Input() curve: any = curveLinear;
   @Input() activeEntries: any[] = [];
@@ -228,7 +231,9 @@ export class LineChartComponent extends BaseChartComponent implements OnInit {
   @Input() xAxisTicks: any[];
   @Input() yAxisTicks: any[];
   @Input() roundDomains: boolean = false;
+  @Input() tooltipBarDisabled: boolean = false;
   @Input() tooltipDisabled: boolean = false;
+  @Input() trueZero: boolean;
   @Input() showRefLines: boolean = false;
   @Input() referenceLines: any;
   @Input() showRefLabels: boolean = true;
