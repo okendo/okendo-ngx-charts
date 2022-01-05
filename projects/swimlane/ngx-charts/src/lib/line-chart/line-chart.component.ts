@@ -88,6 +88,8 @@ import { getUniqueXDomainValues, getScaleType } from '../common/domain.helper';
               [rangeFillOpacity]="rangeFillOpacity"
               [hasRange]="hasRange"
               [animations]="animations"
+              [gradient]="gradient"
+              [trueZero]="trueZero"
             />
           </svg:g>
 
@@ -115,6 +117,7 @@ import { getUniqueXDomainValues, getScaleType } from '../common/domain.helper';
                 [scaleType]="scaleType"
                 [visibleValue]="hoveredVertical"
                 [activeEntries]="activeEntries"
+                [tooltipBarDisabled]="tooltipBarDisabled"
                 [tooltipDisabled]="tooltipDisabled"
                 [tooltipTemplate]="tooltipTemplate"
                 (select)="onClick($event)"
@@ -185,7 +188,7 @@ export class LineChartComponent extends BaseChartComponent {
   @Input() yAxisLabel;
   @Input() autoScale;
   @Input() timeline;
-  @Input() gradient: boolean;
+  @Input() gradient: boolean = true;
   @Input() showGridLines: boolean = true;
   @Input() curve: any = curveLinear;
   @Input() activeEntries: any[] = [];
@@ -201,7 +204,9 @@ export class LineChartComponent extends BaseChartComponent {
   @Input() xAxisTicks: any[];
   @Input() yAxisTicks: any[];
   @Input() roundDomains: boolean = false;
+  @Input() tooltipBarDisabled: boolean = false;
   @Input() tooltipDisabled: boolean = false;
+  @Input() trueZero: boolean;
   @Input() showRefLines: boolean = false;
   @Input() referenceLines: any;
   @Input() showRefLabels: boolean = true;

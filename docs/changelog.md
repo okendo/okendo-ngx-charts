@@ -1,5 +1,13 @@
 # Changelog
 
+## 14.0.1
+- `tooltipBarDisabled`: Option to disable the tool tip bar on data point hover
+- `trueZero`: Gradient effect flow towards 0
+- `gradientDirection`: Sets the flow of the gradient fade effect per chart line
+- `gradient`: Can now be passed as an input from the initial line chart reference to toggle the gradient. Enabled by default.
+- `margins`: Can now be passed as an input from pie chart reference
+
+
 ## 14.0.0
 
 - Chore: explicitly only suppot ng9
