@@ -124,27 +124,12 @@ export class SeriesVerticalComponent implements OnChanges {
       total = this.series.map(d => d.value).reduce((sum, d) => sum + d, 0);
     }
 
-    let topNameOfGroup: string | undefined;
-
-    for (let i = this.series.length - 1; i >= 0; i--) {
-      if (this.series[i].value !== 0) {
-        topNameOfGroup = this.series[i].name;
-        break;
-      }
-    }
-
     this.bars = this.series.map((d, index) => {
       let value = d.value;
       const label = this.getLabel(d);
       const formattedLabel = formatLabel(label);
-      let roundEdges;
-
-      if ((this.type === 'stacked' && d.name === topNameOfGroup)) {
-        roundEdges = true;
-      }
-      else {
-        roundEdges = this.roundEdges;
-      }
+      const roundEdges = this.roundEdges;
+      const isLastBar = index === this.series.length - 1;
 
       d0Type = value > 0 ? D0Types.positive : D0Types.negative;
 
@@ -179,6 +164,10 @@ export class SeriesVerticalComponent implements OnChanges {
         bar.y = this.yScale(offset1);
         bar.offset0 = offset0;
         bar.offset1 = offset1;
+
+        if (!isLastBar) {
+          bar.roundEdges = false;
+        }
       } else if (this.type === 'normalized') {
         let offset0 = d0[d0Type];
         let offset1 = offset0 + value;
