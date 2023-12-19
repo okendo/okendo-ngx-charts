@@ -195,16 +195,15 @@ export class SeriesVerticalComponent implements OnChanges {
       let value = d.value as any;
       const label = this.getLabel(d);
       const formattedLabel = formatLabel(label);
+      d0Type = value > 0 ? D0Types.positive : D0Types.negative;
       let roundEdges;
 
-      if ((this.type === 'stacked' && d.name === topNameOfGroup)) {
-        roundEdges = true;
+      if (this.type === 'stacked' && (d.name !== topNameOfGroup || d0Type === D0Types.negative)) {
+        roundEdges = false;
       }
       else {
         roundEdges = this.roundEdges;
       }
-
-      d0Type = value > 0 ? D0Types.positive : D0Types.negative;
 
       const bar: any = {
         value,

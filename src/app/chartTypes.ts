@@ -170,6 +170,7 @@ const chartGroups = [
           'yAxisLabel',
           'showGridLines',
           'roundDomains',
+          'roundEdges',
           'tooltipDisabled',
           'yScaleMax',
           'showDataLabel',
