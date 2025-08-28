@@ -7,7 +7,7 @@ import {
   HostListener,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { scaleLinear, scalePoint, scaleTime } from 'd3-scale';
 import { curveLinear } from 'd3-shape';
@@ -161,7 +161,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['../common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  standalone: false
+  standalone: false,
 })
 export class AreaChartStackedComponent extends BaseChartComponent {
   @Input() legend: boolean = false;
@@ -246,7 +246,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.schemeType,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     if (this.timeline) {
@@ -268,7 +268,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
       const val = this.xSet[i];
       let d0 = 0;
       for (const group of this.results) {
-        let d = group.series.find(item => {
+        let d = group.series.find((item) => {
           let a = item.name;
           let b = val;
           if (this.scaleType === ScaleType.Time) {
@@ -287,7 +287,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
             name: val,
             value: 0,
             d0,
-            d1: d0
+            d1: d0,
           };
           group.series.push(d);
         }
@@ -322,7 +322,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
     let domain = [];
 
     if (this.scaleType === ScaleType.Linear) {
-      values = values.map(v => Number(v));
+      values = values.map((v) => Number(v));
     }
 
     let min;
@@ -361,7 +361,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
       const val = this.xSet[i];
       let sum = 0;
       for (const group of this.results) {
-        const d = group.series.find(item => {
+        const d = group.series.find((item) => {
           let a = item.name;
           let b = val;
           if (this.scaleType === ScaleType.Time) {
@@ -386,7 +386,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
   }
 
   getSeriesDomain(): string[] {
-    return this.results.map(d => d.name);
+    return this.results.map((d) => d.name);
   }
 
   getXScale(domain, width: number): any {
@@ -456,7 +456,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
       colors: undefined,
       domain: [],
       title: undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
     if (opts.scaleType === ScaleType.Ordinal) {
       opts.domain = this.seriesDomain;
@@ -480,7 +480,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
   }
 
   onActivate(item): void {
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value;
     });
     if (idx > -1) {
@@ -492,7 +492,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
   }
 
   onDeactivate(item): void {
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value;
     });
 

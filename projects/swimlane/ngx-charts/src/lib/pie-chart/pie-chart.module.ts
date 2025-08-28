@@ -17,7 +17,7 @@ import { PieSeriesComponent } from './pie-series.component';
     PieChartComponent,
     PieGridComponent,
     PieGridSeriesComponent,
-    PieSeriesComponent
+    PieSeriesComponent,
   ],
   exports: [
     AdvancedPieChartComponent,
@@ -26,7 +26,7 @@ import { PieSeriesComponent } from './pie-series.component';
     PieChartComponent,
     PieGridComponent,
     PieGridSeriesComponent,
-    PieSeriesComponent
-  ]
+    PieSeriesComponent,
+  ],
 })
 export class PieChartModule {}

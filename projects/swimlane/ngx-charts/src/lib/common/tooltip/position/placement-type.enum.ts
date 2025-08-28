@@ -3,5 +3,5 @@ export enum PlacementTypes {
   Bottom = 'bottom',
   Left = 'left',
   Right = 'right',
-  Center = 'center'
+  Center = 'center',
 }

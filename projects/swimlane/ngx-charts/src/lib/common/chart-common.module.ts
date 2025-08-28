@@ -37,12 +37,12 @@ const COMPONENTS = [
   SvgLinearGradientComponent,
   SvgRadialGradientComponent,
   Timeline,
-  AdvancedLegendComponent
+  AdvancedLegendComponent,
 ];
 
 @NgModule({
   imports: [CommonModule, AxesModule, TooltipModule],
   declarations: [...COMPONENTS, VisibilityObserver],
-  exports: [CommonModule, AxesModule, TooltipModule, ...COMPONENTS, VisibilityObserver]
+  exports: [CommonModule, AxesModule, TooltipModule, ...COMPONENTS, VisibilityObserver],
 })
 export class ChartCommonModule {}

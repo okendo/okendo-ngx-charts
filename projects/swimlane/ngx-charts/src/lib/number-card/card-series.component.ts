@@ -5,7 +5,7 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { invertColor } from '../utils/color-utils';
 import { GridItem, GridData } from '../common/grid-layout.helper';
@@ -54,7 +54,7 @@ export interface CardModel extends GridItem {
     />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class CardSeriesComponent implements OnChanges {
   @Input() data: CardModel[];
@@ -82,16 +82,17 @@ export class CardSeriesComponent implements OnChanges {
 
   update(): void {
     if (this.data.length > 2) {
-      const valueFormatting = this.valueFormatting || (card => card.value.toLocaleString());
+      const valueFormatting = this.valueFormatting || ((card) => card.value.toLocaleString());
 
       const sortedLengths = this.data
-        .map(d => {
-          const hasValue = d && d.data && typeof d.data.value !== 'undefined' && d.data.value !== null;
+        .map((d) => {
+          const hasValue =
+            d && d.data && typeof d.data.value !== 'undefined' && d.data.value !== null;
           return hasValue
             ? valueFormatting({
                 data: d.data,
                 label: d ? d.data.name : '',
-                value: d && d.data ? d.data.value : ''
+                value: d && d.data ? d.data.value : '',
               }).length
             : 0;
         })
@@ -101,15 +102,19 @@ export class CardSeriesComponent implements OnChanges {
     }
 
     const cards = this.getCards();
-    this.cards = cards.filter(d => d.data.value !== null);
-    this.emptySlots = cards.filter(d => d.data.value === null);
+    this.cards = cards.filter((d) => d.data.value !== null);
+    this.emptySlots = cards.filter((d) => d.data.value === null);
   }
 
   getCards(): CardModel[] {
     const yPadding =
-      typeof this.innerPadding === 'number' ? this.innerPadding : this.innerPadding[0] + this.innerPadding[2];
+      typeof this.innerPadding === 'number'
+        ? this.innerPadding
+        : this.innerPadding[0] + this.innerPadding[2];
     const xPadding =
-      typeof this.innerPadding === 'number' ? this.innerPadding : this.innerPadding[1] + this.innerPadding[3];
+      typeof this.innerPadding === 'number'
+        ? this.innerPadding
+        : this.innerPadding[1] + this.innerPadding[3];
 
     return this.data.map((d, index) => {
       let label = d.data.name as any;
@@ -132,7 +137,7 @@ export class CardSeriesComponent implements OnChanges {
         textColor: this.textColor || invertColor(color),
         label,
         data: d.data,
-        tooltipText: `${label}: ${value}`
+        tooltipText: `${label}: ${value}`,
       };
     });
   }

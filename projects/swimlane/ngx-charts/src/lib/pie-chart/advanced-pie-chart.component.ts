@@ -6,7 +6,7 @@ import {
   Input,
   Output,
   TemplateRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { calculateViewDimensions } from '../common/view-dimensions.helper';
@@ -42,7 +42,11 @@ import { ScaleType } from '../common/types/scale-type.enum';
           </svg:g>
         </ngx-charts-chart>
       </div>
-      <div class="advanced-pie-legend-wrapper" [style.width.px]="width - dims.width" [style.height.px]="height">
+      <div
+        class="advanced-pie-legend-wrapper"
+        [style.width.px]="width - dims.width"
+        [style.height.px]="height"
+      >
         <ngx-charts-advanced-legend
           [data]="results"
           [colors]="colors"
@@ -63,7 +67,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
   styleUrls: ['../common/base-chart.component.scss', './advanced-pie-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class AdvancedPieChartComponent extends BaseChartComponent {
   @Input() gradient: boolean;
@@ -96,7 +100,7 @@ export class AdvancedPieChartComponent extends BaseChartComponent {
     this.dims = calculateViewDimensions({
       width: (this.width * 4) / 12.0,
       height: this.height,
-      margins: this.margin
+      margins: this.margin,
     });
 
     this.formatDates();
@@ -115,7 +119,7 @@ export class AdvancedPieChartComponent extends BaseChartComponent {
   }
 
   getDomain(): string[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d) => d.label);
   }
 
   onClick(data: DataItem) {
@@ -127,7 +131,7 @@ export class AdvancedPieChartComponent extends BaseChartComponent {
   }
 
   onActivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+    item = this.results.find((d) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -135,7 +139,7 @@ export class AdvancedPieChartComponent extends BaseChartComponent {
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
     if (idx > -1) {
@@ -147,7 +151,7 @@ export class AdvancedPieChartComponent extends BaseChartComponent {
   }
 
   onDeactivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+    item = this.results.find((d) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -155,7 +159,7 @@ export class AdvancedPieChartComponent extends BaseChartComponent {
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
 

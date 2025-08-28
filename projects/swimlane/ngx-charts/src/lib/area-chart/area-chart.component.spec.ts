@@ -14,12 +14,12 @@ const colors = ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'];
 @Component({
   selector: 'test-component',
   template: '',
-  standalone: false
+  standalone: false,
 })
 class TestComponent {
   data: any = multi;
   colorScheme = {
-    domain: colors
+    domain: colors,
   };
 }
 
@@ -28,7 +28,7 @@ describe('<ngx-charts-area-chart>', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [NoopAnimationsModule, AreaChartModule],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
     });
   });
 
@@ -45,8 +45,8 @@ describe('<ngx-charts-area-chart>', () => {
                 [view]="[400,800]"
                 [scheme]="colorScheme"
                 [results]="data">
-              </ngx-charts-area-chart>`
-        }
+              </ngx-charts-area-chart>`,
+        },
       }).compileComponents();
       fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
@@ -69,9 +69,9 @@ describe('<ngx-charts-area-chart>', () => {
       const compiled = de.nativeElement;
 
       const fills = Array.from(compiled.querySelectorAll('path.area')).map((areaElement: Element) =>
-        areaElement.getAttribute('fill')
+        areaElement.getAttribute('fill'),
       );
-      expect(colors.every(color => fills.includes(color))).toBeTruthy();
+      expect(colors.every((color) => fills.includes(color))).toBeTruthy();
     });
   });
 });

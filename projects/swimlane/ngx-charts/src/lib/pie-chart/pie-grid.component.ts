@@ -6,7 +6,7 @@ import {
   ContentChild,
   TemplateRef,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { min } from 'd3-array';
 import { format } from 'd3-format';
@@ -28,7 +28,11 @@ import { ScaleType } from '../common/types/scale-type.enum';
   template: `
     <ngx-charts-chart [view]="[width, height]" [showLegend]="false" [animations]="animations">
       <svg:g [attr.transform]="transform" class="pie-grid chart">
-        <svg:g *ngFor="let series of series" class="pie-grid-item" [attr.transform]="series.transform">
+        <svg:g
+          *ngFor="let series of series"
+          class="pie-grid-item"
+          [attr.transform]="series.transform"
+        >
           <svg:g
             ngx-charts-pie-grid-series
             [colors]="series.colors"
@@ -58,7 +62,14 @@ import { ScaleType } from '../common/types/scale-type.enum';
             [countSuffix]="'%'"
             text-anchor="middle"
           ></svg:text>
-          <svg:text *ngIf="!animations" class="label percent-label" dy="-0.5em" x="0" y="5" text-anchor="middle">
+          <svg:text
+            *ngIf="!animations"
+            class="label percent-label"
+            dy="-0.5em"
+            x="0"
+            y="5"
+            text-anchor="middle"
+          >
             {{ series.percent.toLocaleString() }}
           </svg:text>
           <svg:text class="label" dy="0.5em" x="0" y="5" text-anchor="middle">
@@ -92,7 +103,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
   styleUrls: ['../common/base-chart.component.scss', './pie-grid.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class PieGridComponent extends BaseChartComponent {
   @Input() designatedTotal: number;
@@ -124,7 +135,7 @@ export class PieGridComponent extends BaseChartComponent {
     this.dims = calculateViewDimensions({
       width: this.width,
       height: this.height,
-      margins: this.margin
+      margins: this.margin,
     });
 
     this.formatDates();
@@ -150,13 +161,13 @@ export class PieGridComponent extends BaseChartComponent {
   }
 
   getDomain(): string[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d) => d.label);
   }
 
   getSeries(): any[] {
     const total = this.designatedTotal ? this.designatedTotal : this.getTotal();
 
-    return this.data.map(d => {
+    return this.data.map((d) => {
       const baselineLabelHeight = 20;
       const padding = 10;
       const name = d.data.name;
@@ -194,16 +205,16 @@ export class PieGridComponent extends BaseChartComponent {
             data: {
               other: true,
               value: total - value,
-              name: d.data.name
-            }
-          }
-        ]
+              name: d.data.name,
+            },
+          },
+        ],
       };
     });
   }
 
   getTotal(): any {
-    return this.results.map(d => d.value).reduce((sum, d) => sum + d, 0);
+    return this.results.map((d) => d.value).reduce((sum, d) => sum + d, 0);
   }
 
   onClick(data: DataItem): void {
@@ -211,11 +222,16 @@ export class PieGridComponent extends BaseChartComponent {
   }
 
   setColors(): void {
-    this.colorScale = new ColorHelper(this.scheme, ScaleType.Ordinal, this.domain, this.customColors);
+    this.colorScale = new ColorHelper(
+      this.scheme,
+      ScaleType.Ordinal,
+      this.domain,
+      this.customColors,
+    );
   }
 
   onActivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+    item = this.results.find((d) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -223,7 +239,7 @@ export class PieGridComponent extends BaseChartComponent {
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
     if (idx > -1) {
@@ -235,7 +251,7 @@ export class PieGridComponent extends BaseChartComponent {
   }
 
   onDeactivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+    item = this.results.find((d) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -243,7 +259,7 @@ export class PieGridComponent extends BaseChartComponent {
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
 

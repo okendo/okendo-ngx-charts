@@ -7,7 +7,7 @@ import {
   OnChanges,
   OnInit,
   ChangeDetectionStrategy,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { formatLabel, escapeLabel } from '../common/label.helper';
 import { DataItem, Series } from '../models/chart-data.model';
@@ -53,7 +53,7 @@ interface Cell {
     ></svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class HeatCellSeriesComponent implements OnChanges, OnInit {
   @Input() data;
@@ -92,8 +92,8 @@ export class HeatCellSeriesComponent implements OnChanges, OnInit {
   getCells(): Cell[] {
     const cells = [];
 
-    this.data.map(row => {
-      row.series.map(cell => {
+    this.data.map((row) => {
+      row.series.map((cell) => {
         const value = cell.value;
         cell.series = row.name;
 
@@ -107,7 +107,7 @@ export class HeatCellSeriesComponent implements OnChanges, OnInit {
           fill: this.colors.getColor(value),
           data: value,
           label: formatLabel(cell.name),
-          series: row.name
+          series: row.name,
         });
       });
     });

@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy,
   ElementRef,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { formatLabel } from '../common/label.helper';
 import { BarOrientation } from '../common/types/bar-orientation.enum';
@@ -27,7 +27,7 @@ import { BarOrientation } from '../common/types/bar-orientation.enum';
   `,
   styleUrls: ['./bar-label.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class BarLabelComponent implements OnChanges {
   @Input() value;

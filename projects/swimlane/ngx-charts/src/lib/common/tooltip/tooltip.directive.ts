@@ -8,7 +8,7 @@ import {
   Renderer2,
   OnDestroy,
   TemplateRef,
-  ComponentRef
+  ComponentRef,
 } from '@angular/core';
 
 import { PlacementTypes } from './position';
@@ -19,7 +19,7 @@ import { TooltipService } from './tooltip.service';
 
 @Directive({
   selector: '[ngx-tooltip]',
-  standalone: false
+  standalone: false,
 })
 export class TooltipDirective implements OnDestroy {
   @Input() tooltipCssClass: string = '';
@@ -60,7 +60,7 @@ export class TooltipDirective implements OnDestroy {
   constructor(
     private tooltipService: TooltipService,
     private viewContainerRef: ViewContainerRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
   ) {}
 
   ngOnDestroy(): void {
@@ -115,7 +115,8 @@ export class TooltipDirective implements OnDestroy {
 
     const time = immediate
       ? 0
-      : this.tooltipShowTimeout + (navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) ? 400 : 0);
+      : this.tooltipShowTimeout +
+        (navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) ? 400 : 0);
 
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
@@ -150,7 +151,7 @@ export class TooltipDirective implements OnDestroy {
 
     // content close on click outside
     if (this.tooltipCloseOnClickOutside) {
-      this.documentClickEvent = this.renderer.listen('window', 'click', event => {
+      this.documentClickEvent = this.renderer.listen('window', 'click', (event) => {
         const contains = tooltip.contains(event.target);
         if (!contains) this.hideTooltip();
       });
@@ -193,7 +194,7 @@ export class TooltipDirective implements OnDestroy {
       showCaret: this.tooltipShowCaret,
       cssClass: this.tooltipCssClass,
       spacing: this.tooltipSpacing,
-      context: this.tooltipContext
+      context: this.tooltipContext,
     };
   }
 }

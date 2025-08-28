@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   TemplateRef,
   PLATFORM_ID,
-  Inject
+  Inject,
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { formatLabel, escapeLabel } from '../common/label.helper';
@@ -108,13 +108,13 @@ import { isPlatformServer } from '@angular/common';
     trigger('animationState', [
       transition(':leave', [
         style({
-          opacity: 1
+          opacity: 1,
         }),
-        animate(500, style({ opacity: 0 }))
-      ])
-    ])
+        animate(500, style({ opacity: 0 })),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class SeriesVerticalComponent implements OnChanges {
   @Input() dims: ViewDimensions;
@@ -144,7 +144,14 @@ export class SeriesVerticalComponent implements OnChanges {
   tooltipType: StyleTypes;
 
   bars: Bar[];
-  barsForDataLabels: Array<{ x: number; y: number; width: number; height: number; total: number; series: string }> = [];
+  barsForDataLabels: Array<{
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    total: number;
+    series: string;
+  }> = [];
 
   barOrientation = BarOrientation;
 
@@ -173,13 +180,13 @@ export class SeriesVerticalComponent implements OnChanges {
 
     const d0 = {
       [D0Types.positive]: 0,
-      [D0Types.negative]: 0
+      [D0Types.negative]: 0,
     };
     let d0Type = D0Types.positive;
 
     let total;
     if (this.type === BarChartType.Normalized) {
-      total = this.series.map(d => d.value).reduce((sum, d) => sum + d, 0);
+      total = this.series.map((d) => d.value).reduce((sum, d) => sum + d, 0);
     }
 
     let topNameOfGroup: string | undefined;
@@ -213,7 +220,7 @@ export class SeriesVerticalComponent implements OnChanges {
         formattedLabel,
         height: 0,
         x: 0,
-        y: 0
+        y: 0,
       };
 
       if (this.type === BarChartType.Standard) {
@@ -296,8 +303,12 @@ export class SeriesVerticalComponent implements OnChanges {
       this.barsForDataLabels = [];
       const section: any = {};
       section.series = this.seriesName;
-      const totalPositive = this.series.map(d => d.value).reduce((sum, d) => (d > 0 ? sum + d : sum), 0);
-      const totalNegative = this.series.map(d => d.value).reduce((sum, d) => (d < 0 ? sum + d : sum), 0);
+      const totalPositive = this.series
+        .map((d) => d.value)
+        .reduce((sum, d) => (d > 0 ? sum + d : sum), 0);
+      const totalNegative = this.series
+        .map((d) => d.value)
+        .reduce((sum, d) => (d < 0 ? sum + d : sum), 0);
       section.total = totalPositive + totalNegative;
       section.x = 0;
       section.y = 0;
@@ -309,7 +320,7 @@ export class SeriesVerticalComponent implements OnChanges {
       section.width = this.xScale.bandwidth();
       this.barsForDataLabels.push(section);
     } else {
-      this.barsForDataLabels = this.series.map(d => {
+      this.barsForDataLabels = this.series.map((d) => {
         const section: any = {};
         section.series = this.seriesName ?? d.label;
         section.total = d.value;
@@ -330,7 +341,7 @@ export class SeriesVerticalComponent implements OnChanges {
   isActive(entry: DataItem): boolean {
     if (!this.activeEntries) return false;
 
-    const item = this.activeEntries.find(active => {
+    const item = this.activeEntries.find((active) => {
       return entry.name === active.name && entry.value === active.value;
     });
 

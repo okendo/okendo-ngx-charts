@@ -6,12 +6,17 @@ import {
   Input,
   Output,
   TemplateRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { BaseChartComponent } from '../common/base-chart.component';
 import { ColorHelper } from '../common/color.helper';
-import { BoxChartMultiSeries, BoxChartSeries, IBoxModel, StringOrNumberOrDate } from '../models/chart-data.model';
+import {
+  BoxChartMultiSeries,
+  BoxChartSeries,
+  IBoxModel,
+  StringOrNumberOrDate,
+} from '../models/chart-data.model';
 import { scaleLinear, ScaleLinear, scaleBand, ScaleBand } from 'd3-scale';
 import { calculateViewDimensions } from '../common/view-dimensions.helper';
 import { ViewDimensions } from '../common/types/view-dimension.interface';
@@ -79,7 +84,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
   styleUrls: ['../common/base-chart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  standalone: false
+  standalone: false,
 })
 export class BoxChartComponent extends BaseChartComponent {
   /** Show or hide the legend. */
@@ -152,7 +157,7 @@ export class BoxChartComponent extends BaseChartComponent {
       showXLabel: this.showXAxisLabel,
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     this.xDomain = this.getXDomain();
@@ -183,7 +188,7 @@ export class BoxChartComponent extends BaseChartComponent {
 
   getXScale(domain: Array<string | number | Date>, width: number): ScaleBand<string> {
     const scale = scaleBand()
-      .domain(domain.map(d => d.toString()))
+      .domain(domain.map((d) => d.toString()))
       .rangeRound([0, width])
       .padding(0.5);
 
@@ -210,14 +215,14 @@ export class BoxChartComponent extends BaseChartComponent {
     let min: number;
     let max: number;
     if (typeof values[0] === 'string') {
-      domain = values.map(val => val.toString());
+      domain = values.map((val) => val.toString());
     } else if (typeof values[0] === 'number') {
-      const mappedValues = values.map(v => Number(v));
+      const mappedValues = values.map((v) => Number(v));
       min = Math.min(...mappedValues);
       max = Math.max(...mappedValues);
       domain = [min, max];
     } else {
-      const mappedValues = values.map(v => Number(new Date(v)));
+      const mappedValues = values.map((v) => Number(new Date(v)));
       min = Math.min(...mappedValues);
       max = Math.max(...mappedValues);
       domain = [new Date(min), new Date(max)];
@@ -236,7 +241,7 @@ export class BoxChartComponent extends BaseChartComponent {
     }
 
     const values = [...domain];
-    const mappedValues = values.map(v => Number(v));
+    const mappedValues = values.map((v) => Number(v));
 
     const min: number = Math.min(...mappedValues);
     const max: number = Math.max(...mappedValues);
@@ -245,7 +250,7 @@ export class BoxChartComponent extends BaseChartComponent {
   }
 
   getSeriesDomain(): string[] {
-    return this.results.map(d => `${d.name}`);
+    return this.results.map((d) => `${d.name}`);
   }
 
   updateYAxisWidth({ width }): void {
@@ -276,7 +281,7 @@ export class BoxChartComponent extends BaseChartComponent {
       colors: this.colors,
       domain: [],
       position: this.legendPosition,
-      title: this.legendTitle
+      title: this.legendTitle,
     };
     if (this.schemeType === ScaleType.Ordinal) {
       legendOpts.domain = this.xDomain;

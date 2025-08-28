@@ -15,8 +15,8 @@ import { BubbleChartInteractiveModule } from './custom-charts/bubble-chart-inter
   providers: [
     {
       provide: APP_BASE_HREF,
-      useFactory: getBaseLocation
-    }
+      useFactory: getBaseLocation,
+    },
   ],
   imports: [
     NgxChartsModule,
@@ -24,16 +24,16 @@ import { BubbleChartInteractiveModule } from './custom-charts/bubble-chart-inter
     BrowserAnimationsModule,
     FormsModule,
     NgxUIModule,
-    BubbleChartInteractiveModule
+    BubbleChartInteractiveModule,
   ],
   declarations: [
     AppComponent,
     SparklineComponent,
     TimelineFilterBarChartComponent,
     ComboChartComponent,
-    ComboSeriesVerticalComponent
+    ComboSeriesVerticalComponent,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
 

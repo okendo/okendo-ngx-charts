@@ -38,7 +38,7 @@ export function gridLayout(
   dims: ViewDimensions,
   data: GridData[],
   minWidth: number,
-  designatedTotal: number
+  designatedTotal: number,
 ): GridItem[] {
   const xScale: any = scaleBand<number>();
   const yScale: any = scaleBand<number>();
@@ -72,7 +72,7 @@ export function gridLayout(
       name: data[i] ? data[i].name : '',
       value: data[i] ? data[i].value : undefined,
       extra: data[i] ? data[i].extra : undefined,
-      label: data[i] ? data[i].label : ''
+      label: data[i] ? data[i].label : '',
     };
     res[i].x = xScale(i % columns);
     res[i].y = yScale(Math.floor(i / columns));
@@ -85,5 +85,5 @@ export function gridLayout(
 }
 
 function getTotal(results: any): number {
-  return results.map(d => (d ? d.value : 0)).reduce((sum, val) => sum + val, 0);
+  return results.map((d) => (d ? d.value : 0)).reduce((sum, val) => sum + val, 0);
 }

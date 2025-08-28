@@ -22,13 +22,13 @@ export function getUniqueXDomainValues(results: any[]): any[] {
  */
 export function getScaleType(values: any[], checkDateType: boolean = true): ScaleType {
   if (checkDateType) {
-    const allDates = values.every(value => value instanceof Date);
+    const allDates = values.every((value) => value instanceof Date);
     if (allDates) {
       return ScaleType.Time;
     }
   }
 
-  const allNumbers = values.every(value => typeof value === 'number');
+  const allNumbers = values.every((value) => typeof value === 'number');
   if (allNumbers) {
     return ScaleType.Linear;
   }
@@ -39,20 +39,20 @@ export function getScaleType(values: any[], checkDateType: boolean = true): Scal
 export function getXDomainArray(
   values: Array<string | number | Date>,
   xScaleMin?: number,
-  xScaleMax?: number
+  xScaleMax?: number,
 ): { domain: any[]; xSet: any[]; scaleType: string } {
   const scaleType = getScaleType(values);
   let xSet: StringOrNumberOrDate[] = [];
   let domain: StringOrNumberOrDate[] = [];
 
   if (scaleType === ScaleType.Linear) {
-    values = values.map(v => Number(v));
+    values = values.map((v) => Number(v));
   }
 
   let min: number;
   let max: number;
   if (scaleType === ScaleType.Time || scaleType === ScaleType.Linear) {
-    const mappedValues = values.map(v => Number(v));
+    const mappedValues = values.map((v) => Number(v));
     min = xScaleMin ? xScaleMin : Math.min(...mappedValues);
     max = xScaleMax ? xScaleMax : Math.max(...mappedValues);
   }

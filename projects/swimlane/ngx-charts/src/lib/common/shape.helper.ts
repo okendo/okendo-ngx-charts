@@ -10,7 +10,7 @@ export function roundedRect(
   w: number,
   h: number,
   r: number,
-  [tl, tr, bl, br]: boolean[]
+  [tl, tr, bl, br]: boolean[],
 ): string {
   let retval = '';
 

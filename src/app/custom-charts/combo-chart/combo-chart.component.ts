@@ -7,7 +7,7 @@ import {
   ViewChild,
   HostListener,
   ContentChild,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 
 import { curveLinear } from 'd3-shape';
@@ -20,7 +20,7 @@ import {
   calculateViewDimensions,
   ScaleType,
   Orientation,
-  Color
+  Color,
 } from 'projects/swimlane/ngx-charts/src/public-api';
 
 @Component({
@@ -29,7 +29,7 @@ import {
   templateUrl: './combo-chart.component.html',
   styleUrls: ['./combo-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  standalone: false
+  standalone: false,
 })
 export class ComboChartComponent extends BaseChartComponent {
   @Input() curve: any = curveLinear;
@@ -118,7 +118,7 @@ export class ComboChartComponent extends BaseChartComponent {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.schemeType,
-      legendPosition: this.legendPosition as any
+      legendPosition: this.legendPosition as any,
     });
 
     if (!this.yAxis) {
@@ -182,9 +182,9 @@ export class ComboChartComponent extends BaseChartComponent {
     this.combinedSeries = this.lineChart.slice(0);
     this.combinedSeries.push({
       name: this.yAxisLabel,
-      series: this.results
+      series: this.results,
     });
-    return this.combinedSeries.map(d => d.name);
+    return this.combinedSeries.map((d) => d.name);
   }
 
   isDate(value): boolean {
@@ -239,7 +239,7 @@ export class ComboChartComponent extends BaseChartComponent {
       const max = Math.max(...values);
       domain = [min, max];
     } else if (this.scaleType === 'linear') {
-      values = values.map(v => Number(v));
+      values = values.map((v) => Number(v));
       const min = Math.min(...values);
       const max = Math.max(...values);
       domain = [min, max];
@@ -288,7 +288,9 @@ export class ComboChartComponent extends BaseChartComponent {
     if (this.bandwidth === undefined) {
       this.bandwidth = width - this.barPadding;
     }
-    const offset = Math.floor((width + this.barPadding - (this.bandwidth + this.barPadding) * domain.length) / 2);
+    const offset = Math.floor(
+      (width + this.barPadding - (this.bandwidth + this.barPadding) * domain.length) / 2,
+    );
 
     if (this.scaleType === 'time') {
       scale = scaleTime().range([0, width]).domain(domain);
@@ -326,11 +328,11 @@ export class ComboChartComponent extends BaseChartComponent {
   }
 
   getXDomain(): any[] {
-    return this.results.map(d => d.name);
+    return this.results.map((d) => d.name);
   }
 
   getYDomain() {
-    const values = this.results.map(d => d.value);
+    const values = this.results.map((d) => d.value);
     const min = Math.min(0, ...values);
     const max = Math.max(...values);
     if (this.yLeftAxisScaleFactor) {
@@ -353,7 +355,12 @@ export class ComboChartComponent extends BaseChartComponent {
       domain = this.yDomain;
     }
     this.colors = new ColorHelper(this.scheme, this.schemeType, domain, this.customColors);
-    this.colorsLine = new ColorHelper(this.colorSchemeLine, this.schemeType, domain, this.customColors);
+    this.colorsLine = new ColorHelper(
+      this.colorSchemeLine,
+      this.schemeType,
+      domain,
+      this.customColors,
+    );
   }
 
   getLegendOptions() {
@@ -362,7 +369,7 @@ export class ComboChartComponent extends BaseChartComponent {
       colors: undefined,
       domain: [],
       title: undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
     if (opts.scaleType === ScaleType.Ordinal) {
       opts.domain = this.seriesDomain;
@@ -391,7 +398,7 @@ export class ComboChartComponent extends BaseChartComponent {
   }
 
   onActivate(item) {
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
     if (idx > -1) {
@@ -403,7 +410,7 @@ export class ComboChartComponent extends BaseChartComponent {
   }
 
   onDeactivate(item) {
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
 

@@ -15,12 +15,12 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 @Component({
   selector: 'test-component',
   template: '',
-  standalone: false
+  standalone: false,
 })
 class TestComponent {
   single: any = single;
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
 }
 
@@ -29,7 +29,7 @@ describe('<ngx-charts-bar-vertical>', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [NoopAnimationsModule, BarChartModule],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
     });
   });
 
@@ -43,8 +43,8 @@ describe('<ngx-charts-bar-vertical>', () => {
                 [view]="[400,800]"
                 [scheme]="colorScheme"
                 [results]="single">
-              </ngx-charts-bar-vertical>`
-        }
+              </ngx-charts-bar-vertical>`,
+        },
       });
     });
 
@@ -88,8 +88,8 @@ describe('<ngx-charts-bar-vertical>', () => {
                 [scheme]="colorScheme"
                 [results]="single"
                 [barPadding]="0">
-              </ngx-charts-bar-vertical>`
-        }
+              </ngx-charts-bar-vertical>`,
+        },
       }).compileComponents();
     });
 
@@ -114,8 +114,8 @@ describe('<ngx-charts-bar-vertical>', () => {
             [scheme]="colorScheme"
             [results]="single"
             [barPadding]="20">
-          </ngx-charts-bar-vertical>`
-        }
+          </ngx-charts-bar-vertical>`,
+        },
       }).compileComponents();
     });
 
@@ -141,8 +141,8 @@ describe('bar-max-width', () => {
               [results]="single"
               [barPadding]="0"
               [barMaxWidth]="30">
-            </ngx-charts-bar-vertical>`
-      }
+            </ngx-charts-bar-vertical>`,
+      },
     });
 
     TestBed.compileComponents();
@@ -157,7 +157,7 @@ describe('bar-max-width', () => {
 
 describe('x-axis - wrap ticks', () => {
   const getContent = (axisTick: DebugElement) =>
-    axisTick.queryAll(By.css('tspan')).map(entry => entry.nativeElement.textContent.trim());
+    axisTick.queryAll(By.css('tspan')).map((entry) => entry.nativeElement.textContent.trim());
 
   it('should wrap tick if there is available space', () => {
     TestBed.overrideComponent(TestComponent, {
@@ -177,8 +177,8 @@ describe('x-axis - wrap ticks', () => {
             [xAxis]="true"
             [yAxis]="true"
             [wrapTicks]="true">
-          </ngx-charts-bar-vertical>`
-      }
+          </ngx-charts-bar-vertical>`,
+      },
     }).compileComponents();
 
     const fixture = TestBed.createComponent(TestComponent);
@@ -199,7 +199,12 @@ describe('x-axis - wrap ticks', () => {
     expect(getContent(axisTicks[2])).toEqual(['Lorem Ipsum is', 'simply dummy', 'text']);
 
     expect(axisTicks[3].queryAll(By.css('tspan')).length).toEqual(4);
-    expect(getContent(axisTicks[3])).toEqual(['Lorem Ipsum is', 'simply dummy', 'text of the', 'printing']);
+    expect(getContent(axisTicks[3])).toEqual([
+      'Lorem Ipsum is',
+      'simply dummy',
+      'text of the',
+      'printing',
+    ]);
 
     expect(axisTicks[4].queryAll(By.css('tspan')).length).toEqual(5);
     expect(getContent(axisTicks[4])).toEqual([
@@ -207,7 +212,7 @@ describe('x-axis - wrap ticks', () => {
       'simply dummy',
       'text of the',
       'printing and',
-      'typesetting...'
+      'typesetting...',
     ]);
   });
 
@@ -227,8 +232,8 @@ describe('x-axis - wrap ticks', () => {
             [yAxis]="true"
             [wrapTicks]="true"
           >
-          </ngx-charts-bar-vertical>`
-      }
+          </ngx-charts-bar-vertical>`,
+      },
     }).compileComponents();
 
     const fixture = TestBed.createComponent(TestComponent);
@@ -248,7 +253,7 @@ describe('x-axis - wrap ticks', () => {
       'dummy text of the',
       'printing and typesetting',
       'industry. Lorem Ipsum',
-      'has been the industrys...'
+      'has been the industrys...',
     ]);
   });
 });

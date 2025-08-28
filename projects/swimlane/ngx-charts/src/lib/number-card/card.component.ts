@@ -13,7 +13,7 @@ import {
   OnDestroy,
   PLATFORM_ID,
   Inject,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { trimLabel } from '../common/trim-label.helper';
 import { roundedRect } from '../common/shape.helper';
@@ -28,7 +28,14 @@ import { VERDANA_FONT_WIDTHS_16_PX } from '../common/constants/font-widths';
   selector: 'g[ngx-charts-card]',
   template: `
     <svg:g [attr.transform]="transform" class="cell" (click)="onClick()">
-      <svg:rect class="card" [style.fill]="color" [attr.width]="cardWidth" [attr.height]="cardHeight" rx="3" ry="3" />
+      <svg:rect
+        class="card"
+        [style.fill]="color"
+        [attr.width]="cardWidth"
+        [attr.height]="cardHeight"
+        rx="3"
+        ry="3"
+      />
       <svg:path
         *ngIf="bandColor && bandColor !== color"
         class="card-band"
@@ -70,7 +77,7 @@ import { VERDANA_FONT_WIDTHS_16_PX } from '../common/constants/font-widths';
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class CardComponent implements OnChanges, OnDestroy, OnInit {
   @Input() color: string;
@@ -114,7 +121,7 @@ export class CardComponent implements OnChanges, OnDestroy, OnInit {
     element: ElementRef,
     private cd: ChangeDetectorRef,
     private zone: NgZone,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: any,
   ) {
     this.element = element.nativeElement;
   }
@@ -138,8 +145,9 @@ export class CardComponent implements OnChanges, OnDestroy, OnInit {
   update(): void {
     this.zone.run(() => {
       const hasValue = this.data && typeof this.data.value !== 'undefined';
-      const valueFormatting = this.valueFormatting || (card => card.value.toLocaleString());
-      const labelFormatting = this.labelFormatting || (card => escapeLabel(trimLabel(card.label, 55)));
+      const valueFormatting = this.valueFormatting || ((card) => card.value.toLocaleString());
+      const labelFormatting =
+        this.labelFormatting || ((card) => escapeLabel(trimLabel(card.label, 55)));
 
       this.transform = `translate(${this.x} , ${this.y})`;
 
@@ -152,7 +160,7 @@ export class CardComponent implements OnChanges, OnDestroy, OnInit {
       const cardData = {
         label: this.label,
         data: this.data,
-        value: this.data.value
+        value: this.data.value,
       };
 
       this.formattedLabel = labelFormatting(cardData);
@@ -163,7 +171,12 @@ export class CardComponent implements OnChanges, OnDestroy, OnInit {
       this.value = this.paddedValue(value);
       this.setPadding();
 
-      this.bandPath = roundedRect(0, 0, this.cardWidth, this.bandHeight, 3, [false, false, true, true]);
+      this.bandPath = roundedRect(0, 0, this.cardWidth, this.bandHeight, 3, [
+        false,
+        false,
+        true,
+        true,
+      ]);
 
       setTimeout(() => {
         if (isPlatformBrowser(this.platformId)) {
@@ -190,7 +203,7 @@ export class CardComponent implements OnChanges, OnDestroy, OnInit {
 
       const val = this.data.value;
       const decs = decimalChecker(val);
-      const valueFormatting = this.valueFormatting || (card => card.value.toLocaleString());
+      const valueFormatting = this.valueFormatting || ((card) => card.value.toLocaleString());
 
       const callback = ({ value, finished }) => {
         this.zone.run(() => {

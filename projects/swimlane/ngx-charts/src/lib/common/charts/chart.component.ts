@@ -5,7 +5,7 @@ import {
   ChangeDetectionStrategy,
   EventEmitter,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { TooltipService } from '../tooltip/tooltip.service';
 import { LegendOptions, LegendType, LegendPosition } from '../types/legend.model';
@@ -47,7 +47,7 @@ import { ScaleType } from '../types/scale-type.enum';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class ChartComponent implements OnChanges {
   @Input() view: [number, number];
@@ -96,6 +96,8 @@ export class ChartComponent implements OnChanges {
   }
 
   getLegendType(): LegendType {
-    return this.legendOptions.scaleType === ScaleType.Linear ? LegendType.ScaleLegend : LegendType.Legend;
+    return this.legendOptions.scaleType === ScaleType.Linear
+      ? LegendType.ScaleLegend
+      : LegendType.Legend;
   }
 }

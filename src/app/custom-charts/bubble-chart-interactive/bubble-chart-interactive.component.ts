@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { scaleLinear } from 'd3-scale';
@@ -20,7 +20,7 @@ import {
   ColorHelper,
   BaseChartComponent,
   calculateViewDimensions,
-  ScaleType
+  ScaleType,
 } from 'projects/swimlane/ngx-charts/src/public-api';
 import { isPlatformServer } from '@angular/common';
 
@@ -137,18 +137,18 @@ import { isPlatformServer } from '@angular/common';
     trigger('animationState', [
       transition(':leave', [
         style({
-          opacity: 1
+          opacity: 1,
         }),
         animate(
           500,
           style({
-            opacity: 0
-          })
-        )
-      ])
-    ])
+            opacity: 0,
+          }),
+        ),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class BubbleChartInteractiveComponent extends BaseChartComponent {
   @Input() showGridLines: boolean = true;
@@ -235,10 +235,10 @@ export class BubbleChartInteractiveComponent extends BaseChartComponent {
       showXLabel: this.showXAxisLabel,
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
-      legendType: this.schemeType
+      legendType: this.schemeType,
     });
 
-    this.seriesDomain = this.results.map(d => d.name);
+    this.seriesDomain = this.results.map((d) => d.name);
     this.rDomain = this.getRDomain();
     this.xDomain = this.getXDomain();
     this.yDomain = this.getYDomain();
@@ -279,10 +279,10 @@ export class BubbleChartInteractiveComponent extends BaseChartComponent {
 
   onClickSeries(eventOnBubbleSeriesCircleSelect, seriesObj) {
     // bubbles up from the series circle item select event
-    const bubbleObj = seriesObj.series.find(b => b.name === eventOnBubbleSeriesCircleSelect.name);
+    const bubbleObj = seriesObj.series.find((b) => b.name === eventOnBubbleSeriesCircleSelect.name);
     const eventOnBubbleSeriesSelect = {
       bubble: bubbleObj,
-      series: seriesObj
+      series: seriesObj,
     };
     this.select.emit(eventOnBubbleSeriesSelect);
   }
@@ -296,8 +296,10 @@ export class BubbleChartInteractiveComponent extends BaseChartComponent {
     for (const s of this.data) {
       for (const d of s.series) {
         const r = this.rScale(d.r);
-        const cx = this.xScaleType === ScaleType.Linear ? this.xScale(Number(d.x)) : this.xScale(d.x);
-        const cy = this.yScaleType === ScaleType.Linear ? this.yScale(Number(d.y)) : this.yScale(d.y);
+        const cx =
+          this.xScaleType === ScaleType.Linear ? this.xScale(Number(d.x)) : this.xScale(d.x);
+        const cy =
+          this.yScaleType === ScaleType.Linear ? this.yScale(Number(d.y)) : this.yScale(d.y);
         xMin = Math.max(r - cx, xMin);
         yMin = Math.max(r - cy, yMin);
         yMax = Math.max(cy + r, yMax);
@@ -344,7 +346,7 @@ export class BubbleChartInteractiveComponent extends BaseChartComponent {
       colors: undefined,
       domain: [],
       position: this.legendPosition,
-      title: undefined
+      title: undefined,
     };
 
     if (opts.scaleType === ScaleType.Ordinal) {
@@ -415,7 +417,7 @@ export class BubbleChartInteractiveComponent extends BaseChartComponent {
   }
 
   onActivate(item): void {
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name;
     });
     if (idx > -1) {
@@ -427,7 +429,7 @@ export class BubbleChartInteractiveComponent extends BaseChartComponent {
   }
 
   onDeactivate(item): void {
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name;
     });
 

@@ -10,7 +10,19 @@ import { PercentGaugeComponent } from './percent-gauge/percent-gauge.component';
 
 @NgModule({
   imports: [ChartCommonModule, PieChartModule, BarChartModule],
-  declarations: [LinearGaugeComponent, GaugeComponent, GaugeArcComponent, GaugeAxisComponent, PercentGaugeComponent],
-  exports: [LinearGaugeComponent, GaugeComponent, GaugeArcComponent, GaugeAxisComponent, PercentGaugeComponent]
+  declarations: [
+    LinearGaugeComponent,
+    GaugeComponent,
+    GaugeArcComponent,
+    GaugeAxisComponent,
+    PercentGaugeComponent,
+  ],
+  exports: [
+    LinearGaugeComponent,
+    GaugeComponent,
+    GaugeArcComponent,
+    GaugeAxisComponent,
+    PercentGaugeComponent,
+  ],
 })
 export class GaugeModule {}

@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { scaleBand, scaleLinear } from 'd3-scale';
 
@@ -89,7 +89,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['../common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  standalone: false
+  standalone: false,
 })
 export class BarHorizontalComponent extends BaseChartComponent {
   @Input() legend = false;
@@ -150,7 +150,12 @@ export class BarHorizontalComponent extends BaseChartComponent {
       this.dataLabelMaxWidth = { negative: 0, positive: 0 };
     }
 
-    this.margin = [10, 20 + this.dataLabelMaxWidth.positive, 10, 20 + this.dataLabelMaxWidth.negative];
+    this.margin = [
+      10,
+      20 + this.dataLabelMaxWidth.positive,
+      10,
+      20 + this.dataLabelMaxWidth.negative,
+    ];
 
     this.dims = calculateViewDimensions({
       width: this.width,
@@ -164,7 +169,7 @@ export class BarHorizontalComponent extends BaseChartComponent {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.schemeType,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     this.formatDates();
@@ -194,7 +199,7 @@ export class BarHorizontalComponent extends BaseChartComponent {
   }
 
   getXDomain(): [number, number] {
-    const values = this.results.map(d => d.value);
+    const values = this.results.map((d) => d.value);
     const min = this.xScaleMin ? Math.min(this.xScaleMin, ...values) : Math.min(0, ...values);
 
     const max = this.xScaleMax ? Math.max(this.xScaleMax, ...values) : Math.max(0, ...values);
@@ -202,7 +207,7 @@ export class BarHorizontalComponent extends BaseChartComponent {
   }
 
   getYDomain(): string[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d) => d.label);
   }
 
   onClick(data): void {
@@ -226,7 +231,7 @@ export class BarHorizontalComponent extends BaseChartComponent {
       colors: undefined,
       domain: [],
       title: undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
     if (opts.scaleType === 'ordinal') {
       opts.domain = this.yDomain;
@@ -262,7 +267,7 @@ export class BarHorizontalComponent extends BaseChartComponent {
   }
 
   onActivate(item, fromLegend: boolean = false) {
-    item = this.results.find(d => {
+    item = this.results.find((d) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -270,7 +275,7 @@ export class BarHorizontalComponent extends BaseChartComponent {
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
     if (idx > -1) {
@@ -282,7 +287,7 @@ export class BarHorizontalComponent extends BaseChartComponent {
   }
 
   onDeactivate(item, fromLegend: boolean = false) {
-    item = this.results.find(d => {
+    item = this.results.find((d) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -290,7 +295,7 @@ export class BarHorizontalComponent extends BaseChartComponent {
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
 

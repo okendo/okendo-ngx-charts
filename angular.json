@@ -29,7 +29,13 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
             "scripts": [],
-            "allowedCommonJsDependencies": ["emoji-flags", "codemirror", "ajv", "mousetrap", "moment-timezone"],
+            "allowedCommonJsDependencies": [
+              "emoji-flags",
+              "codemirror",
+              "ajv",
+              "mousetrap",
+              "moment-timezone"
+            ],
             "extractLicenses": false,
             "sourceMap": true,
             "optimization": false,

@@ -13,7 +13,7 @@ import {
   SimpleChanges,
   PLATFORM_ID,
   Inject,
-  OnInit
+  OnInit,
 } from '@angular/core';
 
 import { fromEvent as observableFromEvent } from 'rxjs';
@@ -27,7 +27,7 @@ import { ViewDimensions } from './types/view-dimension.interface';
 @Component({
   selector: 'base-chart',
   template: ` <div></div> `,
-  standalone: false
+  standalone: false,
 })
 export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy, OnInit {
   @Input() declare results: any;
@@ -48,7 +48,7 @@ export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy, 
     protected chartElement: ElementRef,
     protected zone: NgZone,
     protected cd: ChangeDetectorRef,
-    @Inject(PLATFORM_ID) public platformId: any
+    @Inject(PLATFORM_ID) public platformId: any,
   ) {}
 
   ngOnInit() {
@@ -167,7 +167,7 @@ export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy, 
     }
 
     const source = observableFromEvent(window, 'resize');
-    const subscription = source.pipe(debounceTime(200)).subscribe(e => {
+    const subscription = source.pipe(debounceTime(200)).subscribe((e) => {
       this.update();
       if (this.cd) {
         this.cd.markForCheck();

@@ -6,7 +6,7 @@ import {
   BoxChartMultiSeries,
   Series,
   TreeMapData,
-  SankeyData
+  SankeyData,
 } from '@swimlane/ngx-charts/models/chart-data.model';
 
 export const single: SingleSeries = [
@@ -14,44 +14,44 @@ export const single: SingleSeries = [
     name: 'Germany',
     value: 40632,
     extra: {
-      code: 'de'
-    }
+      code: 'de',
+    },
   },
   {
     name: 'United States',
     value: 50000,
     extra: {
-      code: 'us'
-    }
+      code: 'us',
+    },
   },
   {
     name: 'France',
     value: 36745,
     extra: {
-      code: 'fr'
-    }
+      code: 'fr',
+    },
   },
   {
     name: 'United Kingdom',
     value: 36240,
     extra: {
-      code: 'uk'
-    }
+      code: 'uk',
+    },
   },
   {
     name: 'Spain',
     value: 33000,
     extra: {
-      code: 'es'
-    }
+      code: 'es',
+    },
   },
   {
     name: 'Italy',
     value: 35800,
     extra: {
-      code: 'it'
-    }
-  }
+      code: 'it',
+    },
+  },
 ];
 
 export const multi: MultiSeries = [
@@ -62,24 +62,24 @@ export const multi: MultiSeries = [
         name: '2010',
         value: 40632,
         extra: {
-          code: 'de'
-        }
+          code: 'de',
+        },
       },
       {
         name: '2000',
         value: 36953,
         extra: {
-          code: 'de'
-        }
+          code: 'de',
+        },
       },
       {
         name: '1990',
         value: 31476,
         extra: {
-          code: 'de'
-        }
-      }
-    ]
+          code: 'de',
+        },
+      },
+    ],
   },
   {
     name: 'United States',
@@ -88,24 +88,24 @@ export const multi: MultiSeries = [
         name: '2010',
         value: 0,
         extra: {
-          code: 'us'
-        }
+          code: 'us',
+        },
       },
       {
         name: '2000',
         value: 45986,
         extra: {
-          code: 'us'
-        }
+          code: 'us',
+        },
       },
       {
         name: '1990',
         value: 37060,
         extra: {
-          code: 'us'
-        }
-      }
-    ]
+          code: 'us',
+        },
+      },
+    ],
   },
   {
     name: 'France',
@@ -114,24 +114,24 @@ export const multi: MultiSeries = [
         name: '2010',
         value: 36745,
         extra: {
-          code: 'fr'
-        }
+          code: 'fr',
+        },
       },
       {
         name: '2000',
         value: 34774,
         extra: {
-          code: 'fr'
-        }
+          code: 'fr',
+        },
       },
       {
         name: '1990',
         value: 29476,
         extra: {
-          code: 'fr'
-        }
-      }
-    ]
+          code: 'fr',
+        },
+      },
+    ],
   },
   {
     name: 'United Kingdom',
@@ -140,25 +140,25 @@ export const multi: MultiSeries = [
         name: '2010',
         value: 36240,
         extra: {
-          code: 'uk'
-        }
+          code: 'uk',
+        },
       },
       {
         name: '2000',
         value: 32543,
         extra: {
-          code: 'uk'
-        }
+          code: 'uk',
+        },
       },
       {
         name: '1990',
         value: 26424,
         extra: {
-          code: 'uk'
-        }
-      }
-    ]
-  }
+          code: 'uk',
+        },
+      },
+    ],
+  },
 ];
 
 export const fiscalYearReport: MultiSeries = [
@@ -167,53 +167,53 @@ export const fiscalYearReport: MultiSeries = [
     series: [
       {
         name: '1001',
-        value: -10632
+        value: -10632,
       },
       {
         name: '2001',
-        value: -36953
-      }
-    ]
+        value: -36953,
+      },
+    ],
   },
   {
     name: 'Q2',
     series: [
       {
         name: '1001',
-        value: -19737
+        value: -19737,
       },
       {
         name: '2001',
-        value: 45986
-      }
-    ]
+        value: 45986,
+      },
+    ],
   },
   {
     name: 'Q3',
     series: [
       {
         name: '1001',
-        value: -16745
+        value: -16745,
       },
       {
         name: '2001',
-        value: 0
-      }
-    ]
+        value: 0,
+      },
+    ],
   },
   {
     name: 'Q4',
     series: [
       {
         name: '1001',
-        value: -16240
+        value: -16240,
       },
       {
         name: '2001',
-        value: 32543
-      }
-    ]
-  }
+        value: 32543,
+      },
+    ],
+  },
 ];
 
 export const bubble: BubbleChartMultiSeries = [
@@ -224,21 +224,21 @@ export const bubble: BubbleChartMultiSeries = [
         name: '2010',
         x: '2010',
         y: 80.3,
-        r: 80.4
+        r: 80.4,
       },
       {
         name: '2000',
         x: '2000',
         y: 80.3,
-        r: 78
+        r: 78,
       },
       {
         name: '1990',
         x: '1990',
         y: 75.4,
-        r: 79
-      }
-    ]
+        r: 79,
+      },
+    ],
   },
   {
     name: 'United States',
@@ -247,21 +247,21 @@ export const bubble: BubbleChartMultiSeries = [
         name: '2010',
         x: '2010',
         y: 78.8,
-        r: 310
+        r: 310,
       },
       {
         name: '2000',
         x: '2000',
         y: 76.9,
-        r: 283
+        r: 283,
       },
       {
         name: '1990',
         x: '1990',
         y: 75.4,
-        r: 253
-      }
-    ]
+        r: 253,
+      },
+    ],
   },
   {
     name: 'France',
@@ -270,21 +270,21 @@ export const bubble: BubbleChartMultiSeries = [
         name: '2010',
         x: '2010',
         y: 81.4,
-        r: 63
+        r: 63,
       },
       {
         name: '2000',
         x: '2000',
         y: 79.1,
-        r: 59.4
+        r: 59.4,
       },
       {
         name: '1990',
         x: '1990',
         y: 77.2,
-        r: 56.9
-      }
-    ]
+        r: 56.9,
+      },
+    ],
   },
   {
     name: 'United Kingdom',
@@ -293,22 +293,22 @@ export const bubble: BubbleChartMultiSeries = [
         name: '2010',
         x: '2010',
         y: 80.2,
-        r: 62.7
+        r: 62.7,
       },
       {
         name: '2000',
         x: '2000',
         y: 77.8,
-        r: 58.9
+        r: 58.9,
       },
       {
         name: '1990',
         x: '1990',
         y: 75.7,
-        r: 57.1
-      }
-    ]
-  }
+        r: 57.1,
+      },
+    ],
+  },
 ];
 
 export const boxData: BoxChartMultiSeries = [
@@ -317,88 +317,88 @@ export const boxData: BoxChartMultiSeries = [
     series: [
       {
         name: '2019',
-        value: 12
+        value: 12,
       },
       {
         name: '2020',
-        value: 23
+        value: 23,
       },
       {
         name: '2021',
-        value: 34
+        value: 34,
       },
       {
         name: '2022',
-        value: 27
+        value: 27,
       },
       {
         name: '2023',
-        value: 18
+        value: 18,
       },
       {
         name: '2024',
-        value: 45
-      }
-    ]
+        value: 45,
+      },
+    ],
   },
   {
     name: 'Chile',
     series: [
       {
         name: '2019',
-        value: 20
+        value: 20,
       },
       {
         name: '2020',
-        value: 28
+        value: 28,
       },
       {
         name: '2021',
-        value: 42
+        value: 42,
       },
       {
         name: '2022',
-        value: 39
+        value: 39,
       },
       {
         name: '2023',
-        value: 31
+        value: 31,
       },
       {
         name: '2024',
-        value: 61
-      }
-    ]
+        value: 61,
+      },
+    ],
   },
   {
     name: 'Perú',
     series: [
       {
         name: '2019',
-        value: 47
+        value: 47,
       },
       {
         name: '2020',
-        value: 62
+        value: 62,
       },
       {
         name: '2021',
-        value: 55
+        value: 55,
       },
       {
         name: '2022',
-        value: 42
+        value: 42,
       },
       {
         name: '2023',
-        value: 49
+        value: 49,
       },
       {
         name: '2024',
-        value: 71
-      }
-    ]
-  }
+        value: 71,
+      },
+    ],
+  },
 ];
 
 export function generateGraph(nodeCount: number) {
@@ -407,13 +407,13 @@ export function generateGraph(nodeCount: number) {
   for (let i = 0; i < nodeCount; i++) {
     const country = countries[Math.floor(Math.random() * countries.length)];
     nodes.push({
-      value: country.name
+      value: country.name,
     });
     for (let j = 0; j < nodes.length - 1; j++) {
       if (Math.random() < 0.03) {
         links.push({
           source: country,
-          target: nodes[j].value
+          target: nodes[j].value,
         });
       }
     }
@@ -430,18 +430,22 @@ export function timelineFilterBarData(): SingleSeries {
     // random dates between Sep 12, 2016 and Sep 24, 2016
     results.push({
       name: new Date(date),
-      value: Math.floor(Math.random() * 300)
+      value: Math.floor(Math.random() * 300),
     });
     date += dayLength;
   }
-  if (!results.some(r => r.value === 0)) {
+  if (!results.some((r) => r.value === 0)) {
     results[Math.floor(Math.random() * results.length)].value = 0;
   }
 
   return results;
 }
 
-export function generateData(seriesLength: number, includeMinMaxRange: boolean, dataPoints: number = 5): MultiSeries {
+export function generateData(
+  seriesLength: number,
+  includeMinMaxRange: boolean,
+  dataPoints: number = 5,
+): MultiSeries {
   const results: MultiSeries = [];
 
   const domain: Date[] = []; // array of time stamps in milliseconds
@@ -455,7 +459,7 @@ export function generateData(seriesLength: number, includeMinMaxRange: boolean, 
     const country = countries[Math.floor(Math.random() * countries.length)];
     const series: Series = {
       name: country.name,
-      series: []
+      series: [],
     };
 
     for (let j = 0; j < domain.length; j++) {
@@ -469,12 +473,12 @@ export function generateData(seriesLength: number, includeMinMaxRange: boolean, 
           value,
           name: timestamp,
           min: Math.floor(value * (1 - errorMargin)),
-          max: Math.ceil(value * (1 + errorMargin))
+          max: Math.ceil(value * (1 + errorMargin)),
         });
       } else {
         series.series.push({
           value,
-          name: timestamp
+          name: timestamp,
         });
       }
     }
@@ -497,8 +501,8 @@ export const treemap: TreeMapData = [
               { name: 'AgglomerativeCluster', size: 3938 },
               { name: 'CommunityStructure', size: 3812 },
               { name: 'HierarchicalCluster', size: 6714 },
-              { name: 'MergeEdge', size: 743 }
-            ]
+              { name: 'MergeEdge', size: 743 },
+            ],
           },
           {
             name: 'graph',
@@ -507,14 +511,14 @@ export const treemap: TreeMapData = [
               { name: 'LinkDistance', size: 5731 },
               { name: 'MaxFlowMinCut', size: 7840 },
               { name: 'ShortestPaths', size: 5914 },
-              { name: 'SpanningTree', size: 3416 }
-            ]
+              { name: 'SpanningTree', size: 3416 },
+            ],
           },
           {
             name: 'optimization',
-            children: [{ name: 'AspectRatioBanker', size: 7074 }]
-          }
-        ]
+            children: [{ name: 'AspectRatioBanker', size: 7074 }],
+          },
+        ],
       },
       {
         name: 'animate',
@@ -532,8 +536,8 @@ export const treemap: TreeMapData = [
               { name: 'NumberInterpolator', size: 1382 },
               { name: 'ObjectInterpolator', size: 1629 },
               { name: 'PointInterpolator', size: 1675 },
-              { name: 'RectangleInterpolator', size: 2042 }
-            ]
+              { name: 'RectangleInterpolator', size: 2042 },
+            ],
           },
           { name: 'ISchedulable', size: 1041 },
           { name: 'Parallel', size: 5176 },
@@ -543,8 +547,8 @@ export const treemap: TreeMapData = [
           { name: 'Transition', size: 9201 },
           { name: 'Transitioner', size: 19975 },
           { name: 'TransitionEvent', size: 1116 },
-          { name: 'Tween', size: 6006 }
-        ]
+          { name: 'Tween', size: 6006 },
+        ],
       },
       {
         name: 'data',
@@ -556,16 +560,16 @@ export const treemap: TreeMapData = [
               { name: 'DelimitedTextConverter', size: 4294 },
               { name: 'GraphMLConverter', size: 9800 },
               { name: 'IDataConverter', size: 1314 },
-              { name: 'JSONConverter', size: 2220 }
-            ]
+              { name: 'JSONConverter', size: 2220 },
+            ],
           },
           { name: 'DataField', size: 1759 },
           { name: 'DataSchema', size: 2165 },
           { name: 'DataSet', size: 586 },
           { name: 'DataSource', size: 3331 },
           { name: 'DataTable', size: 772 },
-          { name: 'DataUtil', size: 3322 }
-        ]
+          { name: 'DataUtil', size: 3322 },
+        ],
       },
       {
         name: 'display',
@@ -573,12 +577,12 @@ export const treemap: TreeMapData = [
           { name: 'DirtySprite', size: 8833 },
           { name: 'LineSprite', size: 1732 },
           { name: 'RectSprite', size: 3623 },
-          { name: 'TextSprite', size: 10066 }
-        ]
+          { name: 'TextSprite', size: 10066 },
+        ],
       },
       {
         name: 'flex',
-        children: [{ name: 'FlareVis', size: 4116 }]
+        children: [{ name: 'FlareVis', size: 4116 }],
       },
       {
         name: 'physics',
@@ -590,8 +594,8 @@ export const treemap: TreeMapData = [
           { name: 'Particle', size: 2822 },
           { name: 'Simulation', size: 9983 },
           { name: 'Spring', size: 2213 },
-          { name: 'SpringForce', size: 1681 }
-        ]
+          { name: 'SpringForce', size: 1681 },
+        ],
       },
       {
         name: 'query',
@@ -648,8 +652,8 @@ export const treemap: TreeMapData = [
               { name: 'variance', size: 335 },
               { name: 'where', size: 299 },
               { name: 'xor', size: 354 },
-              { name: '_', size: 264 }
-            ]
+              { name: '_', size: 264 },
+            ],
           },
           { name: 'Minimum', size: 843 },
           { name: 'Not', size: 1554 },
@@ -660,8 +664,8 @@ export const treemap: TreeMapData = [
           { name: 'Sum', size: 791 },
           { name: 'Variable', size: 1124 },
           { name: 'Variance', size: 1876 },
-          { name: 'Xor', size: 1101 }
-        ]
+          { name: 'Xor', size: 1101 },
+        ],
       },
       {
         name: 'scale',
@@ -675,8 +679,8 @@ export const treemap: TreeMapData = [
           { name: 'RootScale', size: 1756 },
           { name: 'Scale', size: 4268 },
           { name: 'ScaleType', size: 1821 },
-          { name: 'TimeScale', size: 5833 }
-        ]
+          { name: 'TimeScale', size: 5833 },
+        ],
       },
       {
         name: 'util',
@@ -691,8 +695,8 @@ export const treemap: TreeMapData = [
             name: 'heap',
             children: [
               { name: 'FibonacciHeap', size: 9354 },
-              { name: 'HeapNode', size: 1233 }
-            ]
+              { name: 'HeapNode', size: 1233 },
+            ],
           },
           { name: 'IEvaluable', size: 335 },
           { name: 'IPredicate', size: 383 },
@@ -702,8 +706,8 @@ export const treemap: TreeMapData = [
             children: [
               { name: 'DenseMatrix', size: 3165 },
               { name: 'IMatrix', size: 2815 },
-              { name: 'SparseMatrix', size: 3366 }
-            ]
+              { name: 'SparseMatrix', size: 3366 },
+            ],
           },
           { name: 'Maths', size: 17705 },
           { name: 'Orientation', size: 1486 },
@@ -713,15 +717,15 @@ export const treemap: TreeMapData = [
               { name: 'ColorPalette', size: 6367 },
               { name: 'Palette', size: 1229 },
               { name: 'ShapePalette', size: 2059 },
-              { name: 'SizePalette', size: 2291 }
-            ]
+              { name: 'SizePalette', size: 2291 },
+            ],
           },
           { name: 'Property', size: 5559 },
           { name: 'Shapes', size: 19118 },
           { name: 'Sort', size: 6887 },
           { name: 'Stats', size: 6557 },
-          { name: 'Strings', size: 22026 }
-        ]
+          { name: 'Strings', size: 22026 },
+        ],
       },
       {
         name: 'vis',
@@ -733,8 +737,8 @@ export const treemap: TreeMapData = [
               { name: 'Axis', size: 24593 },
               { name: 'AxisGridLine', size: 652 },
               { name: 'AxisLabel', size: 636 },
-              { name: 'CartesianAxes', size: 6703 }
-            ]
+              { name: 'CartesianAxes', size: 6703 },
+            ],
           },
           {
             name: 'controls',
@@ -749,8 +753,8 @@ export const treemap: TreeMapData = [
               { name: 'IControl', size: 763 },
               { name: 'PanZoomControl', size: 5222 },
               { name: 'SelectionControl', size: 7862 },
-              { name: 'TooltipControl', size: 8435 }
-            ]
+              { name: 'TooltipControl', size: 8435 },
+            ],
           },
           {
             name: 'data',
@@ -766,13 +770,13 @@ export const treemap: TreeMapData = [
                   { name: 'ArrowType', size: 698 },
                   { name: 'EdgeRenderer', size: 5569 },
                   { name: 'IRenderer', size: 353 },
-                  { name: 'ShapeRenderer', size: 2247 }
-                ]
+                  { name: 'ShapeRenderer', size: 2247 },
+                ],
               },
               { name: 'ScaleBinding', size: 11275 },
               { name: 'Tree', size: 7147 },
-              { name: 'TreeBuilder', size: 9930 }
-            ]
+              { name: 'TreeBuilder', size: 9930 },
+            ],
           },
           {
             name: 'events',
@@ -780,16 +784,16 @@ export const treemap: TreeMapData = [
               { name: 'DataEvent', size: 2313 },
               { name: 'SelectionEvent', size: 1880 },
               { name: 'TooltipEvent', size: 1701 },
-              { name: 'VisualizationEvent', size: 1117 }
-            ]
+              { name: 'VisualizationEvent', size: 1117 },
+            ],
           },
           {
             name: 'legend',
             children: [
               { name: 'Legend', size: 20859 },
               { name: 'LegendItem', size: 4614 },
-              { name: 'LegendRange', size: 10530 }
-            ]
+              { name: 'LegendRange', size: 10530 },
+            ],
           },
           {
             name: 'operator',
@@ -799,8 +803,8 @@ export const treemap: TreeMapData = [
                 children: [
                   { name: 'BifocalDistortion', size: 4461 },
                   { name: 'Distortion', size: 6314 },
-                  { name: 'FisheyeDistortion', size: 3444 }
-                ]
+                  { name: 'FisheyeDistortion', size: 3444 },
+                ],
               },
               {
                 name: 'encoder',
@@ -809,16 +813,16 @@ export const treemap: TreeMapData = [
                   { name: 'Encoder', size: 4060 },
                   { name: 'PropertyEncoder', size: 4138 },
                   { name: 'ShapeEncoder', size: 1690 },
-                  { name: 'SizeEncoder', size: 1830 }
-                ]
+                  { name: 'SizeEncoder', size: 1830 },
+                ],
               },
               {
                 name: 'filter',
                 children: [
                   { name: 'FisheyeTreeFilter', size: 5219 },
                   { name: 'GraphDistanceFilter', size: 3165 },
-                  { name: 'VisibilityFilter', size: 3509 }
-                ]
+                  { name: 'VisibilityFilter', size: 3509 },
+                ],
               },
               { name: 'IOperator', size: 1286 },
               {
@@ -826,8 +830,8 @@ export const treemap: TreeMapData = [
                 children: [
                   { name: 'Labeler', size: 9956 },
                   { name: 'RadialLabeler', size: 3899 },
-                  { name: 'StackedAreaLabeler', size: 3202 }
-                ]
+                  { name: 'StackedAreaLabeler', size: 3202 },
+                ],
               },
               {
                 name: 'layout',
@@ -846,21 +850,21 @@ export const treemap: TreeMapData = [
                   { name: 'RadialTreeLayout', size: 12348 },
                   { name: 'RandomLayout', size: 870 },
                   { name: 'StackedAreaLayout', size: 9121 },
-                  { name: 'TreeMapLayout', size: 9191 }
-                ]
+                  { name: 'TreeMapLayout', size: 9191 },
+                ],
               },
               { name: 'Operator', size: 2490 },
               { name: 'OperatorList', size: 5248 },
               { name: 'OperatorSequence', size: 4190 },
               { name: 'OperatorSwitch', size: 2581 },
-              { name: 'SortOperator', size: 2023 }
-            ]
+              { name: 'SortOperator', size: 2023 },
+            ],
           },
-          { name: 'Visualization', size: 16540 }
-        ]
-      }
-    ]
-  }
+          { name: 'Visualization', size: 16540 },
+        ],
+      },
+    ],
+  },
 ];
 
 export const sankeyData: SankeyData = [
@@ -884,5 +888,5 @@ export const sankeyData: SankeyData = [
   { source: 'UK', target: 'Spain', value: 20 },
   { source: 'UK', target: 'Bosnia and Herzegovina', value: 20 },
   { source: 'Republic of Equatorial Guinea', target: 'Republic of Costa Rica', value: 30 },
-  { source: 'Republic of Equatorial Guinea', target: 'Portugal', value: 5 }
+  { source: 'Republic of Equatorial Guinea', target: 'Portugal', value: 5 },
 ];

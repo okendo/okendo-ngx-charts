@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { scaleLinear, scaleTime, scalePoint } from 'd3-scale';
@@ -141,7 +141,7 @@ const twoPI = 2 * Math.PI;
   styleUrls: [
     '../common/base-chart.component.scss',
     '../pie-chart/pie-chart.component.scss',
-    './polar-chart.component.scss'
+    './polar-chart.component.scss',
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -149,18 +149,18 @@ const twoPI = 2 * Math.PI;
     trigger('animationState', [
       transition(':leave', [
         style({
-          opacity: 1
+          opacity: 1,
         }),
         animate(
           500,
           style({
-            opacity: 0
-          })
-        )
-      ])
-    ])
+            opacity: 0,
+          }),
+        ),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class PolarChartComponent extends BaseChartComponent implements OnInit {
   @Input() legend: boolean;
@@ -256,7 +256,7 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.schemeType,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     const halfWidth = Math.floor(this.dims.width / 2);
@@ -268,7 +268,7 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
 
     this.yAxisDims = {
       ...this.dims,
-      width: halfWidth
+      width: halfWidth,
     };
 
     this.transform = `translate(${this.dims.xOffset}, ${this.margin[0]})`;
@@ -297,7 +297,7 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
     } else if (this.xScale.tickFormat) {
       tickFormat = this.xScale.tickFormat.apply(this.xScale, [5]);
     } else {
-      tickFormat = d => {
+      tickFormat = (d) => {
         if (isDate(d)) {
           return d.toLocaleDateString();
         }
@@ -308,7 +308,7 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
     const outerRadius = this.outerRadius;
     const s = 1.1;
 
-    this.thetaTicks = this.xDomain.map(d => {
+    this.thetaTicks = this.xDomain.map((d) => {
       const startAngle = this.xScale(d);
       const dd = s * outerRadius * (startAngle > Math.PI ? -1 : 1);
       const label = tickFormat(d);
@@ -323,7 +323,7 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
         value: outerRadius,
         label,
         startPos,
-        pos
+        pos,
       };
     });
 
@@ -347,7 +347,9 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
       }
     }
 
-    this.radiusTicks = this.yAxisScale.ticks(Math.floor(this.dims.height / 50)).map(d => this.yScale(d));
+    this.radiusTicks = this.yAxisScale
+      .ticks(Math.floor(this.dims.height / 50))
+      .map((d) => this.yScale(d));
   }
 
   getXValues(): any[] {
@@ -368,7 +370,7 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
       const max = Math.max(...values);
       return [min, max];
     } else if (this.scaleType === ScaleType.Linear) {
-      values = values.map(v => Number(v));
+      values = values.map((v) => Number(v));
       const min = Math.min(...values);
       const max = Math.max(...values);
       return [min, max];
@@ -412,7 +414,7 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
   }
 
   getSeriesDomain(): any[] {
-    return this.results.map(d => d.name);
+    return this.results.map((d) => d.name);
   }
 
   getXScale(domain, width: number): any {
@@ -446,7 +448,8 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
   }
 
   setColors(): void {
-    const domain = this.schemeType === ScaleType.Ordinal ? this.seriesDomain : this.yDomain.reverse();
+    const domain =
+      this.schemeType === ScaleType.Ordinal ? this.seriesDomain : this.yDomain.reverse();
     this.colors = new ColorHelper(this.scheme, this.schemeType, domain, this.customColors);
   }
 
@@ -457,7 +460,7 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
         colors: this.colors,
         domain: this.seriesDomain,
         title: this.legendTitle,
-        position: this.legendPosition
+        position: this.legendPosition,
       };
     }
     return {
@@ -465,7 +468,7 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
       colors: this.colors.scale,
       domain: this.yDomain,
       title: undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
   }
 
@@ -480,18 +483,20 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
   }
 
   onActivate(item): void {
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value;
     });
     if (idx > -1) {
       return;
     }
-    this.activeEntries = this.showSeriesOnHover ? [item, ...this.activeEntries] : this.activeEntries;
+    this.activeEntries = this.showSeriesOnHover
+      ? [item, ...this.activeEntries]
+      : this.activeEntries;
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
   onDeactivate(item): void {
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value;
     });
 

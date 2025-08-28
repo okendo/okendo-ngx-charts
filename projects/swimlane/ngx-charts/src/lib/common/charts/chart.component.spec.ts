@@ -7,7 +7,7 @@ import { ChartCommonModule } from '../chart-common.module';
 @Component({
   selector: 'test-component',
   template: '',
-  standalone: false
+  standalone: false,
 })
 class TestComponent {
   barData: any;
@@ -17,7 +17,7 @@ describe('<ngx-charts-chart>', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      imports: [NoopAnimationsModule, ChartCommonModule]
+      imports: [NoopAnimationsModule, ChartCommonModule],
     });
   });
 
@@ -32,8 +32,8 @@ describe('<ngx-charts-chart>', () => {
                       [view]="[400,800]">
                       <p>ngx-charts is cool!</p>
                     </ngx-charts-chart>
-                `
-        }
+                `,
+        },
       }).compileComponents();
     });
 

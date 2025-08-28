@@ -2,7 +2,11 @@ import { PlacementTypes } from './placement-type.enum';
 
 const caretOffset = 7;
 
-function verticalPosition(elDimensions: DOMRect, popoverDimensions: DOMRect, alignment: PlacementTypes): number {
+function verticalPosition(
+  elDimensions: DOMRect,
+  popoverDimensions: DOMRect,
+  alignment: PlacementTypes,
+): number {
   if (alignment === PlacementTypes.Top) {
     return elDimensions.top - caretOffset;
   }
@@ -18,7 +22,11 @@ function verticalPosition(elDimensions: DOMRect, popoverDimensions: DOMRect, ali
   return undefined;
 }
 
-function horizontalPosition(elDimensions: DOMRect, popoverDimensions: DOMRect, alignment: PlacementTypes): number {
+function horizontalPosition(
+  elDimensions: DOMRect,
+  popoverDimensions: DOMRect,
+  alignment: PlacementTypes,
+): number {
   if (alignment === PlacementTypes.Left) {
     return elDimensions.left - caretOffset;
   }
@@ -48,7 +56,7 @@ export class PositionHelper {
   static calculateVerticalAlignment(
     elDimensions: DOMRect,
     popoverDimensions: DOMRect,
-    alignment: PlacementTypes
+    alignment: PlacementTypes,
   ): number {
     let result = verticalPosition(elDimensions, popoverDimensions, alignment);
 
@@ -68,7 +76,7 @@ export class PositionHelper {
     elDimensions: DOMRect,
     popoverDimensions: DOMRect,
     caretDimensions: DOMRect,
-    alignment: PlacementTypes
+    alignment: PlacementTypes,
   ): number {
     let result;
 
@@ -77,7 +85,11 @@ export class PositionHelper {
     }
 
     if (alignment === PlacementTypes.Bottom) {
-      result = popoverDimensions.height - elDimensions.height / 2 - caretDimensions.height / 2 - caretOffset;
+      result =
+        popoverDimensions.height -
+        elDimensions.height / 2 -
+        caretDimensions.height / 2 -
+        caretOffset;
     }
 
     if (alignment === PlacementTypes.Center) {
@@ -100,7 +112,7 @@ export class PositionHelper {
   static calculateHorizontalAlignment(
     elDimensions: DOMRect,
     popoverDimensions: DOMRect,
-    alignment: PlacementTypes
+    alignment: PlacementTypes,
   ): number {
     let result = horizontalPosition(elDimensions, popoverDimensions, alignment);
 
@@ -120,7 +132,7 @@ export class PositionHelper {
     elDimensions: DOMRect,
     popoverDimensions: DOMRect,
     caretDimensions: DOMRect,
-    alignment: PlacementTypes
+    alignment: PlacementTypes,
   ): number {
     let result;
 
@@ -129,7 +141,8 @@ export class PositionHelper {
     }
 
     if (alignment === PlacementTypes.Right) {
-      result = popoverDimensions.width - elDimensions.width / 2 - caretDimensions.width / 2 - caretOffset;
+      result =
+        popoverDimensions.width - elDimensions.width / 2 - caretDimensions.width / 2 - caretOffset;
     }
 
     if (alignment === PlacementTypes.Center) {
@@ -153,12 +166,15 @@ export class PositionHelper {
     elDimensions: DOMRect,
     popoverDimensions: DOMRect,
     placement: PlacementTypes,
-    spacing: number
+    spacing: number,
   ): boolean {
     let flip = false;
 
     if (placement === PlacementTypes.Right) {
-      if (elDimensions.left + elDimensions.width + popoverDimensions.width + spacing > window.innerWidth) {
+      if (
+        elDimensions.left + elDimensions.width + popoverDimensions.width + spacing >
+        window.innerWidth
+      ) {
         flip = true;
       }
     }
@@ -176,7 +192,10 @@ export class PositionHelper {
     }
 
     if (placement === PlacementTypes.Bottom) {
-      if (elDimensions.top + elDimensions.height + popoverDimensions.height + spacing > window.innerHeight) {
+      if (
+        elDimensions.top + elDimensions.height + popoverDimensions.height + spacing >
+        window.innerHeight
+      ) {
         flip = true;
       }
     }
@@ -189,7 +208,13 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static positionCaret(placement, elmDim, hostDim, caretDimensions, alignment: PlacementTypes): any {
+  static positionCaret(
+    placement,
+    elmDim,
+    hostDim,
+    caretDimensions,
+    alignment: PlacementTypes,
+  ): any {
     let top = 0;
     let left = 0;
 
@@ -241,7 +266,12 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static determinePlacement(placement: PlacementTypes, elmDim: DOMRect, hostDim: DOMRect, spacing: number): any {
+  static determinePlacement(
+    placement: PlacementTypes,
+    elmDim: DOMRect,
+    hostDim: DOMRect,
+    spacing: number,
+  ): any {
     const shouldFlip = PositionHelper.shouldFlip(hostDim, elmDim, placement, spacing);
 
     if (shouldFlip) {

@@ -8,7 +8,7 @@ import {
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { scaleLinear, scaleTime, scalePoint } from 'd3-scale';
@@ -190,18 +190,18 @@ import { isPlatformServer } from '@angular/common';
     trigger('animationState', [
       transition(':leave', [
         style({
-          opacity: 1
+          opacity: 1,
         }),
         animate(
           500,
           style({
-            opacity: 0
-          })
-        )
-      ])
-    ])
+            opacity: 0,
+          }),
+        ),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class LineChartComponent extends BaseChartComponent implements OnInit {
   @Input() legend: boolean;
@@ -300,7 +300,7 @@ export class LineChartComponent extends BaseChartComponent implements OnInit {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.schemeType,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     if (this.timeline) {
@@ -346,7 +346,7 @@ export class LineChartComponent extends BaseChartComponent implements OnInit {
     let domain = [];
 
     if (this.scaleType === ScaleType.Linear) {
-      values = values.map(v => Number(v));
+      values = values.map((v) => Number(v));
     }
 
     let min;
@@ -413,7 +413,7 @@ export class LineChartComponent extends BaseChartComponent implements OnInit {
   }
 
   getSeriesDomain(): string[] {
-    return this.results.map(d => d.name);
+    return this.results.map((d) => d.name);
   }
 
   getXScale(domain, width: number): any {
@@ -482,7 +482,7 @@ export class LineChartComponent extends BaseChartComponent implements OnInit {
       colors: undefined,
       domain: [],
       title: undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
     if (opts.scaleType === ScaleType.Ordinal) {
       opts.domain = this.seriesDomain;
@@ -508,7 +508,7 @@ export class LineChartComponent extends BaseChartComponent implements OnInit {
   onActivate(item): void {
     this.deactivateAll();
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value;
     });
     if (idx > -1) {
@@ -520,7 +520,7 @@ export class LineChartComponent extends BaseChartComponent implements OnInit {
   }
 
   onDeactivate(item): void {
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value;
     });
 

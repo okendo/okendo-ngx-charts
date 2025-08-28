@@ -84,5 +84,5 @@ export const VERDANA_FONT_WIDTHS_16_PX = {
   '?': 9,
   ';': 7,
   '<': 13,
-  '>': 13
+  '>': 13,
 };

@@ -6,7 +6,7 @@ import {
   ScaleOrdinal,
   scaleOrdinal,
   ScaleQuantile,
-  scaleQuantile
+  scaleQuantile,
 } from 'd3-scale';
 
 import { Color, colorSets } from '../utils/color-sets';
@@ -23,7 +23,7 @@ export class ColorHelper {
 
   constructor(scheme: string | Color, type: ScaleType, domain: number[] | string[], customColors?) {
     if (typeof scheme === 'string') {
-      scheme = colorSets.find(cs => {
+      scheme = colorSets.find((cs) => {
         return cs.name === scheme;
       });
     }
@@ -37,12 +37,15 @@ export class ColorHelper {
 
   generateColorScheme(scheme: string | Color, type: ScaleType, domain: number[] | string[]): any {
     if (typeof scheme === 'string') {
-      scheme = colorSets.find(cs => {
+      scheme = colorSets.find((cs) => {
         return cs.name === scheme;
       });
     }
 
-    let colorScale: ScaleQuantile<number> | ScaleOrdinal<string, unknown> | ScaleLinear<number, number>;
+    let colorScale:
+      | ScaleQuantile<number>
+      | ScaleOrdinal<string, unknown>
+      | ScaleLinear<number, number>;
     switch (type) {
       case ScaleType.Quantile:
         colorScale = scaleQuantile()
@@ -93,7 +96,7 @@ export class ColorHelper {
       const formattedValue = value.toString();
       let found: any; // todo type customColors
       if (this.customColors && this.customColors.length > 0) {
-        found = this.customColors.find(mapping => {
+        found = this.customColors.find((mapping) => {
           return mapping.name.toLowerCase() === formattedValue.toLowerCase();
         });
       }
@@ -131,7 +134,7 @@ export class ColorHelper {
       color: startColor,
       offset: startVal,
       originalOffset: startVal,
-      opacity: 1
+      opacity: 1,
     });
 
     while (currentVal < endVal && i < this.colorDomain.length) {
@@ -149,7 +152,7 @@ export class ColorHelper {
       stops.push({
         color,
         offset,
-        opacity: 1
+        opacity: 1,
       });
       currentVal = offset;
       i++;
@@ -159,7 +162,7 @@ export class ColorHelper {
       stops.push({
         color: endColor,
         offset: endVal,
-        opacity: 1
+        opacity: 1,
       });
     }
 

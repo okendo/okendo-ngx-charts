@@ -12,7 +12,7 @@ const seriesData = ['complete', 'not complete'];
 @Component({
   selector: 'test-component',
   template: '',
-  standalone: false
+  standalone: false,
 })
 class TestComponent {
   seriesData: any = seriesData;
@@ -25,7 +25,7 @@ class TestComponent {
       selectable: false,
       name: 'test',
       domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
-      group: ScaleType.Ordinal
+      group: ScaleType.Ordinal,
     };
     this.colors = new ColorHelper(scheme, scheme.group, [], null);
   }
@@ -35,7 +35,7 @@ describe('<ngx-charts-legend>', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      imports: [ChartCommonModule]
+      imports: [ChartCommonModule],
     });
 
     TestBed.overrideComponent(TestComponent, {
@@ -47,8 +47,8 @@ describe('<ngx-charts-legend>', () => {
                   [data]="seriesData"
                   [height]="legendHeight">
                 </ngx-charts-legend>
-            `
-      }
+            `,
+      },
     }).compileComponents();
   });
 

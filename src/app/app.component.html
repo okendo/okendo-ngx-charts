@@ -899,18 +899,35 @@
         >
         </ngx-charts-polar-chart>
       </div>
-      <div class="chart-container" *ngIf="chartType === 'tree-map-demo'" style="padding: 10px; border: 1px solid white">
+      <div
+        class="chart-container"
+        *ngIf="chartType === 'tree-map-demo'"
+        style="padding: 10px; border: 1px solid white"
+      >
         <h4 style="text-align: center">
-          <button class="btn btn-link" [class.active]="sumBy === 'Size'" (click)="treemapProcess('Size')">
+          <button
+            class="btn btn-link"
+            [class.active]="sumBy === 'Size'"
+            (click)="treemapProcess('Size')"
+          >
             By Size
           </button>
-          <button class="btn btn-link" [class.active]="sumBy === 'Count'" (click)="treemapProcess('Count')">
+          <button
+            class="btn btn-link"
+            [class.active]="sumBy === 'Count'"
+            (click)="treemapProcess('Count')"
+          >
             By Count
           </button>
         </h4>
         <div style="height: 17px; font-size: 12px">
           <ng-container *ngFor="let item of treemapPath; let last = last">
-            <button class="btn btn-link" [class.active]="last" [disabled]="last" (click)="treemapSelect(item)">
+            <button
+              class="btn btn-link"
+              [class.active]="last"
+              [disabled]="last"
+              (click)="treemapSelect(item)"
+            >
               {{ item.name }} ({{ item.value }})
             </button>
             <span *ngIf="!last"> / </span>
@@ -1156,7 +1173,9 @@
       <select [ngModel]="chartType" (ngModelChange)="selectChart($event)">
         <ng-template ngFor let-group [ngForOf]="chartGroups">
           <optgroup [label]="group.name">
-            <option *ngFor="let chart of group.charts" [value]="chart.selector">{{ chart.name }}</option>
+            <option *ngFor="let chart of group.charts" [value]="chart.selector">
+              {{ chart.name }}
+            </option>
           </optgroup>
         </ng-template>
       </select>
@@ -1175,9 +1194,15 @@
       <div [hidden]="!dataVisible" style="margin-left: 10px">
         <pre *ngIf="chart.inputFormat === 'singleSeries'">{{ single | json }}</pre>
         <pre *ngIf="chart.inputFormat === 'multiSeries' && !linearScale">{{ multi | json }}</pre>
-        <pre *ngIf="chart.inputFormat === 'multiSeriesNegative' && !linearScale">{{ fiscalYearReport | json }}</pre>
-        <pre *ngIf="chart.inputFormat === 'multiSeries' && linearScale && !range">{{ dateData | json }}</pre>
-        <pre *ngIf="chart.inputFormat === 'multiSeries' && linearScale && range">{{ dateDataWithRange | json }}</pre>
+        <pre *ngIf="chart.inputFormat === 'multiSeriesNegative' && !linearScale">{{
+          fiscalYearReport | json
+        }}</pre>
+        <pre *ngIf="chart.inputFormat === 'multiSeries' && linearScale && !range">{{
+          dateData | json
+        }}</pre>
+        <pre *ngIf="chart.inputFormat === 'multiSeries' && linearScale && range">{{
+          dateDataWithRange | json
+        }}</pre>
         <pre *ngIf="chart.inputFormat === 'boxMultiSeries'">{{ boxData | json }}</pre>
         <pre *ngIf="chart.inputFormat === 'bubble'">{{ bubble | json }}</pre>
         <pre *ngIf="chart.inputFormat === 'bubbleInteractive'">{{ bubbleDemoTempData | json }}</pre>
@@ -1444,7 +1469,14 @@
         </div>
         <div *ngIf="chart.options.includes('arcWidth') && doughnut">
           <label>Arc width (fraction of radius):</label><br />
-          <input type="number" [disabled]="!doughnut" [(ngModel)]="arcWidth" max="1" min="0" step="0.01" /><br />
+          <input
+            type="number"
+            [disabled]="!doughnut"
+            [(ngModel)]="arcWidth"
+            max="1"
+            min="0"
+            step="0.01"
+          /><br />
         </div>
         <div *ngIf="chart.options.includes('explodeSlices') && !doughnut">
           <label>
@@ -1470,15 +1502,24 @@
         <div *ngIf="chart.options.includes('curve')">
           <label>Line Interpolation</label>
           <select [(ngModel)]="curveType" (ngModelChange)="curve = getInterpolationType($event)">
-            <option *ngFor="let interpolationType of interpolationTypes" [value]="interpolationType">
+            <option
+              *ngFor="let interpolationType of interpolationTypes"
+              [value]="interpolationType"
+            >
               {{ interpolationType }}
             </option>
           </select>
         </div>
         <div *ngIf="chart.options.includes('curveClosed')">
           <label>Line Interpolation</label>
-          <select [(ngModel)]="closedCurveType" (ngModelChange)="closedCurve = getInterpolationType($event)">
-            <option *ngFor="let interpolationType of closedInterpolationTypes" [value]="interpolationType">
+          <select
+            [(ngModel)]="closedCurveType"
+            (ngModelChange)="closedCurve = getInterpolationType($event)"
+          >
+            <option
+              *ngFor="let interpolationType of closedInterpolationTypes"
+              [value]="interpolationType"
+            >
               {{ interpolationType }}
             </option>
           </select>
@@ -1576,7 +1617,11 @@
         <div *ngIf="chart.options.includes('xScaleMin')">
           <div *ngIf="chartType !== 'bubble-chart'">
             <label></label><br />
-            <ngx-date-time [inputType]="'datetime'" label="Minimum X-Scale value" [(ngModel)]="xScaleMin">
+            <ngx-date-time
+              [inputType]="'datetime'"
+              label="Minimum X-Scale value"
+              [(ngModel)]="xScaleMin"
+            >
             </ngx-date-time>
           </div>
           <div *ngIf="chartType === 'bubble-chart'">
@@ -1610,7 +1655,9 @@
           <input type="number" [(ngModel)]="yScaleMax" /><br />
         </div>
       </div>
-      <h3><a href="https://swimlane.gitbooks.io/ngx-charts/content/" target="_blank">Documentation</a></h3>
+      <h3>
+        <a href="https://swimlane.gitbooks.io/ngx-charts/content/" target="_blank">Documentation</a>
+      </h3>
     </div>
   </div>
 </main>

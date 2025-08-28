@@ -7,7 +7,7 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { select } from 'd3-selection';
 import { roundedRect } from '../common/shape.helper';
@@ -20,7 +20,12 @@ import { Gradient } from '../common/types/gradient.interface';
   selector: 'g[ngx-charts-bar]',
   template: `
     <svg:defs *ngIf="hasGradient">
-      <svg:g ngx-charts-svg-linear-gradient [orientation]="orientation" [name]="gradientId" [stops]="gradientStops" />
+      <svg:g
+        ngx-charts-svg-linear-gradient
+        [orientation]="orientation"
+        [name]="gradientId"
+        [stops]="gradientStops"
+      />
     </svg:defs>
     <svg:path
       class="bar"
@@ -36,7 +41,7 @@ import { Gradient } from '../common/types/gradient.interface';
     />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class BarComponent implements OnChanges {
   @Input() fill: string;
@@ -117,13 +122,13 @@ export class BarComponent implements OnChanges {
       {
         offset: 0,
         color: this.fill,
-        opacity: this.getStartOpacity()
+        opacity: this.getStartOpacity(),
       },
       {
         offset: 100,
         color: this.fill,
-        opacity: 1
-      }
+        opacity: 1,
+      },
     ];
   }
 

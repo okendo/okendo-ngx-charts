@@ -13,7 +13,7 @@ interface GridPanel {
 
 enum ClassEnum {
   Odd = 'odd',
-  Even = 'even'
+  Even = 'even',
 }
 
 @Component({
@@ -32,7 +32,7 @@ enum ClassEnum {
     ></svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class GridPanelSeriesComponent implements OnChanges {
   gridPanels: GridPanel[];
@@ -56,7 +56,7 @@ export class GridPanelSeriesComponent implements OnChanges {
   }
 
   getGridPanels(): GridPanel[] {
-    return this.data.map(d => {
+    return this.data.map((d) => {
       let offset;
       let width;
       let height;
@@ -97,7 +97,7 @@ export class GridPanelSeriesComponent implements OnChanges {
         height,
         width,
         x,
-        y
+        y,
       };
     });
   }

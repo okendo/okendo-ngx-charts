@@ -6,7 +6,7 @@ import {
   EventEmitter,
   OnChanges,
   ChangeDetectionStrategy,
-  HostListener
+  HostListener,
 } from '@angular/core';
 
 @Component({
@@ -24,7 +24,7 @@ import {
     />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class CircleComponent implements OnChanges {
   @Input() cx: number;

@@ -6,11 +6,11 @@ export function getDomain(
   scaleType: ScaleType,
   autoScale: boolean,
   minVal?: number,
-  maxVal?: number
+  maxVal?: number,
 ): number[] {
   let domain: number[] = [];
   if (scaleType === ScaleType.Linear) {
-    values = values.map(v => Number(v));
+    values = values.map((v) => Number(v));
     if (!autoScale) {
       values.push(0);
     }
@@ -32,7 +32,7 @@ export function getScale(
   domain: number[],
   range: number[],
   scaleType: ScaleType,
-  roundDomains: boolean
+  roundDomains: boolean,
 ): ScaleTime<number, number> | ScaleLinear<number, number> | ScalePoint<string> {
   switch (scaleType) {
     case ScaleType.Time:
@@ -47,7 +47,7 @@ export function getScale(
     case ScaleType.Ordinal:
       return scalePoint()
         .range([range[0], range[1]])
-        .domain(domain.map(r => r.toString()));
+        .domain(domain.map((r) => r.toString()));
     default:
       return undefined;
   }

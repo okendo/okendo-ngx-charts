@@ -12,12 +12,12 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 @Component({
   selector: 'test-component',
   template: '',
-  standalone: false
+  standalone: false,
 })
 class TestComponent {
   multi: any = multi;
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
 }
 
@@ -26,7 +26,7 @@ describe('<ngx-charts-number-card>', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [NoopAnimationsModule, NumberCardModule],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
     });
   });
 
@@ -40,8 +40,8 @@ describe('<ngx-charts-number-card>', () => {
                 [view]="[400,800]"
                 [scheme]="colorScheme"
                 [results]="multi">
-              </ngx-charts-number-card>`
-        }
+              </ngx-charts-number-card>`,
+        },
       }).compileComponents();
     });
 

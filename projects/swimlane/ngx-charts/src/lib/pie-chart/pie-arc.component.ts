@@ -6,7 +6,7 @@ import {
   ElementRef,
   SimpleChanges,
   OnChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { interpolate } from 'd3-interpolate';
 import { select } from 'd3-selection';
@@ -20,7 +20,12 @@ import { BarOrientation } from '../common/types/bar-orientation.enum';
   template: `
     <svg:g class="arc-group">
       <svg:defs *ngIf="gradient">
-        <svg:g ngx-charts-svg-radial-gradient [color]="fill" [name]="radialGradientId" [startOpacity]="startOpacity" />
+        <svg:g
+          ngx-charts-svg-radial-gradient
+          [color]="fill"
+          [name]="radialGradientId"
+          [startOpacity]="startOpacity"
+        />
       </svg:defs>
       <svg:path
         [attr.d]="path"
@@ -36,7 +41,7 @@ import { BarOrientation } from '../common/types/bar-orientation.enum';
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class PieArcComponent implements OnChanges {
   @Input() fill: string;
@@ -110,7 +115,10 @@ export class PieArcComponent implements OnChanges {
       outerRadius = (this.outerRadius * this.value) / this.max;
     }
 
-    return arc().innerRadius(this.innerRadius).outerRadius(outerRadius).cornerRadius(this.cornerRadius);
+    return arc()
+      .innerRadius(this.innerRadius)
+      .outerRadius(outerRadius)
+      .cornerRadius(this.cornerRadius);
   }
 
   loadAnimation(): void {
@@ -176,7 +184,7 @@ export class PieArcComponent implements OnChanges {
 
     this.dblclick.emit({
       data: this.data,
-      nativeEvent: event
+      nativeEvent: event,
     });
   }
 }

@@ -22,8 +22,8 @@ export const colorSets: Color[] = [
       '#f3e562',
       '#ff9800',
       '#ff5722',
-      '#ff4514'
-    ]
+      '#ff4514',
+    ],
   },
   {
     name: 'natural',
@@ -39,8 +39,8 @@ export const colorSets: Color[] = [
       '#afafaf',
       '#707160',
       '#ba9383',
-      '#d9d5c3'
-    ]
+      '#d9d5c3',
+    ],
   },
   {
     name: 'cool',
@@ -56,14 +56,23 @@ export const colorSets: Color[] = [
       '#8796c0',
       '#7ed3ed',
       '#50abcc',
-      '#ad6886'
-    ]
+      '#ad6886',
+    ],
   },
   {
     name: 'fire',
     selectable: true,
     group: ScaleType.Ordinal,
-    domain: ['#ff3d00', '#bf360c', '#ff8f00', '#ff6f00', '#ff5722', '#e65100', '#ffca28', '#ffab00']
+    domain: [
+      '#ff3d00',
+      '#bf360c',
+      '#ff8f00',
+      '#ff6f00',
+      '#ff5722',
+      '#e65100',
+      '#ffca28',
+      '#ffab00',
+    ],
   },
   {
     name: 'solar',
@@ -79,8 +88,8 @@ export const colorSets: Color[] = [
       '#ffb300',
       '#ffa000',
       '#ff8f00',
-      '#ff6f00'
-    ]
+      '#ff6f00',
+    ],
   },
   {
     name: 'air',
@@ -96,8 +105,8 @@ export const colorSets: Color[] = [
       '#039be5',
       '#0288d1',
       '#0277bd',
-      '#01579b'
-    ]
+      '#01579b',
+    ],
   },
   {
     name: 'aqua',
@@ -113,8 +122,8 @@ export const colorSets: Color[] = [
       '#00acc1',
       '#0097a7',
       '#00838f',
-      '#006064'
-    ]
+      '#006064',
+    ],
   },
   {
     name: 'flame',
@@ -130,8 +139,8 @@ export const colorSets: Color[] = [
       '#A9D770',
       '#6CBA67',
       '#2C9653',
-      '#146738'
-    ]
+      '#146738',
+    ],
   },
   {
     name: 'ocean',
@@ -147,8 +156,8 @@ export const colorSets: Color[] = [
       '#FC8A25',
       '#FA4F1E',
       '#FA141B',
-      '#BA38D1'
-    ]
+      '#BA38D1',
+    ],
   },
   {
     name: 'forest',
@@ -164,8 +173,8 @@ export const colorSets: Color[] = [
       '#BA60FB',
       '#EE6490',
       '#C42A1C',
-      '#FC9F32'
-    ]
+      '#FC9F32',
+    ],
   },
   {
     name: 'horizon',
@@ -181,8 +190,8 @@ export const colorSets: Color[] = [
       '#FCB1A8',
       '#EF6F7B',
       '#CB96E8',
-      '#EFDEE0'
-    ]
+      '#EFDEE0',
+    ],
   },
   {
     name: 'neons',
@@ -198,8 +207,8 @@ export const colorSets: Color[] = [
       '#33FF66',
       '#CCFF33',
       '#FFCC00',
-      '#FF6600'
-    ]
+      '#FF6600',
+    ],
   },
   {
     name: 'picnic',
@@ -215,8 +224,8 @@ export const colorSets: Color[] = [
       '#B7332F',
       '#2C83C9',
       '#9166B8',
-      '#92E7E8'
-    ]
+      '#92E7E8',
+    ],
   },
   {
     name: 'night',
@@ -237,8 +246,8 @@ export const colorSets: Color[] = [
       '#2C507D',
       '#4B3880',
       '#752F7D',
-      '#35547D'
-    ]
+      '#35547D',
+    ],
   },
   {
     name: 'nightLights',
@@ -259,7 +268,7 @@ export const colorSets: Color[] = [
       '#6c97cb',
       '#8671c1',
       '#b455be',
-      '#7496c3'
-    ]
-  }
+      '#7496c3',
+    ],
+  },
 ];

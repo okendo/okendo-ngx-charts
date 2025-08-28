@@ -14,12 +14,12 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 @Component({
   selector: 'test-component',
   template: '',
-  standalone: false
+  standalone: false,
 })
 class TestComponent {
   single: any = single;
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
 }
 
@@ -34,11 +34,11 @@ describe('<ngx-charts-pie>', () => {
           useValue: {
             appendComponent: () => {
               // noop
-            }
-          }
+            },
+          },
         },
-        { provide: APP_BASE_HREF, useValue: '/' }
-      ]
+        { provide: APP_BASE_HREF, useValue: '/' },
+      ],
     });
   });
 
@@ -55,8 +55,8 @@ describe('<ngx-charts-pie>', () => {
               [view]="[400,800]"
               [scheme]="colorScheme"
               [doughnut]="false">
-            </ngx-charts-pie-chart>`
-        }
+            </ngx-charts-pie-chart>`,
+        },
       }).compileComponents();
       fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
@@ -78,7 +78,11 @@ describe('<ngx-charts-pie>', () => {
     it('should render an arc', () => {
       const arcElement = fixture.debugElement.nativeElement.querySelector('path.arc');
 
-      const testArc: any = arc().innerRadius(0).outerRadius(180).startAngle(0).endAngle(1.0984497063524654);
+      const testArc: any = arc()
+        .innerRadius(0)
+        .outerRadius(180)
+        .startAngle(0)
+        .endAngle(1.0984497063524654);
 
       expect(arcElement.getAttribute('d')).toEqual(testArc());
     });
@@ -97,8 +101,8 @@ describe('<ngx-charts-pie>', () => {
               [view]="[400,800]"
               [scheme]="colorScheme"
               [doughnut]="true">
-            </ngx-charts-pie-chart>`
-        }
+            </ngx-charts-pie-chart>`,
+        },
       }).compileComponents();
       fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
@@ -132,8 +136,8 @@ describe('<ngx-charts-pie>', () => {
             [scheme]="colorScheme"
             [doughnut]="true"
             [arcWidth]="0.1">
-          </ngx-charts-pie-chart>`
-        }
+          </ngx-charts-pie-chart>`,
+        },
       }).compileComponents();
       fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();

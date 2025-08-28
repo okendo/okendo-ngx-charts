@@ -5,7 +5,7 @@ import {
   ViewChild,
   AfterViewInit,
   ViewEncapsulation,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { scaleLinear } from 'd3-scale';
 
@@ -21,13 +21,18 @@ import { ScaleType } from '../common/types/scale-type.enum';
 
 enum ElementType {
   Value = 'value',
-  Units = 'units'
+  Units = 'units',
 }
 
 @Component({
   selector: 'ngx-charts-linear-gauge',
   template: `
-    <ngx-charts-chart [view]="[width, height]" [showLegend]="false" [animations]="animations" (click)="onClick()">
+    <ngx-charts-chart
+      [view]="[width, height]"
+      [showLegend]="false"
+      [animations]="animations"
+      (click)="onClick()"
+    >
       <svg:g class="linear-gauge chart">
         <svg:g
           ngx-charts-bar
@@ -105,7 +110,7 @@ enum ElementType {
   styleUrls: ['../common/base-chart.component.scss', './linear-gauge.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class LinearGaugeComponent extends BaseChartComponent implements AfterViewInit {
   @Input() min: number = 0;
@@ -160,7 +165,7 @@ export class LinearGaugeComponent extends BaseChartComponent implements AfterVie
     this.dims = calculateViewDimensions({
       width: this.width,
       height: this.height,
-      margins: this.margin
+      margins: this.margin,
     });
 
     this.valueDomain = this.getValueDomain();
@@ -265,7 +270,7 @@ export class LinearGaugeComponent extends BaseChartComponent implements AfterVie
   onClick(): void {
     this.select.emit({
       name: 'Value',
-      value: this.value
+      value: this.value,
     });
   }
 

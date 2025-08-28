@@ -15,7 +15,7 @@ export function calculateViewDimensions({
   showLegend = false,
   legendType = ScaleType.Ordinal,
   legendPosition = LegendPosition.Right,
-  columns = 12
+  columns = 12,
 }): ViewDimensions {
   let xOffset = margins[3];
   let chartWidth = width;
@@ -64,6 +64,6 @@ export function calculateViewDimensions({
   return {
     width: Math.floor(chartWidth),
     height: Math.floor(chartHeight),
-    xOffset: Math.floor(xOffset)
+    xOffset: Math.floor(xOffset),
   };
 }

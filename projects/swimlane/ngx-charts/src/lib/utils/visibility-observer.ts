@@ -5,7 +5,7 @@ import { Output, EventEmitter, NgZone, Directive, ElementRef } from '@angular/co
  */
 @Directive({
   selector: 'visibility-observer',
-  standalone: false
+  standalone: false,
 })
 export class VisibilityObserver {
   @Output() visible: EventEmitter<any> = new EventEmitter();
@@ -15,7 +15,7 @@ export class VisibilityObserver {
 
   constructor(
     private element: ElementRef,
-    private zone: NgZone
+    private zone: NgZone,
   ) {
     this.runCheck();
   }

@@ -6,7 +6,7 @@ import {
   SimpleChanges,
   EventEmitter,
   ChangeDetectionStrategy,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { ColorHelper } from '../common/color.helper';
 import { escapeLabel } from '../common/label.helper';
@@ -55,7 +55,7 @@ interface TreeMapCell {
     ></svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class TreeMapCellSeriesComponent implements OnChanges {
   @Input() data: any; // type this
@@ -80,7 +80,7 @@ export class TreeMapCellSeriesComponent implements OnChanges {
 
   getCells(): TreeMapCell[] {
     return this.data.children
-      .filter(d => {
+      .filter((d) => {
         return d.depth === 1;
       })
       .map((d, index) => {
@@ -94,7 +94,7 @@ export class TreeMapCellSeriesComponent implements OnChanges {
           height: d.y1 - d.y0,
           fill: this.colors.getColor(label),
           label,
-          value: d.value
+          value: d.value,
         };
       });
   }

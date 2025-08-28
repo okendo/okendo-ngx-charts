@@ -6,7 +6,7 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { min, max, quantile } from 'd3-array';
 import { ScaleLinear, ScaleBand } from 'd3-scale';
@@ -58,13 +58,13 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
     trigger('animationState', [
       transition(':leave', [
         style({
-          opacity: 1
+          opacity: 1,
         }),
-        animate(500, style({ opacity: 0 }))
-      ])
-    ])
+        animate(500, style({ opacity: 0 })),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class BoxSeriesComponent implements OnChanges {
   @Input() dims: ViewDimensions;
@@ -103,19 +103,25 @@ export class BoxSeriesComponent implements OnChanges {
 
   update(): void {
     this.updateTooltipSettings();
-    const width = this.series && this.series.series.length ? Math.round(this.xScale.bandwidth()) : null;
+    const width =
+      this.series && this.series.series.length ? Math.round(this.xScale.bandwidth()) : null;
     const seriesName = this.series.name;
 
     // Calculate Quantile and Whiskers for each box serie.
     this.counts = this.series.series;
 
-    const mappedCounts = this.counts.map(serie => Number(serie.value));
+    const mappedCounts = this.counts.map((serie) => Number(serie.value));
     this.whiskers = [min(mappedCounts), max(mappedCounts)];
 
     // We get the group count and must sort it in order to retrieve quantiles.
-    const groupCounts = this.counts.map(item => item.value).sort((a, b) => Number(a) - Number(b));
+    const groupCounts = this.counts.map((item) => item.value).sort((a, b) => Number(a) - Number(b));
     this.quartiles = this.getBoxQuantiles(groupCounts);
-    this.lineCoordinates = this.getLinesCoordinates(seriesName.toString(), this.whiskers, this.quartiles, width);
+    this.lineCoordinates = this.getLinesCoordinates(
+      seriesName.toString(),
+      this.whiskers,
+      this.quartiles,
+      width,
+    );
 
     const value = this.quartiles[1];
     const formattedLabel = formatLabel(seriesName);
@@ -130,7 +136,7 @@ export class BoxSeriesComponent implements OnChanges {
       y: 0,
       roundEdges: this.roundEdges,
       quartiles: this.quartiles,
-      lineCoordinates: this.lineCoordinates
+      lineCoordinates: this.lineCoordinates,
     };
 
     box.height = Math.abs(this.yScale(this.quartiles[0]) - this.yScale(this.quartiles[2]));
@@ -167,7 +173,7 @@ export class BoxSeriesComponent implements OnChanges {
     seriesName: string,
     whiskers: [number, number],
     quartiles: [number, number, number],
-    barWidth: number
+    barWidth: number,
   ): [IVector2D, IVector2D, IVector2D, IVector2D] {
     // The X value is not being centered, so had to sum half the width to align it.
     const commonX = this.xScale(seriesName);
@@ -182,19 +188,19 @@ export class BoxSeriesComponent implements OnChanges {
 
     const topLine: IVector2D = {
       v1: { x: offsetX + whiskerLineWidth / 2, y: whiskerZero },
-      v2: { x: offsetX - whiskerLineWidth / 2, y: whiskerZero }
+      v2: { x: offsetX - whiskerLineWidth / 2, y: whiskerZero },
     };
     const medianLine: IVector2D = {
       v1: { x: offsetX + medianLineWidth / 2, y: median },
-      v2: { x: offsetX - medianLineWidth / 2, y: median }
+      v2: { x: offsetX - medianLineWidth / 2, y: median },
     };
     const bottomLine: IVector2D = {
       v1: { x: offsetX + whiskerLineWidth / 2, y: whiskerOne },
-      v2: { x: offsetX - whiskerLineWidth / 2, y: whiskerOne }
+      v2: { x: offsetX - whiskerLineWidth / 2, y: whiskerOne },
     };
     const verticalLine: IVector2D = {
       v1: { x: offsetX, y: whiskerZero },
-      v2: { x: offsetX, y: whiskerOne }
+      v2: { x: offsetX, y: whiskerOne },
     };
     return [verticalLine, topLine, medianLine, bottomLine];
   }

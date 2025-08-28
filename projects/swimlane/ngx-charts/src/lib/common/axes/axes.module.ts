@@ -8,7 +8,19 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [AxisLabelComponent, XAxisComponent, XAxisTicksComponent, YAxisComponent, YAxisTicksComponent],
-  exports: [AxisLabelComponent, XAxisComponent, XAxisTicksComponent, YAxisComponent, YAxisTicksComponent]
+  declarations: [
+    AxisLabelComponent,
+    XAxisComponent,
+    XAxisTicksComponent,
+    YAxisComponent,
+    YAxisTicksComponent,
+  ],
+  exports: [
+    AxisLabelComponent,
+    XAxisComponent,
+    XAxisTicksComponent,
+    YAxisComponent,
+    YAxisTicksComponent,
+  ],
 })
 export class AxesModule {}

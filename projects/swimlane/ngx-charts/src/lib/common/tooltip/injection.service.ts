@@ -6,7 +6,7 @@ import {
   Injector,
   ViewContainerRef,
   EmbeddedViewRef,
-  Type
+  Type,
 } from '@angular/core';
 import { DomPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 
@@ -40,7 +40,7 @@ export class InjectionService {
   constructor(
     private applicationRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector
+    private injector: Injector,
   ) {}
 
   /**
@@ -55,7 +55,7 @@ export class InjectionService {
     if (this.applicationRef.components.length) return this.applicationRef.components[0];
 
     throw new Error(
-      'View Container not found! ngUpgrade needs to manually set this via setRootViewContainer or setGlobalRootViewContainer.'
+      'View Container not found! ngUpgrade needs to manually set this via setRootViewContainer or setGlobalRootViewContainer.',
     );
   }
 
@@ -136,7 +136,11 @@ export class InjectionService {
    *
    * @memberOf InjectionService
    */
-  appendComponent<T>(componentClass: Type<T>, bindings: any = {}, location?: any): ComponentRef<any> {
+  appendComponent<T>(
+    componentClass: Type<T>,
+    bindings: any = {},
+    location?: any,
+  ): ComponentRef<any> {
     if (!location) location = this.getRootViewContainer();
     const appendLocation = this.getComponentRootNode(location);
 
@@ -144,7 +148,7 @@ export class InjectionService {
       appendLocation,
       this.componentFactoryResolver,
       this.applicationRef,
-      this.injector
+      this.injector,
     );
 
     const portal = new ComponentPortal(componentClass);

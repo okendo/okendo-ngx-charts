@@ -6,7 +6,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { calculateViewDimensions } from '../common/view-dimensions.helper';
 import { ColorHelper } from '../common/color.helper';
@@ -58,7 +58,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
   styleUrls: ['../common/base-chart.component.scss', './pie-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class PieChartComponent extends BaseChartComponent {
   @Input() labels: boolean = false;
@@ -108,7 +108,7 @@ export class PieChartComponent extends BaseChartComponent {
       height: this.height,
       margins: this.margins,
       showLegend: this.legend,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     this.formatDates();
@@ -140,7 +140,7 @@ export class PieChartComponent extends BaseChartComponent {
   }
 
   getDomain(): string[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d) => d.label);
   }
 
   onClick(data: DataItem | string): void {
@@ -157,12 +157,12 @@ export class PieChartComponent extends BaseChartComponent {
       domain: this.domain,
       colors: this.colors,
       title: this.legendTitle,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
   }
 
   onActivate(item, fromLegend = false): void {
-    item = this.results.find(d => {
+    item = this.results.find((d) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -170,7 +170,7 @@ export class PieChartComponent extends BaseChartComponent {
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
     if (idx > -1) {
@@ -182,7 +182,7 @@ export class PieChartComponent extends BaseChartComponent {
   }
 
   onDeactivate(item, fromLegend = false): void {
-    item = this.results.find(d => {
+    item = this.results.find((d) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -190,7 +190,7 @@ export class PieChartComponent extends BaseChartComponent {
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
 

@@ -9,7 +9,7 @@ import {
   SimpleChanges,
   PLATFORM_ID,
   Inject,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { select } from 'd3-selection';
@@ -30,7 +30,13 @@ import { isPlatformServer } from '@angular/common';
       />
     </svg:g>
     <svg:g *ngIf="isSSR">
-      <svg:path class="line" [attr.d]="initialPath" [attr.fill]="fill" [attr.stroke]="stroke" stroke-width="1.5px" />
+      <svg:path
+        class="line"
+        [attr.d]="initialPath"
+        [attr.fill]="fill"
+        [attr.stroke]="stroke"
+        stroke-width="1.5px"
+      />
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,18 +45,18 @@ import { isPlatformServer } from '@angular/common';
       transition(':enter', [
         style({
           strokeDasharray: 2000,
-          strokeDashoffset: 2000
+          strokeDashoffset: 2000,
         }),
         animate(
           1000,
           style({
-            strokeDashoffset: 0
-          })
-        )
-      ])
-    ])
+            strokeDashoffset: 0,
+          }),
+        ),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class LineComponent implements OnChanges, OnInit {
   @Input() path: string;
@@ -68,7 +74,7 @@ export class LineComponent implements OnChanges, OnInit {
 
   constructor(
     private element: ElementRef,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: any,
   ) {}
 
   ngOnInit() {

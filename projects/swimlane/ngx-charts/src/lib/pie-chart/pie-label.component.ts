@@ -6,7 +6,7 @@ import {
   SimpleChanges,
   ChangeDetectionStrategy,
   PLATFORM_ID,
-  Inject
+  Inject,
 } from '@angular/core';
 import { arc, DefaultArcObject } from 'd3-shape';
 
@@ -25,7 +25,11 @@ export interface PieData extends DefaultArcObject {
   selector: 'g[ngx-charts-pie-label]',
   template: `
     <title>{{ label }}</title>
-    <svg:g [attr.transform]="attrTransform" [style.transform]="styleTransform" [style.transition]="textTransition">
+    <svg:g
+      [attr.transform]="attrTransform"
+      [style.transform]="styleTransform"
+      [style.transition]="textTransition"
+    >
       <svg:text
         class="pie-label"
         [class.animation]="animations"
@@ -45,7 +49,7 @@ export interface PieData extends DefaultArcObject {
     ></svg:path>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class PieLabelComponent implements OnChanges {
   @Input() data: PieData;

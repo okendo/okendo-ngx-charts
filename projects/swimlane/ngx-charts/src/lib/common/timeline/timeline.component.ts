@@ -9,7 +9,7 @@ import {
   ChangeDetectorRef,
   SimpleChanges,
   ViewEncapsulation,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { brushX } from 'd3-brush';
 import { scaleLinear, scaleTime, scalePoint } from 'd3-scale';
@@ -32,14 +32,20 @@ import { ViewDimensions } from '../types/view-dimension.interface';
       <svg:g class="embedded-chart">
         <ng-content></ng-content>
       </svg:g>
-      <svg:rect x="0" [attr.width]="view[0]" y="0" [attr.height]="height" class="brush-background" />
+      <svg:rect
+        x="0"
+        [attr.width]="view[0]"
+        y="0"
+        [attr.height]="height"
+        class="brush-background"
+      />
       <svg:g class="brush"></svg:g>
     </svg:g>
   `,
   styleUrls: ['./timeline.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class Timeline implements OnChanges {
   @Input() view: [number, number];
@@ -66,7 +72,7 @@ export class Timeline implements OnChanges {
 
   constructor(
     element: ElementRef,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
   ) {
     this.element = element.nativeElement;
   }
@@ -117,7 +123,7 @@ export class Timeline implements OnChanges {
       const max = Math.max(...values);
       domain = [min, max];
     } else if (this.scaleType === ScaleType.Linear) {
-      values = values.map(v => Number(v));
+      values = values.map((v) => Number(v));
       const min = Math.min(...values);
       const max = Math.max(...values);
       domain = [min, max];
@@ -151,7 +157,7 @@ export class Timeline implements OnChanges {
     this.brush = brushX()
       .extent([
         [0, 0],
-        [width, height]
+        [width, height],
       ])
       .on('brush end', ({ selection }) => {
         const newSelection = selection || this.xScale.range();
@@ -172,7 +178,7 @@ export class Timeline implements OnChanges {
 
     this.brush.extent([
       [0, 0],
-      [width, height]
+      [width, height],
     ]);
     select(this.element).select('.brush').call(this.brush);
 
@@ -191,7 +197,7 @@ export class Timeline implements OnChanges {
 
     const dims = {
       width,
-      height: this.height
+      height: this.height,
     };
 
     return dims;

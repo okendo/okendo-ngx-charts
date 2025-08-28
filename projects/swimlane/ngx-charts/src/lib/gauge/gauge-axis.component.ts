@@ -36,7 +36,7 @@ interface Ticks {
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class GaugeAxisComponent implements OnChanges {
   @Input() bigSegments: number;
@@ -69,7 +69,7 @@ export class GaugeAxisComponent implements OnChanges {
     const tickLength = 20;
     const ticks = {
       big: [],
-      small: []
+      small: [],
     };
 
     const startDistance = this.radius + 10;
@@ -97,7 +97,7 @@ export class GaugeAxisComponent implements OnChanges {
           text,
           textTransform: `
             translate(${textDist * Math.cos(angle)}, ${textDist * Math.sin(angle)}) rotate(${-this.rotationAngle})
-          `
+          `,
         });
       }
 
@@ -110,7 +110,7 @@ export class GaugeAxisComponent implements OnChanges {
         const smallAngle = (smallAngleDeg * Math.PI) / 180;
 
         ticks.small.push({
-          line: this.getTickPath(startDistance, tickLength / 2, smallAngle)
+          line: this.getTickPath(startDistance, tickLength / 2, smallAngle),
         });
       }
     }
@@ -142,11 +142,11 @@ export class GaugeAxisComponent implements OnChanges {
 
     const points = [
       { x: x1, y: y1 },
-      { x: x2, y: y2 }
+      { x: x2, y: y2 },
     ];
     const lineGenerator = line<any>()
-      .x(d => d.x)
-      .y(d => d.y);
+      .x((d) => d.x)
+      .y((d) => d.y);
     return lineGenerator(points);
   }
 }

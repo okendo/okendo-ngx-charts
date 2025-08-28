@@ -1,4 +1,11 @@
-import { Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { formatLabel } from '@swimlane/ngx-charts/common/label.helper';
 import { PlacementTypes } from '@swimlane/ngx-charts/common/tooltip/position/placement-type.enum';
@@ -42,13 +49,13 @@ import { BarOrientation } from '@swimlane/ngx-charts/common/types/bar-orientatio
       transition('* => void', [
         style({
           opacity: 1,
-          transform: '*'
+          transform: '*',
         }),
-        animate(500, style({ opacity: 0, transform: 'scale(0)' }))
-      ])
-    ])
+        animate(500, style({ opacity: 0, transform: 'scale(0)' })),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class ComboSeriesVerticalComponent implements OnChanges {
   @Input() dims;
@@ -92,7 +99,7 @@ export class ComboSeriesVerticalComponent implements OnChanges {
     let d0 = 0;
     let total;
     if (this.type === 'normalized') {
-      total = this.series.map(d => d.value).reduce((sum, d) => sum + d, 0);
+      total = this.series.map((d) => d.value).reduce((sum, d) => sum + d, 0);
     }
 
     this.bars = this.series.map((d, index) => {
@@ -110,7 +117,7 @@ export class ComboSeriesVerticalComponent implements OnChanges {
         formattedLabel,
         height: 0,
         x: 0,
-        y: 0
+        y: 0,
       };
 
       if (this.type === 'standard') {
@@ -181,13 +188,13 @@ export class ComboSeriesVerticalComponent implements OnChanges {
     });
   }
   getSeriesTooltips(seriesLine, index) {
-    return seriesLine.map(d => {
+    return seriesLine.map((d) => {
       return d.series[index];
     });
   }
   isActive(entry): boolean {
     if (!this.activeEntries) return false;
-    const item = this.activeEntries.find(d => {
+    const item = this.activeEntries.find((d) => {
       return entry.name === d.name && entry.series === d.series;
     });
     return item !== undefined;

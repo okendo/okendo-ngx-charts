@@ -4,7 +4,13 @@ import { Gradient } from './types/gradient.interface';
 @Component({
   selector: 'g[ngx-charts-svg-radial-gradient]',
   template: `
-    <svg:radialGradient [id]="name" [attr.cx]="cx" [attr.cy]="cy" [attr.r]="r" gradientUnits="userSpaceOnUse">
+    <svg:radialGradient
+      [id]="name"
+      [attr.cx]="cx"
+      [attr.cy]="cy"
+      [attr.r]="r"
+      gradientUnits="userSpaceOnUse"
+    >
       <svg:stop
         *ngFor="let stop of stops"
         [attr.offset]="stop.offset + '%'"
@@ -14,7 +20,7 @@ import { Gradient } from './types/gradient.interface';
     </svg:radialGradient>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class SvgRadialGradientComponent implements OnChanges {
   @Input() color: string;
@@ -45,13 +51,13 @@ export class SvgRadialGradientComponent implements OnChanges {
         {
           offset: 0,
           color: this.color,
-          opacity: this.startOpacity
+          opacity: this.startOpacity,
         },
         {
           offset: 100,
           color: this.color,
-          opacity: this.endOpacity
-        }
+          opacity: this.endOpacity,
+        },
       ];
     }
   }

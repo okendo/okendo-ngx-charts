@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef,
-  TrackByFunction
+  TrackByFunction,
 } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 import { trigger, style, animate, transition } from '@angular/animations';
@@ -138,13 +138,13 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
       transition(':leave', [
         style({
           opacity: 1,
-          transform: '*'
+          transform: '*',
         }),
-        animate(500, style({ opacity: 0, transform: 'scale(0)' }))
-      ])
-    ])
+        animate(500, style({ opacity: 0, transform: 'scale(0)' })),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class BarHorizontalStackedComponent extends BaseChartComponent {
   @Input() legend: boolean = false;
@@ -213,7 +213,12 @@ export class BarHorizontalStackedComponent extends BaseChartComponent {
       this.dataLabelMaxWidth = { negative: 0, positive: 0 };
     }
 
-    this.margin = [10, 20 + this.dataLabelMaxWidth.positive, 10, 20 + this.dataLabelMaxWidth.negative];
+    this.margin = [
+      10,
+      20 + this.dataLabelMaxWidth.positive,
+      10,
+      20 + this.dataLabelMaxWidth.negative,
+    ];
 
     this.dims = calculateViewDimensions({
       width: this.width,
@@ -227,7 +232,7 @@ export class BarHorizontalStackedComponent extends BaseChartComponent {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.schemeType,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     this.formatDates();
@@ -301,7 +306,10 @@ export class BarHorizontalStackedComponent extends BaseChartComponent {
   getYScale(): any {
     const spacing = this.groupDomain.length / (this.dims.height / this.barPadding + 1);
 
-    return scaleBand().rangeRound([0, this.dims.height]).paddingInner(spacing).domain(this.groupDomain);
+    return scaleBand()
+      .rangeRound([0, this.dims.height])
+      .paddingInner(spacing)
+      .domain(this.groupDomain);
   }
 
   getXScale(): any {
@@ -342,7 +350,7 @@ export class BarHorizontalStackedComponent extends BaseChartComponent {
       colors: undefined,
       domain: [],
       title: undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
     if (opts.scaleType === ScaleType.Ordinal) {
       opts.domain = this.innerDomain;
@@ -384,9 +392,9 @@ export class BarHorizontalStackedComponent extends BaseChartComponent {
     }
 
     const items = this.results
-      .map(g => g.series)
+      .map((g) => g.series)
       .flat()
-      .filter(i => {
+      .filter((i) => {
         if (fromLegend) {
           return i.label === item.name;
         } else {
@@ -404,7 +412,7 @@ export class BarHorizontalStackedComponent extends BaseChartComponent {
       item.series = group.name;
     }
 
-    this.activeEntries = this.activeEntries.filter(i => {
+    this.activeEntries = this.activeEntries.filter((i) => {
       if (fromLegend) {
         return i.label !== item.name;
       } else {

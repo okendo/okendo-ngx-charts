@@ -1,4 +1,12 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ElementRef,
+  OnChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { select } from 'd3-selection';
 import { invertColor } from '../utils/color-utils';
 import { trimLabel } from '../common/trim-label.helper';
@@ -38,7 +46,11 @@ import { BarOrientation } from '../common/types/bar-orientation.enum';
         class="treemap-label"
         [style.pointer-events]="'none'"
       >
-        <xhtml:p [style.color]="getTextColor()" [style.height]="height + 'px'" [style.width]="width + 'px'">
+        <xhtml:p
+          [style.color]="getTextColor()"
+          [style.height]="height + 'px'"
+          [style.width]="width + 'px'"
+        >
           <xhtml:span class="treemap-label" [innerHTML]="formattedLabel"> </xhtml:span>
           <xhtml:br />
           <xhtml:span
@@ -57,7 +69,7 @@ import { BarOrientation } from '../common/types/bar-orientation.enum';
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class TreeMapCellComponent implements OnChanges {
   @Input() data: DataItem;
@@ -95,13 +107,14 @@ export class TreeMapCellComponent implements OnChanges {
   ngOnChanges(): void {
     this.update();
 
-    this.valueFormatting = this.valueFormatting || (value => value.toLocaleString());
-    const labelFormatting = this.labelFormatting || (cell => escapeLabel(trimLabel(cell.label, 55)));
+    this.valueFormatting = this.valueFormatting || ((value) => value.toLocaleString());
+    const labelFormatting =
+      this.labelFormatting || ((cell) => escapeLabel(trimLabel(cell.label, 55)));
 
     const cellData = {
       data: this.data,
       label: this.label,
-      value: this.value
+      value: this.value,
     };
 
     this.formattedValue = this.valueFormatting(cellData.value);
@@ -148,7 +161,12 @@ export class TreeMapCellComponent implements OnChanges {
         .attr('width', this.width)
         .attr('height', this.height);
     } else {
-      node.attr('opacity', 1).attr('x', this.x).attr('y', this.y).attr('width', this.width).attr('height', this.height);
+      node
+        .attr('opacity', 1)
+        .attr('x', this.x)
+        .attr('y', this.y)
+        .attr('width', this.width)
+        .attr('height', this.height);
     }
   }
 
@@ -161,13 +179,13 @@ export class TreeMapCellComponent implements OnChanges {
       {
         offset: 0,
         color: this.fill,
-        opacity: 0.3
+        opacity: 0.3,
       },
       {
         offset: 100,
         color: this.fill,
-        opacity: 1
-      }
+        opacity: 1,
+      },
     ];
   }
 }

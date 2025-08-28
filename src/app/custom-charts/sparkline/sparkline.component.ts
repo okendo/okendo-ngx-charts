@@ -8,7 +8,7 @@ import {
   ViewDimensions,
   ColorHelper,
   calculateViewDimensions,
-  ScaleType
+  ScaleType,
 } from 'projects/swimlane/ngx-charts/src/public-api';
 
 @Component({
@@ -39,7 +39,7 @@ import {
   styleUrls: ['../../../../projects/swimlane/ngx-charts/src/lib/common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class SparklineComponent extends BaseChartComponent {
   @Input() autoScale = false;
@@ -76,7 +76,7 @@ export class SparklineComponent extends BaseChartComponent {
       showXLabel: false,
       showYLabel: false,
       showLegend: false,
-      legendType: this.schemeType
+      legendType: this.schemeType,
     });
 
     this.xDomain = this.getXDomain();
@@ -135,7 +135,7 @@ export class SparklineComponent extends BaseChartComponent {
   }
 
   getSeriesDomain(): any[] {
-    return this.results.map(d => d.name);
+    return this.results.map((d) => d.name);
   }
 
   getXScale(domain, width): any {

@@ -19,7 +19,7 @@ export function formatLabel(label: any): string {
  * @export
  */
 export function escapeLabel(label: any): string {
-  return label.toLocaleString().replace(/[&'`"<>]/g, match => {
+  return label.toLocaleString().replace(/[&'`"<>]/g, (match) => {
     return {
       '&': '&amp;',
       // tslint:disable-next-line: quotemark
@@ -27,7 +27,7 @@ export function escapeLabel(label: any): string {
       '`': '&#x60;',
       '"': '&quot;',
       '<': '&lt;',
-      '>': '&gt;'
+      '>': '&gt;',
     }[match];
   });
 }

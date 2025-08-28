@@ -30,6 +30,12 @@
     "fix:prettier": "prettier --write \"{src,projects}/**/*.{js,ts,html,scss,css,md,json}\"",
     "fix:lint": "ng lint --fix"
   },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "endOfLine": "lf"
+  },
   "dependencies": {
     "@angular/animations": "~19.1.4",
     "@angular/cdk": "~19.1.2",

@@ -6,7 +6,13 @@ function easeOutExpo(t, b, c, d): number {
 /**
  * Counts from a number to the end incrementally.
  */
-export function count(countFrom: number, countTo: number, countDecimals: number, countDuration: number, callback: any) {
+export function count(
+  countFrom: number,
+  countTo: number,
+  countDecimals: number,
+  countDuration: number,
+  callback: any,
+) {
   const startVal = Number(countFrom);
   const endVal = Number(countTo);
   const countDown = startVal > endVal;
@@ -38,15 +44,15 @@ export function count(countFrom: number, countTo: number, countDecimals: number,
       value: frameVal,
       progress,
       timestamp,
-      finished: !tick
+      finished: !tick,
     });
 
     if (tick) {
-      return requestAnimationFrame(val => runCount(val));
+      return requestAnimationFrame((val) => runCount(val));
     }
   }
 
-  return requestAnimationFrame(timestamp => {
+  return requestAnimationFrame((timestamp) => {
     startTime = timestamp;
     return runCount(timestamp);
   });

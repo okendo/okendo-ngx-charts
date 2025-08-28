@@ -28,8 +28,8 @@ import { SankeyModule } from './sankey/sankey.module';
     NumberCardModule,
     PieChartModule,
     TreeMapModule,
-    GaugeModule
-  ]
+    GaugeModule,
+  ],
 })
 export class NgxChartsModule {
   constructor() {

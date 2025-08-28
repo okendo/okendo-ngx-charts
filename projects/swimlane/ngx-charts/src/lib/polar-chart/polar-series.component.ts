@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy,
   TemplateRef,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { lineRadial } from 'd3-shape';
 
@@ -77,7 +77,7 @@ interface PolarChartCircle {
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class PolarSeriesComponent implements OnChanges {
   @Input() name;
@@ -136,7 +136,7 @@ export class PolarSeriesComponent implements OnChanges {
 
     this.path = line(data) || '';
 
-    this.circles = data.map(d => {
+    this.circles = data.map((d) => {
       const a = this.getAngle(d);
       const r = this.getRadius(d);
       const value = d.value;
@@ -146,7 +146,7 @@ export class PolarSeriesComponent implements OnChanges {
       const cData = Object.assign({}, d, {
         series: seriesName,
         value,
-        name: d.name
+        name: d.name,
       });
 
       return {
@@ -155,13 +155,13 @@ export class PolarSeriesComponent implements OnChanges {
         cy: -r * Math.cos(a),
         value,
         color,
-        label: d.name
+        label: d.name,
       };
     });
 
     this.active = this.isActive(this.data);
     this.inactive = this.isInactive(this.data);
-    this.tooltipText = this.tooltipText || (c => this.defaultTooltipText(c));
+    this.tooltipText = this.tooltipText || ((c) => this.defaultTooltipText(c));
   }
 
   getAngle(d: DataItem) {
@@ -180,8 +180,8 @@ export class PolarSeriesComponent implements OnChanges {
 
   getLineGenerator(): any {
     return lineRadial<any>()
-      .angle(d => this.getAngle(d))
-      .radius(d => this.getRadius(d))
+      .angle((d) => this.getAngle(d))
+      .radius((d) => this.getRadius(d))
       .curve(this.curve);
   }
 
@@ -196,7 +196,7 @@ export class PolarSeriesComponent implements OnChanges {
 
   isActive(entry: DataItem): boolean {
     if (!this.activeEntries) return false;
-    const item = this.activeEntries.find(d => {
+    const item = this.activeEntries.find((d) => {
       return entry.name === d.name;
     });
     return item !== undefined;
@@ -204,7 +204,7 @@ export class PolarSeriesComponent implements OnChanges {
 
   isInactive(entry: DataItem): boolean {
     if (!this.activeEntries || this.activeEntries.length === 0) return false;
-    const item = this.activeEntries.find(d => {
+    const item = this.activeEntries.find((d) => {
       return entry.name === d.name;
     });
     return item === undefined;
@@ -228,7 +228,7 @@ export class PolarSeriesComponent implements OnChanges {
     this.gradientUrl = `url(#${this.gradientId})`;
 
     if (this.colors.scaleType === ScaleType.Linear) {
-      const values = this.data.series.map(d => d.value);
+      const values = this.data.series.map((d) => d.value);
       const max = Math.max(...values);
       const min = Math.min(...values);
       this.gradientStops = this.colors.getLinearGradientStops(max, min);

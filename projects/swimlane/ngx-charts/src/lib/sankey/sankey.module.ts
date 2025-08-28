@@ -5,6 +5,6 @@ import { SankeyComponent } from './sankey.component';
 @NgModule({
   imports: [ChartCommonModule],
   declarations: [SankeyComponent],
-  exports: [SankeyComponent]
+  exports: [SankeyComponent],
 })
 export class SankeyModule {}

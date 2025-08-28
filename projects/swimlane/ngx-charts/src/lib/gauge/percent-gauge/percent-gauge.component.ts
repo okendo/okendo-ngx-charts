@@ -93,7 +93,13 @@ import { id } from '../../utils/id';
           </svg:g>
         </svg:g>
         <svg:g *ngIf="showLabel" [attr.transform]="labelTransform">
-          <text class="gauge-label" x="50%" dominant-baseline="middle" text-anchor="middle" stroke="none">
+          <text
+            class="gauge-label"
+            x="50%"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            stroke="none"
+          >
             {{ label }}
           </text>
         </svg:g>
@@ -103,7 +109,7 @@ import { id } from '../../utils/id';
   styleUrls: ['../../common/base-chart.component.scss', './percent-gauge.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class PercentGaugeComponent extends BaseChartComponent {
   @Input() max: number = 100;
@@ -153,7 +159,7 @@ export class PercentGaugeComponent extends BaseChartComponent {
     this.dims = calculateViewDimensions({
       width: this.width,
       height: this.height,
-      margins: this.margin
+      margins: this.margin,
     });
 
     this.percent = this.getPercentage();
@@ -215,7 +221,7 @@ export class PercentGaugeComponent extends BaseChartComponent {
         height: this.ticHeight,
         width: this.radius / 60,
         fill: this.colors.getColor(progress * this.max),
-        transform: `translate(${x}, ${y}), rotate(${360 * progress - 90})`
+        transform: `translate(${x}, ${y}), rotate(${360 * progress - 90})`,
       });
     }
   }
@@ -238,11 +244,16 @@ export class PercentGaugeComponent extends BaseChartComponent {
   onClick(): void {
     this.select.emit({
       name: 'Value',
-      value: this.value
+      value: this.value,
     });
   }
 
   setColors(): void {
-    this.colors = new ColorHelper(this.scheme, ScaleType.Linear, this.valueDomain, this.customColors);
+    this.colors = new ColorHelper(
+      this.scheme,
+      ScaleType.Linear,
+      this.valueDomain,
+      this.customColors,
+    );
   }
 }

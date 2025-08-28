@@ -15,7 +15,7 @@ import {
   generateGraph,
   treemap,
   timelineFilterBarData,
-  fiscalYearReport
+  fiscalYearReport,
 } from './data';
 import { bubbleDemoData } from './custom-charts/bubble-chart-interactive/data';
 import { BubbleChartInteractiveServerDataModel } from './custom-charts/bubble-chart-interactive/models';
@@ -50,7 +50,7 @@ const getRandomInt = (min: number, max: number) => {
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['../../node_modules/@swimlane/ngx-ui/index.css', './app.component.scss'],
   templateUrl: './app.component.html',
-  standalone: false
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   APP_VERSION = pkg.version;
@@ -141,7 +141,7 @@ export class AppComponent implements OnInit {
     Step: shape.curveStep,
     'Step After': shape.curveStepAfter,
     'Step Before': shape.curveStepBefore,
-    default: shape.curveLinear
+    default: shape.curveLinear,
   };
 
   // line interpolation
@@ -158,12 +158,17 @@ export class AppComponent implements OnInit {
     'Natural',
     'Step',
     'Step After',
-    'Step Before'
+    'Step Before',
   ];
 
   closedCurveType: string = 'Linear Closed';
   closedCurve: any = this.curves[this.closedCurveType];
-  closedInterpolationTypes = ['Basis Closed', 'Cardinal Closed', 'Catmull Rom Closed', 'Linear Closed'];
+  closedInterpolationTypes = [
+    'Basis Closed',
+    'Cardinal Closed',
+    'Catmull Rom Closed',
+    'Linear Closed',
+  ];
 
   colorSets: any;
   colorScheme: any;
@@ -175,8 +180,8 @@ export class AppComponent implements OnInit {
   customColors: any[] = [
     {
       name: 'Germany',
-      value: '#a8385d'
-    }
+      value: '#a8385d',
+    },
   ];
 
   // pie
@@ -226,14 +231,14 @@ export class AppComponent implements OnInit {
     name: 'coolthree',
     selectable: true,
     group: ScaleType.Ordinal,
-    domain: ['#01579b', '#7aa3e5', '#a8385d', '#00bfa5']
+    domain: ['#01579b', '#7aa3e5', '#a8385d', '#00bfa5'],
   };
 
   comboBarScheme: Color = {
     name: 'singleLightBlue',
     selectable: true,
     group: ScaleType.Ordinal,
-    domain: ['#01579b']
+    domain: ['#01579b'],
   };
 
   showRightYAxisLabel: boolean = true;
@@ -263,7 +268,7 @@ export class AppComponent implements OnInit {
   refLines = [
     { value: 42500, name: 'Maximum' },
     { value: 37750, name: 'Average' },
-    { value: 33000, name: 'Minimum' }
+    { value: 33000, name: 'Minimum' },
   ];
 
   // data
@@ -290,7 +295,7 @@ export class AppComponent implements OnInit {
       plotData: this.generatePlotData(),
       treemap,
       bubbleDemoData,
-      fiscalYearReport
+      fiscalYearReport,
     });
 
     // interactive drill down demos
@@ -362,9 +367,12 @@ export class AppComponent implements OnInit {
         this.graph.nodes.splice(index, 1);
         const nodes = [...this.graph.nodes];
 
-        const links = this.graph.links.filter(link => {
+        const links = this.graph.links.filter((link) => {
           return (
-            link.source !== value && link.source.value !== value && link.target !== value && link.target.value !== value
+            link.source !== value &&
+            link.source.value !== value &&
+            link.target !== value &&
+            link.target.value !== value
           );
         });
         this.graph = { links, nodes };
@@ -381,7 +389,7 @@ export class AppComponent implements OnInit {
       // single
       const entry = {
         name: country.name,
-        value: Math.floor(10000 + Math.random() * 50000)
+        value: Math.floor(10000 + Math.random() * 50000),
       };
       this.single = [...this.single, entry];
 
@@ -391,17 +399,17 @@ export class AppComponent implements OnInit {
         series: [
           {
             name: '1990',
-            value: Math.floor(10000 + Math.random() * 50000)
+            value: Math.floor(10000 + Math.random() * 50000),
           },
           {
             name: '2000',
-            value: Math.floor(10000 + Math.random() * 50000)
+            value: Math.floor(10000 + Math.random() * 50000),
           },
           {
             name: '2010',
-            value: Math.floor(10000 + Math.random() * 50000)
-          }
-        ]
+            value: Math.floor(10000 + Math.random() * 50000),
+          },
+        ],
       };
 
       this.multi = [...this.multi, multiEntry];
@@ -411,7 +419,7 @@ export class AppComponent implements OnInit {
       const nodes = [...this.graph.nodes, node];
       const link = {
         source: country.name,
-        target: nodes[Math.floor(Math.random() * (nodes.length - 1))].value
+        target: nodes[Math.floor(Math.random() * (nodes.length - 1))].value,
       };
       const links = [...this.graph.links, link];
       this.graph = { links, nodes };
@@ -425,9 +433,9 @@ export class AppComponent implements OnInit {
             name: '' + bubbleYear,
             x: new Date(bubbleYear, 0, 1),
             y: Math.floor(30 + Math.random() * 70),
-            r: Math.floor(30 + Math.random() * 20)
-          }
-        ]
+            r: Math.floor(30 + Math.random() * 20),
+          },
+        ],
       };
 
       this.bubble = [...this.bubble, bubbleEntry];
@@ -438,28 +446,28 @@ export class AppComponent implements OnInit {
         series: [
           {
             name: '1990',
-            value: getRandomInt(10, 5)
+            value: getRandomInt(10, 5),
           },
           {
             name: '2000',
-            value: getRandomInt(15, 5)
+            value: getRandomInt(15, 5),
           },
           {
             name: '2010',
-            value: getRandomInt(20, 10)
+            value: getRandomInt(20, 10),
           },
           {
             name: '2020',
-            value: getRandomInt(30, 10)
+            value: getRandomInt(30, 10),
           },
           {
             name: '2030',
-            value: getRandomInt(50, 20)
-          }
-        ]
+            value: getRandomInt(50, 20),
+          },
+        ],
       };
 
-      const index = this.boxData.findIndex(box => box.name === country.name);
+      const index = this.boxData.findIndex((box) => box.name === country.name);
       if (index > -1) {
         this.boxData[index] = boxEntry;
       } else {
@@ -478,7 +486,7 @@ export class AppComponent implements OnInit {
     for (const series of this.dateData) {
       series.series.push({
         name: date,
-        value: Math.floor(2000 + Math.random() * 5000)
+        value: Math.floor(2000 + Math.random() * 5000),
       });
     }
     this.dateData = [...this.dateData];
@@ -505,7 +513,7 @@ export class AppComponent implements OnInit {
     this.location.replaceState(this.chartType);
 
     for (const group of this.chartGroups) {
-      this.chart = group.charts.find(x => x.selector === chartSelector);
+      this.chart = group.charts.find((x) => x.selector === chartSelector);
       if (this.chart) break;
     }
 
@@ -550,7 +558,7 @@ export class AppComponent implements OnInit {
 
   setColorScheme(name) {
     this.selectedColorScheme = name;
-    this.colorScheme = this.colorSets.find(s => s.name === name);
+    this.colorScheme = this.colorSets.find((s) => s.name === name);
   }
 
   onLegendLabelClick(entry) {
@@ -564,14 +572,18 @@ export class AppComponent implements OnInit {
     const thisDay = new Date(now.getFullYear(), now.getMonth(), todaysDay);
 
     // Monday
-    const thisMonday = new Date(thisDay.getFullYear(), thisDay.getMonth(), todaysDay - thisDay.getDay() + 1);
+    const thisMonday = new Date(
+      thisDay.getFullYear(),
+      thisDay.getMonth(),
+      todaysDay - thisDay.getDay() + 1,
+    );
     const thisMondayDay = thisMonday.getDate();
     const thisMondayYear = thisMonday.getFullYear();
     const thisMondayMonth = thisMonday.getMonth();
 
     // 52 weeks before monday
     const calendarData = [];
-    const getDate = d => new Date(thisMondayYear, thisMondayMonth, d);
+    const getDate = (d) => new Date(thisMondayYear, thisMondayMonth, d);
     for (let week = -52; week <= 0; week++) {
       const mondayDay = thisMondayDay + week * 7;
       const monday = getDate(mondayDay);
@@ -592,13 +604,13 @@ export class AppComponent implements OnInit {
         series.push({
           date,
           name: weekdayName.format(date),
-          value
+          value,
         });
       }
 
       calendarData.push({
         name: monday.toString(),
-        series
+        series,
       });
     }
 
@@ -649,28 +661,28 @@ export class AppComponent implements OnInit {
     return [
       {
         name: 'Sales',
-        value: sales
+        value: sales,
       },
       {
         name: 'Gross',
         value: ret,
-        extra: { format: 'currency' }
+        extra: { format: 'currency' },
       },
       {
         name: 'Avg. Time',
         value: dur,
-        extra: { format: 'time' }
+        extra: { format: 'time' },
       },
       {
         name: 'Cost',
         value: cost,
-        extra: { format: 'currency' }
+        extra: { format: 'currency' },
       },
       {
         name: 'ROI',
         value: ROI,
-        extra: { format: 'percent' }
-      }
+        extra: { format: 'percent' },
+      },
     ];
   }
 
@@ -714,15 +726,15 @@ export class AppComponent implements OnInit {
       const t = x * twoPi;
       return {
         name: ~~(x * 360),
-        value: this.mathFunction(t)
+        value: this.mathFunction(t),
       };
     });
 
     return [
       {
         name: this.mathText,
-        series
-      }
+        series,
+      },
     ];
   }
 
@@ -760,7 +772,7 @@ export class AppComponent implements OnInit {
       this.treemap = this.treemapPath[idx].children;
       return;
     }
-    const node = this.treemap.find(d => d.name === item.name);
+    const node = this.treemap.find((d) => d.name === item.name);
     if (node.children) {
       this.treemapPath.push(node);
       this.treemap = node.children;
@@ -768,7 +780,7 @@ export class AppComponent implements OnInit {
   }
 
   getFlag(country) {
-    return this.countries.find(c => c.name === country).emoji;
+    return this.countries.find((c) => c.name === country).emoji;
   }
 
   onFilter(event) {

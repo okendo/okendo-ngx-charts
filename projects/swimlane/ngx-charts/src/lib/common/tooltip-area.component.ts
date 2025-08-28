@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   TemplateRef,
   PLATFORM_ID,
-  Inject
+  Inject,
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { createMouseEvent } from '../events';
@@ -46,7 +46,10 @@ export interface Tooltip {
       <ng-template #defaultTooltipTemplate let-model="model">
         <xhtml:div class="area-tooltip-container">
           <xhtml:div *ngFor="let tooltipItem of model" class="tooltip-item">
-            <xhtml:span class="tooltip-item-color" [style.background-color]="tooltipItem.color"></xhtml:span>
+            <xhtml:span
+              class="tooltip-item-color"
+              [style.background-color]="tooltipItem.color"
+            ></xhtml:span>
             {{ getToolTipText(tooltipItem) }}
           </xhtml:div>
         </xhtml:div>
@@ -77,19 +80,19 @@ export interface Tooltip {
     trigger('animationState', [
       transition('inactive => active', [
         style({
-          opacity: 0
+          opacity: 0,
         }),
-        animate(250, style({ opacity: 0.7 }))
+        animate(250, style({ opacity: 0.7 })),
       ]),
       transition('active => inactive', [
         style({
-          opacity: 0.7
+          opacity: 0.7,
         }),
-        animate(250, style({ opacity: 0 }))
-      ])
-    ])
+        animate(250, style({ opacity: 0 })),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class TooltipArea {
   anchorOpacity: number = 0;
@@ -120,7 +123,7 @@ export class TooltipArea {
     const results = [];
 
     for (const group of this.results) {
-      const item = group.series.find(d => d.name.toString() === xVal.toString());
+      const item = group.series.find((d) => d.name.toString() === xVal.toString());
       let groupName = group.name;
       if (groupName instanceof Date) {
         groupName = groupName.toLocaleDateString();
@@ -149,7 +152,7 @@ export class TooltipArea {
           series: groupName,
           min: item.min,
           max: item.max,
-          color
+          color,
         });
 
         results.push(data);
@@ -178,7 +181,7 @@ export class TooltipArea {
       this.tooltipAnchor.nativeElement.dispatchEvent(ev);
       this.anchorOpacity = 0.7;
       this.hover.emit({
-        value: closestPoint
+        value: closestPoint,
       });
       this.showTooltip();
 

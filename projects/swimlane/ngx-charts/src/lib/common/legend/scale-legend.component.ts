@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, ChangeDetectionStrategy, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  ChangeDetectionStrategy,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'ngx-charts-scale-legend',
@@ -21,7 +28,7 @@ import { Component, Input, OnChanges, ChangeDetectionStrategy, SimpleChanges, Vi
   styleUrls: ['./scale-legend.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class ScaleLegendComponent implements OnChanges {
   @Input() valueRange: number[];

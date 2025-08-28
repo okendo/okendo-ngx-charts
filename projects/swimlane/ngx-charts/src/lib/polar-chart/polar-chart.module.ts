@@ -8,6 +8,6 @@ import { LineChartModule } from '../line-chart/line-chart.module';
 @NgModule({
   imports: [ChartCommonModule, PieChartModule, LineChartModule],
   declarations: [PolarChartComponent, PolarSeriesComponent],
-  exports: [PolarChartComponent, PolarSeriesComponent]
+  exports: [PolarChartComponent, PolarSeriesComponent],
 })
 export class PolarChartModule {}

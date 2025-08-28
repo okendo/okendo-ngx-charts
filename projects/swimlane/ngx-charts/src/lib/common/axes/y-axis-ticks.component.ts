@@ -10,7 +10,7 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   PLATFORM_ID,
-  Inject
+  Inject,
 } from '@angular/core';
 import { trimLabel } from '../trim-label.helper';
 import { getTickLines, reduceTicks } from './ticks.helper';
@@ -34,13 +34,19 @@ import { TextAnchor } from '../types/text-anchor.enum';
             [attr.text-anchor]="textAnchor"
             [style.font-size]="'12px'"
           >
-            <ng-container *ngIf="wrapTicks; then tmplMultilineTick; else tmplSinglelineTick"></ng-container>
+            <ng-container
+              *ngIf="wrapTicks; then tmplMultilineTick; else tmplSinglelineTick"
+            ></ng-container>
           </svg:text>
 
           <ng-template #tmplMultilineTick>
             <ng-container *ngIf="tickChunks(tick) as tickLines">
               <ng-container *ngIf="tickLines.length > 1; else tmplSinglelineTick">
-                <svg:tspan *ngFor="let tickLine of tickLines; let i = index" x="0" [attr.y]="i * (8 + tickSpacing)">
+                <svg:tspan
+                  *ngFor="let tickLine of tickLines; let i = index"
+                  x="0"
+                  [attr.y]="i * (8 + tickSpacing)"
+                >
                   {{ tickLine }}
                 </svg:tspan>
               </ng-container>
@@ -101,7 +107,7 @@ import { TextAnchor } from '../types/text-anchor.enum';
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class YAxisTicksComponent implements OnChanges, AfterViewInit {
   @Input() scale;
@@ -196,7 +202,7 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
     }
 
     this.adjustedScale = scale.bandwidth
-      ? d => {
+      ? (d) => {
           // position the tick to middle considering number of lines of the tick
           const positionMiddle = scale(d) + scale.bandwidth() * 0.5;
           if (this.wrapTicks && d.toString().length > this.maxTickLength) {
@@ -267,23 +273,25 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
     this.refMin = this.adjustedScale(
       Math.min.apply(
         null,
-        this.referenceLines.map(item => item.value)
-      )
+        this.referenceLines.map((item) => item.value),
+      ),
     );
     this.refMax = this.adjustedScale(
       Math.max.apply(
         null,
-        this.referenceLines.map(item => item.value)
-      )
+        this.referenceLines.map((item) => item.value),
+      ),
     );
     this.referenceLineLength = this.referenceLines.length;
 
-    this.referenceAreaPath = roundedRect(0, this.refMax, this.gridLineWidth, this.refMin - this.refMax, 0, [
-      false,
-      false,
-      false,
-      false
-    ]);
+    this.referenceAreaPath = roundedRect(
+      0,
+      this.refMax,
+      this.gridLineWidth,
+      this.refMin - this.refMax,
+      0,
+      [false, false, false, false],
+    );
   }
 
   getTicks(): any[] {
@@ -320,7 +328,7 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
   }
 
   getApproximateAxisWidth(): number {
-    const maxChars = Math.max(...this.ticks.map(t => this.tickTrim(this.tickFormat(t)).length));
+    const maxChars = Math.max(...this.ticks.map((t) => this.tickTrim(this.tickFormat(t)).length));
     const charWidth = 7;
     return maxChars * charWidth;
   }

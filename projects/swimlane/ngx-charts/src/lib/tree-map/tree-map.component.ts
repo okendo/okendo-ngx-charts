@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { treemap, stratify } from 'd3-hierarchy';
 
@@ -41,7 +41,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
   styleUrls: ['./tree-map.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class TreeMapComponent extends BaseChartComponent {
   @Input() declare results: DataItem[];
@@ -68,7 +68,7 @@ export class TreeMapComponent extends BaseChartComponent {
     this.dims = calculateViewDimensions({
       width: this.width,
       height: this.height,
-      margins: this.margin
+      margins: this.margin,
     });
 
     this.domain = this.getDomain();
@@ -78,11 +78,11 @@ export class TreeMapComponent extends BaseChartComponent {
     const rootNode = {
       name: 'root',
       value: 0,
-      isRoot: true
+      isRoot: true,
     };
 
     const root = stratify<any>()
-      .id(d => {
+      .id((d) => {
         let label = d.name;
 
         if (label.constructor.name === 'Date') {
@@ -92,8 +92,8 @@ export class TreeMapComponent extends BaseChartComponent {
         }
         return label;
       })
-      .parentId(d => (d.isRoot ? null : 'root'))([rootNode, ...this.results])
-      .sum(d => d.value);
+      .parentId((d) => (d.isRoot ? null : 'root'))([rootNode, ...this.results])
+      .sum((d) => d.value);
 
     this.data = this.treemap(root);
 
@@ -103,7 +103,7 @@ export class TreeMapComponent extends BaseChartComponent {
   }
 
   getDomain(): any[] {
-    return this.results.map(d => d.name);
+    return this.results.map((d) => d.name);
   }
 
   onClick(data: DataItem): void {

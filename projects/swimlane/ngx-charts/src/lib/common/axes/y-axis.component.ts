@@ -6,7 +6,7 @@ import {
   OnChanges,
   ViewChild,
   SimpleChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { YAxisTicksComponent } from './y-axis-ticks.component';
 import { Orientation } from '../types/orientation.enum';
@@ -49,7 +49,7 @@ import { ViewDimensions } from '../types/view-dimension.interface';
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class YAxisComponent implements OnChanges {
   @Input() yScale;

@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef,
-  TrackByFunction
+  TrackByFunction,
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { scaleBand, scaleLinear } from 'd3-scale';
@@ -140,13 +140,13 @@ import { isPlatformServer } from '@angular/common';
       transition(':leave', [
         style({
           opacity: 1,
-          transform: '*'
+          transform: '*',
         }),
-        animate(500, style({ opacity: 0, transform: 'scale(0)' }))
-      ])
-    ])
+        animate(500, style({ opacity: 0, transform: 'scale(0)' })),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class BarVertical2DComponent extends BaseChartComponent {
   @Input() legend: boolean = false;
@@ -218,7 +218,12 @@ export class BarVertical2DComponent extends BaseChartComponent {
     if (!this.showDataLabel) {
       this.dataLabelMaxHeight = { negative: 0, positive: 0 };
     }
-    this.margin = [10 + this.dataLabelMaxHeight.positive, 20, 10 + this.dataLabelMaxHeight.negative, 20];
+    this.margin = [
+      10 + this.dataLabelMaxHeight.positive,
+      20,
+      10 + this.dataLabelMaxHeight.negative,
+      20,
+    ];
 
     this.dims = calculateViewDimensions({
       width: this.width,
@@ -232,7 +237,7 @@ export class BarVertical2DComponent extends BaseChartComponent {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.schemeType,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     if (this.showDataLabel) {
@@ -256,9 +261,15 @@ export class BarVertical2DComponent extends BaseChartComponent {
 
   onDataLabelMaxHeightChanged(event, groupIndex: number): void {
     if (event.size.negative) {
-      this.dataLabelMaxHeight.negative = Math.max(this.dataLabelMaxHeight.negative, event.size.height);
+      this.dataLabelMaxHeight.negative = Math.max(
+        this.dataLabelMaxHeight.negative,
+        event.size.height,
+      );
     } else {
-      this.dataLabelMaxHeight.positive = Math.max(this.dataLabelMaxHeight.positive, event.size.height);
+      this.dataLabelMaxHeight.positive = Math.max(
+        this.dataLabelMaxHeight.positive,
+        event.size.height,
+      );
     }
     if (groupIndex === this.results.length - 1) {
       setTimeout(() => this.update());
@@ -359,7 +370,7 @@ export class BarVertical2DComponent extends BaseChartComponent {
       colors: undefined,
       domain: [],
       title: undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
     if (opts.scaleType === ScaleType.Ordinal) {
       opts.domain = this.innerDomain;
@@ -390,9 +401,9 @@ export class BarVertical2DComponent extends BaseChartComponent {
     }
 
     const items = this.results
-      .map(g => g.series)
+      .map((g) => g.series)
       .flat()
-      .filter(i => {
+      .filter((i) => {
         if (fromLegend) {
           return i.label === item.name;
         } else {
@@ -410,7 +421,7 @@ export class BarVertical2DComponent extends BaseChartComponent {
       item.series = group.name;
     }
 
-    this.activeEntries = this.activeEntries.filter(i => {
+    this.activeEntries = this.activeEntries.filter((i) => {
       if (fromLegend) {
         return i.label !== item.name;
       } else {

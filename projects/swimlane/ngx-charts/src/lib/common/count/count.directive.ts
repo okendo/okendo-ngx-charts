@@ -1,4 +1,12 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectorRef, OnDestroy, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectorRef,
+  OnDestroy,
+  ElementRef,
+} from '@angular/core';
 import { count, decimalChecker } from './count.helper';
 
 /**
@@ -13,7 +21,7 @@ import { count, decimalChecker } from './count.helper';
 @Component({
   selector: '[ngx-charts-count-up]',
   template: ` {{ value }} `,
-  standalone: false
+  standalone: false,
 })
 export class CountUpDirective implements OnDestroy {
   @Input() countDuration: number = 1;
@@ -67,7 +75,7 @@ export class CountUpDirective implements OnDestroy {
 
   constructor(
     private cd: ChangeDetectorRef,
-    element: ElementRef
+    element: ElementRef,
   ) {
     this.nativeElement = element.nativeElement;
   }
@@ -80,7 +88,8 @@ export class CountUpDirective implements OnDestroy {
     cancelAnimationFrame(this.animationReq);
 
     const valueFormatting =
-      this.valueFormatting || (value => `${this.countPrefix}${value.toLocaleString()}${this.countSuffix}`);
+      this.valueFormatting ||
+      ((value) => `${this.countPrefix}${value.toLocaleString()}${this.countSuffix}`);
 
     const callback = ({ value, progress, finished }) => {
       this.value = valueFormatting(value);
@@ -89,6 +98,12 @@ export class CountUpDirective implements OnDestroy {
       if (finished) this.countFinish.emit({ value: this.value, progress });
     };
 
-    this.animationReq = count(this.countFrom, this.countTo, this.countDecimals, this.countDuration, callback);
+    this.animationReq = count(
+      this.countFrom,
+      this.countTo,
+      this.countDecimals,
+      this.countDuration,
+      callback,
+    );
   }
 }

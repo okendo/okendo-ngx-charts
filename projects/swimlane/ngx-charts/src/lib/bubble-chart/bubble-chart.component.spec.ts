@@ -12,12 +12,12 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 @Component({
   selector: 'test-component',
   template: '',
-  standalone: false
+  standalone: false,
 })
 class TestComponent {
   results: any[] = bubble;
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
 }
 
@@ -26,7 +26,7 @@ describe('<ngx-charts-bubble-chart>', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [NoopAnimationsModule, BubbleChartModule],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
     });
   });
 
@@ -40,8 +40,8 @@ describe('<ngx-charts-bubble-chart>', () => {
                 [view]="[400,800]"
                 [scheme]="colorScheme"
                 [results]="results">
-              </ngx-charts-bubble-chart>`
-        }
+              </ngx-charts-bubble-chart>`,
+        },
       }).compileComponents();
     });
 

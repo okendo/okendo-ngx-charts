@@ -11,11 +11,11 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 @Component({
   selector: 'test-component',
   template: '',
-  standalone: false
+  standalone: false,
 })
 class TestComponent {
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
 }
 
@@ -24,7 +24,7 @@ describe('<ngx-charts-sankey>', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [NoopAnimationsModule, SankeyModule],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
     });
   });
 
@@ -60,8 +60,8 @@ describe('<ngx-charts-sankey>', () => {
                   { source: 'Republic of Equatorial Guinea', target: 'Republic of Costa Rica', value: 30 },
                   { source: 'Republic of Equatorial Guinea', target: 'Portugal', value: 5 }
                 ]">
-              </ngx-charts-sankey>`
-        }
+              </ngx-charts-sankey>`,
+        },
       }).compileComponents();
     });
 

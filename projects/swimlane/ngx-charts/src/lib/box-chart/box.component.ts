@@ -8,7 +8,7 @@ import {
   SimpleChanges,
   OnChanges,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import { select, BaseType } from 'd3-selection';
 import { interpolate } from 'd3-interpolate';
@@ -29,7 +29,7 @@ export function clonePoint(original: IPoint): IPoint {
   }
   return {
     x: original.x,
-    y: original.y
+    y: original.y,
   };
 }
 
@@ -39,7 +39,7 @@ export function cloneVector2d(original: IVector2D): IVector2D {
   }
   return {
     v1: clonePoint(original.v1),
-    v2: clonePoint(original.v2)
+    v2: clonePoint(original.v2),
   };
 }
 
@@ -51,7 +51,7 @@ export function cloneLineCoordinates(original: LineCoordinates): LineCoordinates
     cloneVector2d(original[0]),
     cloneVector2d(original[1]),
     cloneVector2d(original[2]),
-    cloneVector2d(original[3])
+    cloneVector2d(original[3]),
   ];
 }
 
@@ -103,7 +103,7 @@ export function cloneLineCoordinates(original: LineCoordinates): LineCoordinates
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class BoxComponent implements OnChanges {
   @Input() strokeColor: string;
@@ -155,7 +155,7 @@ export class BoxComponent implements OnChanges {
 
   constructor(
     element: ElementRef,
-    protected cd: ChangeDetectorRef
+    protected cd: ChangeDetectorRef,
   ) {
     this.nativeElm = element.nativeElement;
   }
@@ -303,7 +303,14 @@ export class BoxComponent implements OnChanges {
     const radius = this.getRadius();
     let path = '';
 
-    path = roundedRect(this.x, this.y, this.width, this.height, Math.min(this.height, radius), this.edges);
+    path = roundedRect(
+      this.x,
+      this.y,
+      this.width,
+      this.height,
+      Math.min(this.height, radius),
+      this.edges,
+    );
 
     return path;
   }
@@ -341,13 +348,13 @@ export class BoxComponent implements OnChanges {
       {
         offset: 0,
         color: this.fill,
-        opacity: this.getStartOpacity()
+        opacity: this.getStartOpacity(),
       },
       {
         offset: 100,
         color: this.fill,
-        opacity: 1
-      }
+        opacity: 1,
+      },
     ];
   }
 

@@ -7,6 +7,6 @@ import { NumberCardComponent } from './number-card.component';
 @NgModule({
   imports: [ChartCommonModule],
   declarations: [CardComponent, CardSeriesComponent, NumberCardComponent],
-  exports: [CardComponent, CardSeriesComponent, NumberCardComponent]
+  exports: [CardComponent, CardSeriesComponent, NumberCardComponent],
 })
 export class NumberCardModule {}

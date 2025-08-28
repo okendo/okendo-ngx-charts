@@ -59,11 +59,11 @@ export function throttleable(duration: number, options?: any) {
         Object.defineProperty(this, key, {
           configurable: true,
           enumerable: descriptor.enumerable,
-          value: throttle(descriptor.value, duration, options)
+          value: throttle(descriptor.value, duration, options),
         });
 
         return this[key];
-      }
+      },
     };
   };
 }

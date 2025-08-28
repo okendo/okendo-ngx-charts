@@ -7,7 +7,7 @@ import {
   ElementRef,
   OnChanges,
   ChangeDetectionStrategy,
-  HostListener
+  HostListener,
 } from '@angular/core';
 import { select } from 'd3-selection';
 import { Transition } from 'd3-transition';
@@ -38,7 +38,7 @@ import { id } from '../utils/id';
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class HeatMapCellComponent implements OnChanges {
   @Input() fill: string;
@@ -85,13 +85,13 @@ export class HeatMapCellComponent implements OnChanges {
       {
         offset: 0,
         color: this.fill,
-        opacity: this.startOpacity
+        opacity: this.startOpacity,
       },
       {
         offset: 100,
         color: this.fill,
-        opacity: 1
-      }
+        opacity: 1,
+      },
     ];
   }
 

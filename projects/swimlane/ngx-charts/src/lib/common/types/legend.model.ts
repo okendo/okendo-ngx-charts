@@ -10,10 +10,10 @@ export interface LegendOptions {
 
 export enum LegendPosition {
   Right = 'right',
-  Below = 'below'
+  Below = 'below',
 }
 
 export enum LegendType {
   ScaleLegend = 'scaleLegend',
-  Legend = 'legend'
+  Legend = 'legend',
 }

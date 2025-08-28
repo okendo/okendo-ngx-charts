@@ -7,6 +7,6 @@ import { TreeMapComponent } from './tree-map.component';
 @NgModule({
   imports: [ChartCommonModule],
   declarations: [TreeMapCellComponent, TreeMapCellSeriesComponent, TreeMapComponent],
-  exports: [TreeMapCellComponent, TreeMapCellSeriesComponent, TreeMapComponent]
+  exports: [TreeMapCellComponent, TreeMapCellSeriesComponent, TreeMapComponent],
 })
 export class TreeMapModule {}

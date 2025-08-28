@@ -9,7 +9,7 @@ import {
   TemplateRef,
   PLATFORM_ID,
   Inject,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { formatLabel, escapeLabel } from '../common/label.helper';
@@ -83,13 +83,13 @@ import { isPlatformServer } from '@angular/common';
       transition(':enter', [
         style({
           opacity: 0,
-          transform: 'scale(0)'
+          transform: 'scale(0)',
         }),
-        animate(250, style({ opacity: 1, transform: 'scale(1)' }))
-      ])
-    ])
+        animate(250, style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class BubbleSeriesComponent implements OnChanges, OnInit {
   @Input() data: BubbleChartSeries;
@@ -151,7 +151,9 @@ export class BubbleSeriesComponent implements OnChanges, OnInit {
           const cy = this.yScaleType === ScaleType.Linear ? this.yScale(Number(y)) : this.yScale(y);
 
           const color =
-            this.colors.scaleType === ScaleType.Linear ? this.colors.getColor(r) : this.colors.getColor(seriesName);
+            this.colors.scaleType === ScaleType.Linear
+              ? this.colors.getColor(r)
+              : this.colors.getColor(seriesName);
 
           const isActive = !this.activeEntries.length ? true : this.isActive({ name: seriesName });
           const opacity = isActive ? 1 : 0.3;
@@ -161,7 +163,7 @@ export class BubbleSeriesComponent implements OnChanges, OnInit {
             name: d.name,
             value: d.y,
             x: d.x,
-            radius: d.r
+            radius: d.r,
           });
 
           return {
@@ -180,11 +182,11 @@ export class BubbleSeriesComponent implements OnChanges, OnInit {
             opacity,
             seriesName,
             isActive,
-            transform: `translate(${cx},${cy})`
+            transform: `translate(${cx},${cy})`,
           };
         }
       })
-      .filter(circle => circle !== undefined);
+      .filter((circle) => circle !== undefined);
   }
 
   getTooltipText(circle): string {
@@ -202,7 +204,9 @@ export class BubbleSeriesComponent implements OnChanges, OnInit {
         ? `${circle.seriesName} • ${circle.tooltipLabel}`
         : circle.seriesName + circle.tooltipLabel;
     const tooltipTitle =
-      hasSeriesName || hasTooltipLabel ? `<span class="tooltip-label">${escapeLabel(name)}</span>` : '';
+      hasSeriesName || hasTooltipLabel
+        ? `<span class="tooltip-label">${escapeLabel(name)}</span>`
+        : '';
 
     return `
       ${tooltipTitle}
@@ -222,7 +226,7 @@ export class BubbleSeriesComponent implements OnChanges, OnInit {
 
   isActive(entry): boolean {
     if (!this.activeEntries) return false;
-    const item = this.activeEntries.find(d => {
+    const item = this.activeEntries.find((d) => {
       return entry.name === d.name;
     });
     return item !== undefined;

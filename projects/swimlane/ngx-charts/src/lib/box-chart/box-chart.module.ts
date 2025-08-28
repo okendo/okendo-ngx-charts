@@ -7,6 +7,6 @@ import { BoxComponent } from './box.component';
 @NgModule({
   imports: [ChartCommonModule],
   declarations: [BoxChartComponent, BoxSeriesComponent, BoxComponent],
-  exports: [BoxChartComponent, BoxSeriesComponent, BoxComponent]
+  exports: [BoxChartComponent, BoxSeriesComponent, BoxComponent],
 })
 export class BoxChartModule {}

@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { scaleBand, scaleLinear, scaleTime } from 'd3-scale';
 import { brushX } from 'd3-brush';
 import { select } from 'd3-selection';
@@ -8,7 +15,7 @@ import {
   ColorHelper,
   id,
   ScaleType,
-  ViewDimensions
+  ViewDimensions,
 } from 'projects/swimlane/ngx-charts/src/public-api';
 
 @Component({
@@ -65,7 +72,13 @@ import {
             values="0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0"
           />
         </svg:filter>
-        <svg:rect x="0" [attr.width]="dims.width" y="0" [attr.height]="dims.height" class="brush-background" />
+        <svg:rect
+          x="0"
+          [attr.width]="dims.width"
+          y="0"
+          [attr.height]="dims.height"
+          class="brush-background"
+        />
         <svg:g class="brush"></svg:g>
       </svg:g>
     </ngx-charts-chart>
@@ -73,7 +86,7 @@ import {
   styleUrls: ['../../../../projects/swimlane/ngx-charts/src/lib/common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class TimelineFilterBarChartComponent extends BaseChartComponent {
   @Input() autoScale = false;
@@ -125,7 +138,7 @@ export class TimelineFilterBarChartComponent extends BaseChartComponent {
       showXLabel: this.showXAxisLabel,
       showYLabel: this.showYAxisLabel,
       showLegend: false,
-      legendType: this.schemeType
+      legendType: this.schemeType,
     });
 
     this.xDomain = this.getXDomain();
@@ -263,7 +276,7 @@ export class TimelineFilterBarChartComponent extends BaseChartComponent {
     this.brush = brushX()
       .extent([
         [0, 0],
-        [width, height]
+        [width, height],
       ])
       .on('brush end', ({ selection }) => {
         const newSelection = selection || this.xScale.range();
@@ -284,7 +297,7 @@ export class TimelineFilterBarChartComponent extends BaseChartComponent {
 
     this.brush.extent([
       [0, 0],
-      [width, height]
+      [width, height],
     ]);
     select(this.chartElement.nativeElement).select('.brush').call(this.brush);
 

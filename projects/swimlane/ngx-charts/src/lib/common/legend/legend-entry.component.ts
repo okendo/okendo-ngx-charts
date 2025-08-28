@@ -1,17 +1,34 @@
-import { Component, Input, Output, ChangeDetectionStrategy, HostListener, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+  HostListener,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'ngx-charts-legend-entry',
   template: `
-    <span [title]="formattedLabel" tabindex="-1" [class.active]="isActive" (click)="select.emit(formattedLabel)">
-      <span class="legend-label-color" [style.background-color]="color" (click)="toggle.emit(formattedLabel)"> </span>
+    <span
+      [title]="formattedLabel"
+      tabindex="-1"
+      [class.active]="isActive"
+      (click)="select.emit(formattedLabel)"
+    >
+      <span
+        class="legend-label-color"
+        [style.background-color]="color"
+        (click)="toggle.emit(formattedLabel)"
+      >
+      </span>
       <span class="legend-label-text">
         {{ trimmedLabel }}
       </span>
     </span>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class LegendEntryComponent {
   @Input() color: string;

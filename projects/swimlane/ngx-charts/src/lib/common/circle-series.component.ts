@@ -8,7 +8,7 @@ import {
   ChangeDetectionStrategy,
   TemplateRef,
   PLATFORM_ID,
-  Inject
+  Inject,
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { formatLabel, escapeLabel } from './label.helper';
@@ -24,7 +24,7 @@ import { isPlatformServer } from '@angular/common';
 
 export enum SeriesType {
   Standard = 'standard',
-  Stacked = 'stacked'
+  Stacked = 'stacked',
 }
 
 export interface Circle {
@@ -105,13 +105,13 @@ export interface Circle {
     trigger('animationState', [
       transition(':enter', [
         style({
-          opacity: 0
+          opacity: 0,
         }),
-        animate(250, style({ opacity: 1 }))
-      ])
-    ])
+        animate(250, style({ opacity: 1 })),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class CircleSeriesComponent implements OnChanges, OnInit {
   @Input() data: Series;
@@ -162,9 +162,14 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
   }
 
   getActiveCircle(): Circle {
-    const indexActiveDataPoint = this.data.series.findIndex(d => {
+    const indexActiveDataPoint = this.data.series.findIndex((d) => {
       const label = d.name;
-      return label && this.visibleValue && label.toString() === this.visibleValue.toString() && d.value !== undefined;
+      return (
+        label &&
+        this.visibleValue &&
+        label.toString() === this.visibleValue.toString() &&
+        d.value !== undefined
+      );
     });
 
     if (indexActiveDataPoint === -1) {
@@ -210,7 +215,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
     const data = Object.assign({}, d, {
       series: seriesName,
       value,
-      name: label
+      name: label,
     });
 
     return {
@@ -228,7 +233,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
       seriesName,
       gradientStops: this.getGradientStops(color),
       min: d.min,
-      max: d.max
+      max: d.max,
     };
   }
 
@@ -237,7 +242,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
     value,
     seriesName,
     min,
-    max
+    max,
   }: {
     tooltipLabel: string;
     value: any;
@@ -280,13 +285,13 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
       {
         offset: 0,
         color,
-        opacity: 0.2
+        opacity: 0.2,
       },
       {
         offset: 100,
         color,
-        opacity: 1
-      }
+        opacity: 1,
+      },
     ];
   }
 
@@ -296,7 +301,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
 
   isActive(entry): boolean {
     if (!this.activeEntries) return false;
-    const item = this.activeEntries.find(d => {
+    const item = this.activeEntries.find((d) => {
       return entry.name === d.name;
     });
     return item !== undefined;

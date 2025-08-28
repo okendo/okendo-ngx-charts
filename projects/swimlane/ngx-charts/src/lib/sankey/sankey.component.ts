@@ -6,7 +6,7 @@ import {
   ContentChild,
   TemplateRef,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { sankey, sankeyLeft, sankeyLinkHorizontal } from 'd3-sankey';
 
@@ -115,7 +115,7 @@ interface RectItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['../common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  standalone: false
+  standalone: false,
 })
 export class SankeyComponent extends BaseChartComponent {
   @Input() showLabels: boolean = true;
@@ -149,36 +149,39 @@ export class SankeyComponent extends BaseChartComponent {
       width: this.width,
       height: this.height,
       margins: this.margin,
-      legendType: this.scaleType as any
+      legendType: this.scaleType as any,
     });
 
     const linkDefs = this.results;
-    const nodeDefs = Array.from(new Set(linkDefs.flatMap(l => [l.source, l.target])), (name: string) => ({
-      name,
-      value: linkDefs.filter(l => l.source === name).reduce((acc, l) => acc + l.value, 0)
-    }));
+    const nodeDefs = Array.from(
+      new Set(linkDefs.flatMap((l) => [l.source, l.target])),
+      (name: string) => ({
+        name,
+        value: linkDefs.filter((l) => l.source === name).reduce((acc, l) => acc + l.value, 0),
+      }),
+    );
 
     // Configure generator
     const sankeyGenerator = sankey()
-      .nodeId(d => d.name)
+      .nodeId((d) => d.name)
       .nodeAlign(sankeyLeft)
       .nodeWidth(15)
       .nodePadding(10)
       .extent([
         [1, 5],
-        [this.dims.width - 1, this.dims.height - 5]
+        [this.dims.width - 1, this.dims.height - 5],
       ]);
 
     // Generate links and nodes
     const data = sankeyGenerator({
-      nodes: nodeDefs.map(d => Object.assign({}, d)),
-      links: linkDefs.map(d => Object.assign({}, d))
+      nodes: nodeDefs.map((d) => Object.assign({}, d)),
+      links: linkDefs.map((d) => Object.assign({}, d)),
     });
 
     this.valueDomain = this.getValueDomain(data.nodes);
     this.setColors();
 
-    this.nodeRects = data.nodes.map(node => {
+    this.nodeRects = data.nodes.map((node) => {
       const rect: RectItem = {
         x: node.x0,
         y: node.y0,
@@ -189,18 +192,18 @@ export class SankeyComponent extends BaseChartComponent {
         rx: 5,
         data: {
           name: node.name,
-          value: node.value
+          value: node.value,
         },
         transform: '',
         label: this.labelFormatting ? this.labelFormatting(node.name) : node.name,
-        labelAnchor: TextAnchor.Start
+        labelAnchor: TextAnchor.Start,
       };
       rect.labelAnchor = this.getTextAnchor(node);
       rect.transform = `translate(${rect.x},${rect.y})`;
       return rect;
     });
 
-    this.linkPaths = data.links.map(link => {
+    this.linkPaths = data.links.map((link) => {
       const gradientId = 'mask' + id().toString();
       const linkPath = {
         path: sankeyLinkHorizontal()(link),
@@ -215,8 +218,8 @@ export class SankeyComponent extends BaseChartComponent {
         data: {
           source: link.source.name,
           target: link.target.name,
-          value: link.value
-        }
+          value: link.value,
+        },
       };
       return linkPath;
     });
@@ -234,9 +237,11 @@ export class SankeyComponent extends BaseChartComponent {
   getLinkTooltipText(sourceNode, targetNode, value: number): string {
     return `
       <span class="tooltip-label">${escapeLabel(sourceNode.name)} • ${escapeLabel(targetNode.name)}</span>
-      <span class="tooltip-val">${value.toLocaleString()} (${(value / sourceNode.value).toLocaleString(undefined, {
+      <span class="tooltip-val">${value.toLocaleString()} (${(
+        value / sourceNode.value
+      ).toLocaleString(undefined, {
         style: 'percent',
-        maximumFractionDigits: 2
+        maximumFractionDigits: 2,
       })})</span>
     `;
   }
@@ -258,15 +263,15 @@ export class SankeyComponent extends BaseChartComponent {
   }
 
   getValueDomain(nodes): any[] {
-    return nodes.map(n => n.name);
+    return nodes.map((n) => n.name);
   }
 
   activateLink(link) {
-    this.linkPaths.forEach(l => {
+    this.linkPaths.forEach((l) => {
       l.active = false;
     });
 
-    this.nodeRects.forEach(r => {
+    this.nodeRects.forEach((r) => {
       if (r.data.name === link.source.name || r.data.name === link.target.name) {
         r.active = true;
       } else {
@@ -282,7 +287,7 @@ export class SankeyComponent extends BaseChartComponent {
   deactivateLink(link) {
     link.active = false;
 
-    this.nodeRects.forEach(r => {
+    this.nodeRects.forEach((r) => {
       r.active = false;
     });
 
@@ -290,17 +295,19 @@ export class SankeyComponent extends BaseChartComponent {
   }
 
   activateRect(rect) {
-    const links = this.linkPaths.filter(l => l.source.name === rect.data.name || l.target.name === rect.data.name);
+    const links = this.linkPaths.filter(
+      (l) => l.source.name === rect.data.name || l.target.name === rect.data.name,
+    );
 
-    this.nodeRects.forEach(r => {
-      if (links.some(l => l.source.name === r.data.name || l.target.name === r.data.name)) {
+    this.nodeRects.forEach((r) => {
+      if (links.some((l) => l.source.name === r.data.name || l.target.name === r.data.name)) {
         r.active = true;
       } else {
         r.active = false;
       }
     });
 
-    this.linkPaths.forEach(l => {
+    this.linkPaths.forEach((l) => {
       if (l.source.name === rect.data.name || l.target.name === rect.data.name) {
         l.active = true;
       } else {
@@ -312,11 +319,11 @@ export class SankeyComponent extends BaseChartComponent {
   }
 
   deactivateRect(rect) {
-    this.nodeRects.forEach(r => {
+    this.nodeRects.forEach((r) => {
       r.active = false;
     });
 
-    this.linkPaths.forEach(l => {
+    this.linkPaths.forEach((l) => {
       l.active = false;
     });
 
@@ -324,6 +331,6 @@ export class SankeyComponent extends BaseChartComponent {
   }
 
   get hasActive(): boolean {
-    return this.linkPaths.some(l => l.active) || this.nodeRects.some(r => r.active);
+    return this.linkPaths.some((l) => l.active) || this.nodeRects.some((r) => r.active);
   }
 }

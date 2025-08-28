@@ -1,4 +1,11 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+  TemplateRef,
+} from '@angular/core';
 import { formatLabel, escapeLabel } from '../common/label.helper';
 import { ColorHelper } from '../common/color.helper';
 import { DataItem } from '../models/chart-data.model';
@@ -51,7 +58,7 @@ export interface ArcItem {
     ></svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class GaugeArcComponent {
   @Input() backgroundArc: ArcItem;

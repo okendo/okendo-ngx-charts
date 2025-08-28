@@ -6,7 +6,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { scaleBand, scaleLinear } from 'd3-scale';
 
@@ -91,7 +91,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['../common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  standalone: false
+  standalone: false,
 })
 export class BarVerticalComponent extends BaseChartComponent {
   @Input() legend = false;
@@ -152,7 +152,12 @@ export class BarVerticalComponent extends BaseChartComponent {
     if (!this.showDataLabel) {
       this.dataLabelMaxHeight = { negative: 0, positive: 0 };
     }
-    this.margin = [10 + this.dataLabelMaxHeight.positive, 20, 10 + this.dataLabelMaxHeight.negative, 20];
+    this.margin = [
+      10 + this.dataLabelMaxHeight.positive,
+      20,
+      10 + this.dataLabelMaxHeight.negative,
+      20,
+    ];
 
     this.dims = calculateViewDimensions({
       width: this.width,
@@ -166,7 +171,7 @@ export class BarVerticalComponent extends BaseChartComponent {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.schemeType,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     this.formatDates();
@@ -202,11 +207,11 @@ export class BarVerticalComponent extends BaseChartComponent {
   }
 
   getXDomain(): any[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d) => d.label);
   }
 
   getYDomain(): [number, number] {
-    const values = this.results.map(d => d.value);
+    const values = this.results.map((d) => d.value);
 
     let min = this.yScaleMin ? Math.min(this.yScaleMin, ...values) : Math.min(0, ...values);
     if (this.yAxisTicks && !this.yAxisTicks.some(isNaN)) {
@@ -241,7 +246,7 @@ export class BarVerticalComponent extends BaseChartComponent {
       colors: undefined,
       domain: [],
       title: undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
     if (opts.scaleType === ScaleType.Ordinal) {
       opts.domain = this.xDomain;
@@ -266,9 +271,15 @@ export class BarVerticalComponent extends BaseChartComponent {
 
   onDataLabelMaxHeightChanged(event) {
     if (event.size.negative) {
-      this.dataLabelMaxHeight.negative = Math.max(this.dataLabelMaxHeight.negative, event.size.height);
+      this.dataLabelMaxHeight.negative = Math.max(
+        this.dataLabelMaxHeight.negative,
+        event.size.height,
+      );
     } else {
-      this.dataLabelMaxHeight.positive = Math.max(this.dataLabelMaxHeight.positive, event.size.height);
+      this.dataLabelMaxHeight.positive = Math.max(
+        this.dataLabelMaxHeight.positive,
+        event.size.height,
+      );
     }
     if (event.index === this.results.length - 1) {
       setTimeout(() => this.update());
@@ -276,7 +287,7 @@ export class BarVerticalComponent extends BaseChartComponent {
   }
 
   onActivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+    item = this.results.find((d) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -284,7 +295,7 @@ export class BarVerticalComponent extends BaseChartComponent {
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
     if (idx > -1) {
@@ -296,7 +307,7 @@ export class BarVerticalComponent extends BaseChartComponent {
   }
 
   onDeactivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+    item = this.results.find((d) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -304,7 +315,7 @@ export class BarVerticalComponent extends BaseChartComponent {
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
+    const idx = this.activeEntries.findIndex((d) => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
 

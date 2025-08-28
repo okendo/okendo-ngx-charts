@@ -27,7 +27,7 @@ import { BarLabelComponent } from './bar-label.component';
     BarVerticalStackedComponent,
     BarLabelComponent,
     SeriesHorizontal,
-    SeriesVerticalComponent
+    SeriesVerticalComponent,
   ],
   exports: [
     BarComponent,
@@ -41,7 +41,7 @@ import { BarLabelComponent } from './bar-label.component';
     BarVerticalStackedComponent,
     BarLabelComponent,
     SeriesHorizontal,
-    SeriesVerticalComponent
-  ]
+    SeriesVerticalComponent,
+  ],
 })
 export class BarChartModule {}

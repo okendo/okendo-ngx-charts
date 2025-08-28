@@ -7,6 +7,6 @@ import { HeatMapComponent } from './heat-map.component';
 @NgModule({
   imports: [ChartCommonModule],
   declarations: [HeatMapCellComponent, HeatCellSeriesComponent, HeatMapComponent],
-  exports: [HeatMapCellComponent, HeatCellSeriesComponent, HeatMapComponent]
+  exports: [HeatMapCellComponent, HeatCellSeriesComponent, HeatMapComponent],
 })
 export class HeatMapModule {}

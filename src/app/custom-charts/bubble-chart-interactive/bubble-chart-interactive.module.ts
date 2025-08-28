@@ -8,6 +8,6 @@ export { BubbleChartInteractiveComponent, BubbleSeriesInteractiveComponent };
 @NgModule({
   imports: [ChartCommonModule],
   declarations: [BubbleChartInteractiveComponent, BubbleSeriesInteractiveComponent],
-  exports: [BubbleChartInteractiveComponent, BubbleSeriesInteractiveComponent]
+  exports: [BubbleChartInteractiveComponent, BubbleSeriesInteractiveComponent],
 })
 export class BubbleChartInteractiveModule {}

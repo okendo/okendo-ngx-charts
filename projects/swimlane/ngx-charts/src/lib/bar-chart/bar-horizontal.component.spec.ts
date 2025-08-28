@@ -15,12 +15,12 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 @Component({
   selector: 'test-component',
   template: '',
-  standalone: false
+  standalone: false,
 })
 class TestComponent {
   single: any = single;
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
 }
 
@@ -29,7 +29,7 @@ describe('<ngx-charts-bar-horizontal>', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [NoopAnimationsModule, BarChartModule],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
     });
   });
 
@@ -43,8 +43,8 @@ describe('<ngx-charts-bar-horizontal>', () => {
                 [view]="[400,800]"
                 [scheme]="colorScheme"
                 [results]="single">
-              </ngx-charts-bar-horizontal>`
-        }
+              </ngx-charts-bar-horizontal>`,
+        },
       }).compileComponents();
     });
 
@@ -88,8 +88,8 @@ describe('<ngx-charts-bar-horizontal>', () => {
                 [scheme]="colorScheme"
                 [results]="single"
                 [barPadding]="0">
-              </ngx-charts-bar-horizontal>`
-        }
+              </ngx-charts-bar-horizontal>`,
+        },
       }).compileComponents();
     });
 
@@ -114,8 +114,8 @@ describe('<ngx-charts-bar-horizontal>', () => {
             [scheme]="colorScheme"
             [results]="single"
             [barPadding]="20">
-          </ngx-charts-bar-horizontal>`
-        }
+          </ngx-charts-bar-horizontal>`,
+        },
       }).compileComponents();
     });
 
@@ -131,7 +131,7 @@ describe('<ngx-charts-bar-horizontal>', () => {
 
   describe('y-axis - wrap ticks', () => {
     const getContent = (axisTick: DebugElement) =>
-      axisTick.queryAll(By.css('tspan')).map(entry => entry.nativeElement.textContent.trim());
+      axisTick.queryAll(By.css('tspan')).map((entry) => entry.nativeElement.textContent.trim());
 
     it('should wrap tick if there is available space', () => {
       TestBed.overrideComponent(TestComponent, {
@@ -152,8 +152,8 @@ describe('<ngx-charts-bar-horizontal>', () => {
             [yAxis]="true"
             [wrapTicks]="true"
           >
-          </ngx-charts-bar-horizontal>`
-        }
+          </ngx-charts-bar-horizontal>`,
+        },
       }).compileComponents();
 
       const fixture = TestBed.createComponent(TestComponent);
@@ -173,10 +173,18 @@ describe('<ngx-charts-bar-horizontal>', () => {
       expect(getContent(axisTicks[2])).toEqual(['Lorem Ipsum is', 'simply dummy', 'text']);
 
       expect(axisTicks[3].queryAll(By.css('tspan')).length).toEqual(3);
-      expect(getContent(axisTicks[3])).toEqual(['Lorem Ipsum is', 'simply dummy', 'text of the...']);
+      expect(getContent(axisTicks[3])).toEqual([
+        'Lorem Ipsum is',
+        'simply dummy',
+        'text of the...',
+      ]);
 
       expect(axisTicks[4].queryAll(By.css('tspan')).length).toEqual(3);
-      expect(getContent(axisTicks[4])).toEqual(['Lorem Ipsum is', 'simply dummy', 'text of the...']);
+      expect(getContent(axisTicks[4])).toEqual([
+        'Lorem Ipsum is',
+        'simply dummy',
+        'text of the...',
+      ]);
     });
   });
 });

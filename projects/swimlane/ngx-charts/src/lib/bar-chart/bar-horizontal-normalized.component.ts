@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef,
-  TrackByFunction
+  TrackByFunction,
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 
@@ -96,7 +96,10 @@ import { isPlatformServer } from '@angular/common';
           </svg:g>
         </svg:g>
         <svg:g *ngIf="isSSR">
-          <svg:g *ngFor="let group of results; trackBy: trackBy" [attr.transform]="groupTransform(group)">
+          <svg:g
+            *ngFor="let group of results; trackBy: trackBy"
+            [attr.transform]="groupTransform(group)"
+          >
             <svg:g
               ngx-charts-series-horizontal
               [type]="barChartType.Normalized"
@@ -129,13 +132,13 @@ import { isPlatformServer } from '@angular/common';
       transition(':leave', [
         style({
           opacity: 1,
-          transform: '*'
+          transform: '*',
         }),
-        animate(500, style({ opacity: 0, transform: 'scale(0)' }))
-      ])
-    ])
+        animate(500, style({ opacity: 0, transform: 'scale(0)' })),
+      ]),
+    ]),
   ],
-  standalone: false
+  standalone: false,
 })
 export class BarHorizontalNormalizedComponent extends BaseChartComponent {
   @Input() legend: boolean = false;
@@ -207,7 +210,7 @@ export class BarHorizontalNormalizedComponent extends BaseChartComponent {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.schemeType,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     this.formatDates();
@@ -253,7 +256,10 @@ export class BarHorizontalNormalizedComponent extends BaseChartComponent {
   getYScale(): any {
     const spacing = this.groupDomain.length / (this.dims.height / this.barPadding + 1);
 
-    return scaleBand().rangeRound([0, this.dims.height]).paddingInner(spacing).domain(this.groupDomain);
+    return scaleBand()
+      .rangeRound([0, this.dims.height])
+      .paddingInner(spacing)
+      .domain(this.groupDomain);
   }
 
   getXScale(): any {
@@ -294,7 +300,7 @@ export class BarHorizontalNormalizedComponent extends BaseChartComponent {
       colors: undefined,
       domain: [],
       title: undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
     if (opts.scaleType === ScaleType.Ordinal) {
       opts.domain = this.innerDomain;
@@ -325,9 +331,9 @@ export class BarHorizontalNormalizedComponent extends BaseChartComponent {
     }
 
     const items = this.results
-      .map(g => g.series)
+      .map((g) => g.series)
       .flat()
-      .filter(i => {
+      .filter((i) => {
         if (fromLegend) {
           return i.label === item.name;
         } else {
@@ -345,7 +351,7 @@ export class BarHorizontalNormalizedComponent extends BaseChartComponent {
       item.series = group.name;
     }
 
-    this.activeEntries = this.activeEntries.filter(i => {
+    this.activeEntries = this.activeEntries.filter((i) => {
       if (fromLegend) {
         return i.label !== item.name;
       } else {

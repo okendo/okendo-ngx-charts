@@ -6,7 +6,7 @@ import {
   ElementRef,
   OnChanges,
   SimpleChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { pie } from 'd3-shape';
 import { PieGridData, PieGridDataItem } from '../models/chart-data.model';
@@ -46,7 +46,7 @@ export interface PieArc {
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class PieGridSeriesComponent implements OnChanges {
   @Input() colors;
@@ -73,7 +73,7 @@ export class PieGridSeriesComponent implements OnChanges {
 
   update(): void {
     this.layout = pie<any, any>()
-      .value(d => d.data.value)
+      .value((d) => d.data.value)
       .sort(null);
 
     this.arcs = this.getArcs();
@@ -96,7 +96,7 @@ export class PieGridSeriesComponent implements OnChanges {
         startAngle: other ? 0 : arc.startAngle,
         endAngle: arc.endAngle,
         animate: this.animations && !other,
-        pointerEvents: !other
+        pointerEvents: !other,
       };
     });
   }

@@ -14,7 +14,7 @@ const bubbleDemoDataFromServer1 = {
             customerName: 'Fred Flintstone',
             orderItemCount: 10,
             orderFinTotal: 101.5,
-            orderCompletionPercent: 0.9
+            orderCompletionPercent: 0.9,
           },
           {
             orderCode: '67890',
@@ -22,9 +22,9 @@ const bubbleDemoDataFromServer1 = {
             customerName: 'Pooh Bear',
             orderItemCount: 99,
             orderFinTotal: 1010.5,
-            orderCompletionPercent: 0.3
-          }
-        ]
+            orderCompletionPercent: 0.3,
+          },
+        ],
       },
       {
         name: 'Mamma Joe',
@@ -37,7 +37,7 @@ const bubbleDemoDataFromServer1 = {
             customerName: 'Mean One',
             orderItemCount: 1,
             orderFinTotal: 7.5,
-            orderCompletionPercent: 0.6
+            orderCompletionPercent: 0.6,
           },
           {
             orderCode: '23456',
@@ -45,12 +45,12 @@ const bubbleDemoDataFromServer1 = {
             customerName: 'Hey You',
             orderItemCount: 12,
             orderFinTotal: 104.5,
-            orderCompletionPercent: 0.1
-          }
-        ]
-      }
-    ]
-  }
+            orderCompletionPercent: 0.1,
+          },
+        ],
+      },
+    ],
+  },
 };
 
 const bubbleDemoDataFromServer2 = {
@@ -69,7 +69,7 @@ const bubbleDemoDataFromServer2 = {
             customerName: 'Fred Flintstone',
             orderItemCount: 35,
             orderFinTotal: 101.5,
-            orderCompletionPercent: 1
+            orderCompletionPercent: 1,
           },
           {
             orderCode: '67890',
@@ -77,9 +77,9 @@ const bubbleDemoDataFromServer2 = {
             customerName: 'Pooh Bear',
             orderItemCount: 56,
             orderFinTotal: 30.5,
-            orderCompletionPercent: 0.7
-          }
-        ]
+            orderCompletionPercent: 0.7,
+          },
+        ],
       },
       {
         name: 'Mamma Joe',
@@ -92,7 +92,7 @@ const bubbleDemoDataFromServer2 = {
             customerName: 'Mean One',
             orderItemCount: 100,
             orderFinTotal: 7.5,
-            orderCompletionPercent: 0.9
+            orderCompletionPercent: 0.9,
           },
           {
             orderCode: '23456',
@@ -100,12 +100,12 @@ const bubbleDemoDataFromServer2 = {
             customerName: 'Hey You',
             orderItemCount: 12,
             orderFinTotal: 1004.5,
-            orderCompletionPercent: 0.3
-          }
-        ]
-      }
-    ]
-  }
+            orderCompletionPercent: 0.3,
+          },
+        ],
+      },
+    ],
+  },
 };
 
 export const bubbleDemoData = [bubbleDemoDataFromServer1, bubbleDemoDataFromServer2];

@@ -6,7 +6,7 @@ import {
   ContentChild,
   TemplateRef,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { scaleBand } from 'd3-scale';
 
@@ -97,7 +97,7 @@ interface RectItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['../common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  standalone: false
+  standalone: false,
 })
 export class HeatMapComponent extends BaseChartComponent {
   @Input() legend: boolean;
@@ -171,7 +171,7 @@ export class HeatMapComponent extends BaseChartComponent {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.scaleType as any,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     if (this.scaleType === ScaleType.Linear) {
@@ -245,7 +245,12 @@ export class HeatMapComponent extends BaseChartComponent {
    *
    * @memberOf HeatMapComponent
    */
-  getDimension(value: string | number | Array<string | number>, index: number = 0, N: number, L: number): number {
+  getDimension(
+    value: string | number | Array<string | number>,
+    index: number = 0,
+    N: number,
+    L: number,
+  ): number {
     if (typeof value === 'string') {
       value = value
         .replace('[', '')
@@ -280,15 +285,15 @@ export class HeatMapComponent extends BaseChartComponent {
   getRects(): RectItem[] {
     const rects = [];
 
-    this.xDomain.map(xVal => {
-      this.yDomain.map(yVal => {
+    this.xDomain.map((xVal) => {
+      this.yDomain.map((yVal) => {
         rects.push({
           x: this.xScale(xVal),
           y: this.yScale(yVal),
           rx: 3,
           width: this.xScale.bandwidth(),
           height: this.yScale.bandwidth(),
-          fill: 'rgba(200,200,200,0.03)'
+          fill: 'rgba(200,200,200,0.03)',
         });
       });
     });
@@ -310,7 +315,7 @@ export class HeatMapComponent extends BaseChartComponent {
       domain: this.valueDomain,
       colors: this.scaleType === ScaleType.Ordinal ? this.colors : this.colors.scale,
       title: this.scaleType === ScaleType.Ordinal ? this.legendTitle : undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
   }
 
@@ -331,9 +336,9 @@ export class HeatMapComponent extends BaseChartComponent {
     }
 
     const items = this.results
-      .map(g => g.series)
+      .map((g) => g.series)
       .flat()
-      .filter(i => {
+      .filter((i) => {
         if (fromLegend) {
           return i.label === item.name;
         } else {
@@ -351,7 +356,7 @@ export class HeatMapComponent extends BaseChartComponent {
       item.series = group.name;
     }
 
-    this.activeEntries = this.activeEntries.filter(i => {
+    this.activeEntries = this.activeEntries.filter((i) => {
       if (fromLegend) {
         return i.label !== item.name;
       } else {

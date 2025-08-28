@@ -1,4 +1,12 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ElementRef,
+  OnChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { select } from 'd3-selection';
 import { id } from '../utils/id';
 import { AreaChartSeries } from '../models/chart-data.model';
@@ -16,10 +24,15 @@ import { Gradient } from './types/gradient.interface';
         [stops]="gradientStops"
       />
     </svg:defs>
-    <svg:path class="area" [attr.d]="areaPath" [attr.fill]="gradient ? gradientFill : fill" [style.opacity]="opacity" />
+    <svg:path
+      class="area"
+      [attr.d]="areaPath"
+      [attr.fill]="gradient ? gradientFill : fill"
+      [style.opacity]="opacity"
+    />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class AreaComponent implements OnChanges {
   @Input() data: AreaChartSeries;
@@ -97,13 +110,13 @@ export class AreaComponent implements OnChanges {
       {
         offset: 0,
         color: this.fill,
-        opacity: this.startOpacity
+        opacity: this.startOpacity,
       },
       {
         offset: 100,
         color: this.fill,
-        opacity: this.endOpacity
-      }
+        opacity: this.endOpacity,
+      },
     ];
   }
 }

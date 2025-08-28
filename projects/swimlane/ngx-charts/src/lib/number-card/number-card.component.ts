@@ -33,7 +33,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
   styleUrls: ['../common/base-chart.component.scss', './card.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class NumberCardComponent extends BaseChartComponent {
   @Input() cardColor: string;
@@ -62,7 +62,7 @@ export class NumberCardComponent extends BaseChartComponent {
     this.dims = calculateViewDimensions({
       width: this.width,
       height: this.height,
-      margins: this.margin
+      margins: this.margin,
     });
 
     this.formatDates();
@@ -85,7 +85,7 @@ export class NumberCardComponent extends BaseChartComponent {
   }
 
   getDomain(): string[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d) => d.label);
   }
 
   onClick(data): void {

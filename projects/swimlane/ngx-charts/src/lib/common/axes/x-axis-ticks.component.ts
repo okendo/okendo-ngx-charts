@@ -11,7 +11,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Inject,
-  PLATFORM_ID
+  PLATFORM_ID,
 } from '@angular/core';
 import { trimLabel } from '../trim-label.helper';
 import { getTickLines, reduceTicks } from './ticks.helper';
@@ -31,7 +31,9 @@ import { TextAnchor } from '../types/text-anchor.enum';
             [attr.text-anchor]="textAnchor"
             [attr.transform]="textTransform"
           >
-            <ng-container *ngIf="isWrapTicksSupported; then tmplMultilineTick; else tmplSinglelineTick"></ng-container>
+            <ng-container
+              *ngIf="isWrapTicksSupported; then tmplMultilineTick; else tmplSinglelineTick"
+            ></ng-container>
           </svg:text>
 
           <ng-template #tmplMultilineTick>
@@ -56,7 +58,7 @@ import { TextAnchor } from '../types/text-anchor.enum';
     </svg:g>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: false,
 })
 export class XAxisTicksComponent implements OnChanges, AfterViewInit {
   @Input() scale;
@@ -192,7 +194,7 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
     if (this.isWrapTicksSupported) {
       const longestTick = this.ticks.reduce(
         (earlier, current) => (current.length > earlier.length ? current : earlier),
-        ''
+        '',
       );
 
       const tickLines = this.tickChunks(longestTick);
@@ -265,14 +267,17 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
         return [this.tickTrim(label)];
       }
 
-      let possibleStringLength = Math.max(this.maxPossibleLengthForTickIfWrapped, this.maxTickLength);
+      let possibleStringLength = Math.max(
+        this.maxPossibleLengthForTickIfWrapped,
+        this.maxTickLength,
+      );
 
       if (!isPlatformBrowser(this.platformId)) {
         possibleStringLength = Math.floor(
           Math.min(
             this.approxHeight / maxAllowedLines,
-            Math.max(this.maxPossibleLengthForTickIfWrapped, this.maxTickLength)
-          )
+            Math.max(this.maxPossibleLengthForTickIfWrapped, this.maxTickLength),
+          ),
         );
       }
 

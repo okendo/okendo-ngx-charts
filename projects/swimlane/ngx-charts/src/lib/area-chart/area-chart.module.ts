@@ -7,7 +7,17 @@ import { ChartCommonModule } from '../common/chart-common.module';
 
 @NgModule({
   imports: [ChartCommonModule],
-  declarations: [AreaChartComponent, AreaChartNormalizedComponent, AreaChartStackedComponent, AreaSeriesComponent],
-  exports: [AreaChartComponent, AreaChartNormalizedComponent, AreaChartStackedComponent, AreaSeriesComponent]
+  declarations: [
+    AreaChartComponent,
+    AreaChartNormalizedComponent,
+    AreaChartStackedComponent,
+    AreaSeriesComponent,
+  ],
+  exports: [
+    AreaChartComponent,
+    AreaChartNormalizedComponent,
+    AreaChartStackedComponent,
+    AreaSeriesComponent,
+  ],
 })
 export class AreaChartModule {}

@@ -20,7 +20,9 @@ export function getTickLines(label: string, maxLength: number, maxLines: number)
   if (/\s/.test(labelString)) {
     totalLines = labelString.split(/\s+/).reduce((lines: string[], line: string) => {
       const last = (lines.pop() || '') + ' ';
-      return last.length + line.length > maxLength ? [...lines, last.trim(), line.trim()] : [...lines, last + line];
+      return last.length + line.length > maxLength
+        ? [...lines, last.trim(), line.trim()]
+        : [...lines, last + line];
     }, []);
   } else {
     let startIndex = 0;
