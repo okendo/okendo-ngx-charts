@@ -229,6 +229,13 @@ describe('<ngx-charts-bar-vertical>', () => {
 });
 
 describe('bar-max-width', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [NoopAnimationsModule, BarChartModule],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+    });
+  });
   it('should render correct cell size, with zero padding, but fixed width', () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
@@ -241,15 +248,12 @@ describe('bar-max-width', () => {
               [barMaxWidth]="30">
             </ngx-charts-bar-vertical>`
       }
-    });
+    }).compileComponents();
 
-    TestBed.compileComponents().then(() => {
-      const fixture = TestBed.createComponent(TestComponent);
-      fixture.detectChanges();
+    const fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
 
-      const bar = fixture.debugElement.query(By.directive(BarComponent));
-
-      expect(bar.componentInstance.width).toEqual(30);
-    });
+    const bar = fixture.debugElement.query(By.directive(BarComponent));
+    expect(bar.componentInstance.width).toEqual(30);
   });
 });
