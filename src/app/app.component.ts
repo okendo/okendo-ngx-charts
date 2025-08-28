@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
   height: number = 300;
   fitContainer: boolean = false;
   margins: [number, number, number, number];
-  
+
   // options
   showXAxis = true;
   showYAxis = true;

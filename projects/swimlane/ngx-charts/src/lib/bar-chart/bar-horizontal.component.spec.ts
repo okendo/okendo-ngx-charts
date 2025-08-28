@@ -177,6 +177,6 @@ describe('<ngx-charts-bar-horizontal>', () => {
 
       expect(axisTicks[4].queryAll(By.css('tspan')).length).toEqual(3);
       expect(getContent(axisTicks[4])).toEqual(['Lorem Ipsum is', 'simply dummy', 'text of the...']);
-});
+    });
   });
 });

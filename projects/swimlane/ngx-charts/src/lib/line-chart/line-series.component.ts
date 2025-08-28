@@ -169,7 +169,7 @@ export class LineSeriesComponent implements OnChanges {
 
     return area<any>()
       .x(xProperty)
-      .y0(() => this.trueZero ? this.yScale(0) : this.yScale.range()[0])
+      .y0(() => (this.trueZero ? this.yScale(0) : this.yScale.range()[0]))
       .y1(d => this.yScale(d.value))
       .curve(this.curve);
   }

@@ -79,35 +79,35 @@ import { BarOrientation } from '../common/types/bar-orientation.enum';
         ></svg:g>
 
         <svg:g *ngIf="!isSSR">
-        <svg:g
-          *ngFor="let group of results; let index = index; trackBy: trackBy"
-          [@animationState]="'active'"
-          [attr.transform]="groupTransform(group)"
-        >
           <svg:g
-            ngx-charts-series-horizontal
-            [xScale]="valueScale"
-            [activeEntries]="activeEntries"
-            [yScale]="innerScale"
-            [colors]="colors"
-            [series]="group.series"
-            [dims]="dims"
-            [gradient]="gradient"
-            [tooltipDisabled]="tooltipDisabled"
-            [tooltipTemplate]="tooltipTemplate"
-            [seriesName]="group.name"
-            [roundEdges]="roundEdges"
-            [animations]="animations"
-            [showDataLabel]="showDataLabel"
-            [dataLabelFormatting]="dataLabelFormatting"
-            [noBarWhenZero]="noBarWhenZero"
-            (select)="onClick($event, group)"
-            (activate)="onActivate($event, group)"
-            (deactivate)="onDeactivate($event, group)"
-            (dataLabelWidthChanged)="onDataLabelMaxWidthChanged($event, index)"
-          />
+            *ngFor="let group of results; let index = index; trackBy: trackBy"
+            [@animationState]="'active'"
+            [attr.transform]="groupTransform(group)"
+          >
+            <svg:g
+              ngx-charts-series-horizontal
+              [xScale]="valueScale"
+              [activeEntries]="activeEntries"
+              [yScale]="innerScale"
+              [colors]="colors"
+              [series]="group.series"
+              [dims]="dims"
+              [gradient]="gradient"
+              [tooltipDisabled]="tooltipDisabled"
+              [tooltipTemplate]="tooltipTemplate"
+              [seriesName]="group.name"
+              [roundEdges]="roundEdges"
+              [animations]="animations"
+              [showDataLabel]="showDataLabel"
+              [dataLabelFormatting]="dataLabelFormatting"
+              [noBarWhenZero]="noBarWhenZero"
+              (select)="onClick($event, group)"
+              (activate)="onActivate($event, group)"
+              (deactivate)="onDeactivate($event, group)"
+              (dataLabelWidthChanged)="onDataLabelMaxWidthChanged($event, index)"
+            />
+          </svg:g>
         </svg:g>
-      </svg:g>
         <svg:g *ngIf="isSSR">
           <svg:g
             *ngFor="let group of results; let index = index; trackBy: trackBy"

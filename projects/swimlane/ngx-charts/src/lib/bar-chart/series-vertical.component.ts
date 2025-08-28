@@ -200,8 +200,7 @@ export class SeriesVerticalComponent implements OnChanges {
 
       if (this.type === 'stacked' && (d.name !== topNameOfGroup || d0Type === D0Types.negative)) {
         roundEdges = false;
-      }
-      else {
+      } else {
         roundEdges = this.roundEdges;
       }
 

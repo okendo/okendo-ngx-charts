@@ -183,7 +183,7 @@ describe('<ngx-charts-bar-vertical>', () => {
         'printing and',
         'typesetting...'
       ]);
-});
+    });
 
     it('should show a max of 5 lines for a wrapped tick', () => {
       TestBed.overrideComponent(TestComponent, {
@@ -229,7 +229,6 @@ describe('<ngx-charts-bar-vertical>', () => {
 });
 
 describe('bar-max-width', () => {
-
   it('should render correct cell size, with zero padding, but fixed width', async(() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
@@ -253,5 +252,4 @@ describe('bar-max-width', () => {
       expect(bar.componentInstance.width).toEqual(30);
     });
   }));
-
 });
