@@ -229,7 +229,7 @@ describe('<ngx-charts-bar-vertical>', () => {
 });
 
 describe('bar-max-width', () => {
-  it('should render correct cell size, with zero padding, but fixed width', (() => {
+  it('should render correct cell size, with zero padding, but fixed width', () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -251,5 +251,5 @@ describe('bar-max-width', () => {
 
       expect(bar.componentInstance.width).toEqual(30);
     });
-  }));
+  });
 });
