@@ -174,7 +174,7 @@ describe('x-axis - wrap ticks', () => {
   const getContent = (axisTick: DebugElement) =>
     axisTick.queryAll(By.css('tspan')).map((entry) => entry.nativeElement.textContent.trim());
 
-  it('should wrap tick if there is available space', (() => {
+  it('should wrap tick if there is available space', () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -230,7 +230,7 @@ describe('x-axis - wrap ticks', () => {
       'printing and',
       'typesetting...',
     ]);
-  }));
+  });
 
   it('should show a max of 5 lines for a wrapped tick', waitForAsync(async () => {
     TestBed.overrideComponent(TestComponent, {
