@@ -1,4 +1,4 @@
-import { TestBed, tick } from '@angular/core/testing';
+import { TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -132,7 +132,7 @@ describe('<ngx-charts-bar-vertical>', () => {
 
 describe('bar-max-width', () => {
 
-  it('should render correct cell size, with zero padding, but fixed width', async(() => {
+  it('should render correct cell size, with zero padding, but fixed width', waitForAsync(() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -146,14 +146,13 @@ describe('bar-max-width', () => {
       }
     });
 
-    TestBed.compileComponents().then(() => {
+    TestBed.compileComponents();
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
       const bar = fixture.debugElement.query(By.directive(BarComponent));
 
       expect(bar.componentInstance.width).toEqual(30);
-    });
   }));
 
 });
@@ -255,4 +254,3 @@ describe('bar-max-width', () => {
       ]);
     });
   });
-});
