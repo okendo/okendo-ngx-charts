@@ -1,4 +1,4 @@
-import { TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { TestBed, tick, fakeAsync, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,7 +11,6 @@ import { BarComponent } from './bar.component';
 import { XAxisTicksComponent } from '../common/axes/x-axis-ticks.component';
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
-
 @Component({
   selector: 'test-component',
   template: '',
@@ -131,11 +130,19 @@ describe('<ngx-charts-bar-vertical>', () => {
 });
 
 describe('bar-max-width', () => {
-  it('should render correct cell size, with zero padding, but fixed width', waitForAsync(() => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [NoopAnimationsModule, BarChartModule],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+    });
+  });
+  it('should render correct cell size, with zero padding, but fixed width', () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
              <ngx-charts-bar-vertical
+              [animations]="false"
               [view]="[400,800]"
               [scheme]="colorScheme"
               [results]="single"
@@ -149,17 +156,25 @@ describe('bar-max-width', () => {
     const fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
 
-    const bar = fixture.debugElement.query(By.directive(BarComponent));
-
-    expect(bar.componentInstance.width).toEqual(30);
-  }));
+    const firstBarPath: SVGPathElement | null = fixture.nativeElement.querySelector('path.bar');
+    expect(firstBarPath).toBeTruthy();
+    const bbox = firstBarPath!.getBBox();
+    expect(Math.round(bbox.width)).toEqual(30);
+  });
 });
 
 describe('x-axis - wrap ticks', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [NoopAnimationsModule, BarChartModule],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+    });
+  });
   const getContent = (axisTick: DebugElement) =>
     axisTick.queryAll(By.css('tspan')).map((entry) => entry.nativeElement.textContent.trim());
 
-  it('should wrap tick if there is available space', waitForAsync(async () => {
+  it('should wrap tick if there is available space', (() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -182,8 +197,6 @@ describe('x-axis - wrap ticks', () => {
     }).compileComponents();
 
     const fixture = TestBed.createComponent(TestComponent);
-    fixture.detectChanges();
-    await fixture.whenStable();
     fixture.detectChanges();
 
     const xAxisTicks = fixture.debugElement.query(By.directive(XAxisTicksComponent));
