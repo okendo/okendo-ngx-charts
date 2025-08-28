@@ -252,7 +252,10 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
   }): string {
     return `
       <span class="tooltip-label">${escapeLabel(seriesName)} • ${escapeLabel(tooltipLabel)}</span>
-      <span class="tooltip-val">${value.toLocaleString()}${this.getTooltipMinMaxText(min, max)}</span>
+      <span class="tooltip-val">${value.toLocaleString()}${this.getTooltipMinMaxText(
+      min,
+      max,
+    )}</span>
     `;
   }
 

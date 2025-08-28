@@ -96,7 +96,8 @@ export class GaugeAxisComponent implements OnChanges {
           textAnchor,
           text,
           textTransform: `
-            translate(${textDist * Math.cos(angle)}, ${textDist * Math.sin(angle)}) rotate(${-this.rotationAngle})
+            translate(${textDist * Math.cos(angle)}, ${textDist * Math.sin(angle)}) rotate(${-this
+            .rotationAngle})
           `,
         });
       }

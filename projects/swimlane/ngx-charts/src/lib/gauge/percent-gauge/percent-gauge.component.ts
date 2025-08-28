@@ -169,9 +169,9 @@ export class PercentGaugeComponent extends BaseChartComponent {
     this.dashes = `${this.radius / 60} ${this.circumference / 60 - this.radius / 60}`;
     this.valueFontSize = Math.floor(this.radius / 3);
     this.targetRadius = this.radius / 4;
-    this.targetTextTransform = `translate(${-this.targetRadius / 2}, ${-this.targetRadius / 2}), scale(${
-      this.targetRadius / 28
-    })`;
+    this.targetTextTransform = `translate(${-this.targetRadius / 2}, ${
+      -this.targetRadius / 2
+    }), scale(${this.targetRadius / 28})`;
 
     this.valueDomain = this.getValueDomain();
     this.displayValue = this.getDisplayValue();
@@ -183,12 +183,14 @@ export class PercentGaugeComponent extends BaseChartComponent {
     const yOffset = this.margin[0] + this.dims.height / 2;
 
     this.transform = `translate(${xOffset}, ${yOffset})`;
-    this.labelTransform = `translate(0, ${this.height / 2 + this.radius + this.margin[0] + this.ticHeight / 2 - 3})`;
+    this.labelTransform = `translate(0, ${
+      this.height / 2 + this.radius + this.margin[0] + this.ticHeight / 2 - 3
+    })`;
 
     const angle = (this.target / 100) * Math.PI * 2 - Math.PI / 2;
-    this.targetTransform = `translate(${this.radius * 0.97 * Math.cos(angle) + this.targetRadius / 2}, ${
-      this.radius * 0.97 * Math.sin(angle) + this.targetRadius / 2
-    })`;
+    this.targetTransform = `translate(${
+      this.radius * 0.97 * Math.cos(angle) + this.targetRadius / 2
+    }, ${this.radius * 0.97 * Math.sin(angle) + this.targetRadius / 2})`;
 
     this.generateticks();
 

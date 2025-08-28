@@ -178,7 +178,9 @@ export class LinearGaugeComponent extends BaseChartComponent implements AfterVie
     const yOffset = this.margin[0] + this.dims.height / 2;
 
     this.transform = `translate(${xOffset}, ${yOffset})`;
-    this.transformLine = `translate(${this.margin[3] + this.valueScale(this.previousValue)}, ${yOffset})`;
+    this.transformLine = `translate(${
+      this.margin[3] + this.valueScale(this.previousValue)
+    }, ${yOffset})`;
     this.valueTranslate = `translate(0, -15)`;
     this.unitsTranslate = `translate(0, 15)`;
 

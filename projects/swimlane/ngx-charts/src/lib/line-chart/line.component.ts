@@ -72,10 +72,7 @@ export class LineComponent implements OnChanges, OnInit {
 
   isSSR = false;
 
-  constructor(
-    private element: ElementRef,
-    @Inject(PLATFORM_ID) private platformId: any,
-  ) {}
+  constructor(private element: ElementRef, @Inject(PLATFORM_ID) private platformId: any) {}
 
   ngOnInit() {
     if (isPlatformServer(this.platformId)) {

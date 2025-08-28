@@ -70,10 +70,7 @@ export class Timeline implements OnChanges {
   filterId: string;
   filter: string;
 
-  constructor(
-    element: ElementRef,
-    private cd: ChangeDetectorRef,
-  ) {
+  constructor(element: ElementRef, private cd: ChangeDetectorRef) {
     this.element = element.nativeElement;
   }
 

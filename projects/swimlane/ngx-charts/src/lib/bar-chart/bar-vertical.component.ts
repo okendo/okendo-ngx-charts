@@ -185,7 +185,9 @@ export class BarVerticalComponent extends BaseChartComponent {
     this.setColors();
     this.legendOptions = this.getLegendOptions();
 
-    this.transform = `translate(${this.dims.xOffset} , ${this.margin[0] + this.dataLabelMaxHeight.negative})`;
+    this.transform = `translate(${this.dims.xOffset} , ${
+      this.margin[0] + this.dataLabelMaxHeight.negative
+    })`;
   }
 
   getXScale(): any {

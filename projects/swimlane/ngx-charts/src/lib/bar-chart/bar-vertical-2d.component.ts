@@ -256,7 +256,9 @@ export class BarVertical2DComponent extends BaseChartComponent {
 
     this.setColors();
     this.legendOptions = this.getLegendOptions();
-    this.transform = `translate(${this.dims.xOffset} , ${this.margin[0] + this.dataLabelMaxHeight.negative})`;
+    this.transform = `translate(${this.dims.xOffset} , ${
+      this.margin[0] + this.dataLabelMaxHeight.negative
+    })`;
   }
 
   onDataLabelMaxHeightChanged(event, groupIndex: number): void {

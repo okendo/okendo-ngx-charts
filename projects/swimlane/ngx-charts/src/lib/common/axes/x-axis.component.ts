@@ -88,7 +88,9 @@ export class XAxisComponent implements OnChanges {
   }
 
   update(): void {
-    this.transform = `translate(${this.chartLeftOffset} ,${this.xAxisOffset + this.padding + this.dims.height})`;
+    this.transform = `translate(${this.chartLeftOffset} ,${
+      this.xAxisOffset + this.padding + this.dims.height
+    })`;
 
     if (typeof this.xAxisTickCount !== 'undefined') {
       this.tickArguments = [this.xAxisTickCount];
