@@ -186,7 +186,7 @@ export class SeriesVerticalComponent implements OnChanges {
 
     for (let i = this.series.length - 1; i >= 0; i--) {
       if (this.series[i].value !== 0) {
-        topNameOfGroup = this.series[i].name;
+        topNameOfGroup = this.series[i].name as string;
         break;
       }
     }
