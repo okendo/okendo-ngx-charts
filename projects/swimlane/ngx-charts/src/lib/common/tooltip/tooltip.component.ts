@@ -59,7 +59,11 @@ export class TooltipContentComponent implements AfterViewInit {
     return clz;
   }
 
-  constructor(public element: ElementRef, private renderer: Renderer2, @Inject(PLATFORM_ID) private platformId: any) {}
+  constructor(
+    public element: ElementRef,
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) {}
 
   ngAfterViewInit(): void {
     setTimeout(this.position.bind(this));

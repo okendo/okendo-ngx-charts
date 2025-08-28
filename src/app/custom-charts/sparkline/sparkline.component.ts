@@ -49,7 +49,7 @@ export class SparklineComponent extends BaseChartComponent {
   @Input() animations: boolean = true;
   @Input() gradient: boolean = true;
   @Input() trueZero: boolean;
-  
+
   dims: ViewDimensions;
   xSet: any;
   xDomain: any;

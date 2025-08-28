@@ -83,23 +83,23 @@ import { isPlatformServer } from '@angular/common';
         ></svg:g>
         <svg:g [attr.clip-path]="clipPath">
           <svg:g *ngIf="!isSSR">
-          <svg:g *ngFor="let series of results; trackBy: trackBy" [@animationState]="'active'">
-            <svg:g
-              ngx-charts-line-series
-              [xScale]="xScale"
-              [yScale]="yScale"
-              [colors]="colors"
-              [data]="series"
-              [activeEntries]="activeEntries"
-              [scaleType]="scaleType"
-              [curve]="curve"
-              [rangeFillOpacity]="rangeFillOpacity"
-              [hasRange]="hasRange"
-              [animations]="animations"
-              [gradient]="gradient"
-              [trueZero]="trueZero"
-            />
-          </svg:g>
+            <svg:g *ngFor="let series of results; trackBy: trackBy" [@animationState]="'active'">
+              <svg:g
+                ngx-charts-line-series
+                [xScale]="xScale"
+                [yScale]="yScale"
+                [colors]="colors"
+                [data]="series"
+                [activeEntries]="activeEntries"
+                [scaleType]="scaleType"
+                [curve]="curve"
+                [rangeFillOpacity]="rangeFillOpacity"
+                [hasRange]="hasRange"
+                [animations]="animations"
+                [gradient]="gradient"
+                [trueZero]="trueZero"
+              />
+            </svg:g>
           </svg:g>
           <svg:g *ngIf="isSSR">
             <svg:g *ngFor="let series of results; trackBy: trackBy">

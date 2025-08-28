@@ -235,9 +235,9 @@ export class SankeyComponent extends BaseChartComponent {
     return `
       <span class="tooltip-label">${escapeLabel(sourceNode.name)} • ${escapeLabel(targetNode.name)}</span>
       <span class="tooltip-val">${value.toLocaleString()} (${(value / sourceNode.value).toLocaleString(undefined, {
-      style: 'percent',
-      maximumFractionDigits: 2
-    })})</span>
+        style: 'percent',
+        maximumFractionDigits: 2
+      })})</span>
     `;
   }
 

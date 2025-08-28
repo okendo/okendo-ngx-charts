@@ -153,7 +153,10 @@ export class BoxComponent implements OnChanges {
   whiskerStrokeWidth: number;
   medianLineWidth: number;
 
-  constructor(element: ElementRef, protected cd: ChangeDetectorRef) {
+  constructor(
+    element: ElementRef,
+    protected cd: ChangeDetectorRef
+  ) {
     this.nativeElm = element.nativeElement;
   }
 

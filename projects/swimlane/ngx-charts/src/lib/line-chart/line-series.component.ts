@@ -169,7 +169,7 @@ export class LineSeriesComponent implements OnChanges {
 
     return area<any>()
       .x(xProperty)
-      .y0(() => this.trueZero ? this.yScale(0) : this.yScale.range()[0])
+      .y0(() => (this.trueZero ? this.yScale(0) : this.yScale.range()[0]))
       .y1(d => this.yScale(d.value))
       .curve(this.curve);
   }
@@ -188,7 +188,8 @@ export class LineSeriesComponent implements OnChanges {
 
   updateGradients() {
     if (this.colors.scaleType === ScaleType.Linear) {
-    this.gradientDirection = this.data.extra?.gradientDirection;      this.hasGradient = true;
+      this.gradientDirection = this.data.extra?.gradientDirection;
+      this.hasGradient = true;
       this.gradientId = 'grad' + id().toString();
       this.gradientUrl = `url(#${this.gradientId})`;
       const values = this.data.series.map(d => d.value);

@@ -131,7 +131,6 @@ describe('<ngx-charts-bar-vertical>', () => {
 });
 
 describe('bar-max-width', () => {
-
   it('should render correct cell size, with zero padding, but fixed width', waitForAsync(() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
@@ -147,24 +146,23 @@ describe('bar-max-width', () => {
     });
 
     TestBed.compileComponents();
-      const fixture = TestBed.createComponent(TestComponent);
-      fixture.detectChanges();
+    const fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
 
-      const bar = fixture.debugElement.query(By.directive(BarComponent));
+    const bar = fixture.debugElement.query(By.directive(BarComponent));
 
-      expect(bar.componentInstance.width).toEqual(30);
+    expect(bar.componentInstance.width).toEqual(30);
   }));
-
 });
 
-  describe('x-axis - wrap ticks', () => {
-    const getContent = (axisTick: DebugElement) =>
-      axisTick.queryAll(By.css('tspan')).map(entry => entry.nativeElement.textContent.trim());
+describe('x-axis - wrap ticks', () => {
+  const getContent = (axisTick: DebugElement) =>
+    axisTick.queryAll(By.css('tspan')).map(entry => entry.nativeElement.textContent.trim());
 
-    it('should wrap tick if there is available space', () => {
-      TestBed.overrideComponent(TestComponent, {
-        set: {
-          template: `
+  it('should wrap tick if there is available space', () => {
+    TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `
           <ngx-charts-bar-vertical
             [animations]="false"
             [view]="[400, 300]"
@@ -180,43 +178,43 @@ describe('bar-max-width', () => {
             [yAxis]="true"
             [wrapTicks]="true">
           </ngx-charts-bar-vertical>`
-        }
-      }).compileComponents();
+      }
+    }).compileComponents();
 
-      const fixture = TestBed.createComponent(TestComponent);
-      fixture.detectChanges();
+    const fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
 
-      const xAxisTicks = fixture.debugElement.query(By.directive(XAxisTicksComponent));
-      const axisTicks = xAxisTicks.queryAll(By.css('g.tick > text'));
+    const xAxisTicks = fixture.debugElement.query(By.directive(XAxisTicksComponent));
+    const axisTicks = xAxisTicks.queryAll(By.css('g.tick > text'));
 
-      expect(axisTicks.length).toEqual(5);
+    expect(axisTicks.length).toEqual(5);
 
-      expect(axisTicks[0].queryAll(By.css('tspan')).length).toEqual(1);
-      expect(getContent(axisTicks[0])).toEqual(['Lorem Ipsum']);
+    expect(axisTicks[0].queryAll(By.css('tspan')).length).toEqual(1);
+    expect(getContent(axisTicks[0])).toEqual(['Lorem Ipsum']);
 
-      expect(axisTicks[1].queryAll(By.css('tspan')).length).toEqual(2);
-      expect(getContent(axisTicks[1])).toEqual(['Lorem Ipsum is', 'simply']);
+    expect(axisTicks[1].queryAll(By.css('tspan')).length).toEqual(2);
+    expect(getContent(axisTicks[1])).toEqual(['Lorem Ipsum is', 'simply']);
 
-      expect(axisTicks[2].queryAll(By.css('tspan')).length).toEqual(3);
-      expect(getContent(axisTicks[2])).toEqual(['Lorem Ipsum is', 'simply dummy', 'text']);
+    expect(axisTicks[2].queryAll(By.css('tspan')).length).toEqual(3);
+    expect(getContent(axisTicks[2])).toEqual(['Lorem Ipsum is', 'simply dummy', 'text']);
 
-      expect(axisTicks[3].queryAll(By.css('tspan')).length).toEqual(4);
-      expect(getContent(axisTicks[3])).toEqual(['Lorem Ipsum is', 'simply dummy', 'text of the', 'printing']);
+    expect(axisTicks[3].queryAll(By.css('tspan')).length).toEqual(4);
+    expect(getContent(axisTicks[3])).toEqual(['Lorem Ipsum is', 'simply dummy', 'text of the', 'printing']);
 
-      expect(axisTicks[4].queryAll(By.css('tspan')).length).toEqual(5);
-      expect(getContent(axisTicks[4])).toEqual([
-        'Lorem Ipsum is',
-        'simply dummy',
-        'text of the',
-        'printing and',
-        'typesetting...'
-      ]);
-    });
+    expect(axisTicks[4].queryAll(By.css('tspan')).length).toEqual(5);
+    expect(getContent(axisTicks[4])).toEqual([
+      'Lorem Ipsum is',
+      'simply dummy',
+      'text of the',
+      'printing and',
+      'typesetting...'
+    ]);
+  });
 
-    it('should show a max of 5 lines for a wrapped tick', () => {
-      TestBed.overrideComponent(TestComponent, {
-        set: {
-          template: `
+  it('should show a max of 5 lines for a wrapped tick', () => {
+    TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `
           <ngx-charts-bar-vertical
             [animations]="false"
             [view]="[400, 300]"
@@ -230,27 +228,27 @@ describe('bar-max-width', () => {
             [wrapTicks]="true"
           >
           </ngx-charts-bar-vertical>`
-        }
-      }).compileComponents();
+      }
+    }).compileComponents();
 
-      const fixture = TestBed.createComponent(TestComponent);
-      fixture.detectChanges();
+    const fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
 
-      const xAxisTicks = fixture.debugElement.query(By.directive(XAxisTicksComponent));
-      const axisTicks = xAxisTicks.queryAll(By.css('g.tick > text'));
+    const xAxisTicks = fixture.debugElement.query(By.directive(XAxisTicksComponent));
+    const axisTicks = xAxisTicks.queryAll(By.css('g.tick > text'));
 
-      expect(axisTicks.length).toEqual(2);
+    expect(axisTicks.length).toEqual(2);
 
-      expect(axisTicks[0].queryAll(By.css('tspan')).length).toEqual(1);
-      expect(getContent(axisTicks[0])).toEqual(['Lorem Ipsum']);
+    expect(axisTicks[0].queryAll(By.css('tspan')).length).toEqual(1);
+    expect(getContent(axisTicks[0])).toEqual(['Lorem Ipsum']);
 
-      expect(axisTicks[1].queryAll(By.css('tspan')).length).toEqual(5);
-      expect(getContent(axisTicks[1])).toEqual([
-        'Lorem Ipsum is simply',
-        'dummy text of the',
-        'printing and typesetting',
-        'industry. Lorem Ipsum',
-        'has been the industrys...'
-      ]);
-    });
+    expect(axisTicks[1].queryAll(By.css('tspan')).length).toEqual(5);
+    expect(getContent(axisTicks[1])).toEqual([
+      'Lorem Ipsum is simply',
+      'dummy text of the',
+      'printing and typesetting',
+      'industry. Lorem Ipsum',
+      'has been the industrys...'
+    ]);
   });
+});

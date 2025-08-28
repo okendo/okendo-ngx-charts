@@ -150,7 +150,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
 
     if (isPlatformServer(this.platformId)) {
       this.isSSR = true;
-  }
+    }
   }
 
   ngOnChanges(): void {

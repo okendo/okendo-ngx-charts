@@ -6,9 +6,9 @@ engines:
       languages:
         - javascript
 exclude_paths:
-  - "release/"
-  - "assets/"
-  - "docs/"
+  - 'release/'
+  - 'assets/'
+  - 'docs/'
 ratings:
-   paths:
-   - "src/**/**.ts"
+  paths:
+    - 'src/**/**.ts'
