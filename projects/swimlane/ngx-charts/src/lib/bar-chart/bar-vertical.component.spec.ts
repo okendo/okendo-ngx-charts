@@ -159,7 +159,7 @@ describe('x-axis - wrap ticks', () => {
   const getContent = (axisTick: DebugElement) =>
     axisTick.queryAll(By.css('tspan')).map((entry) => entry.nativeElement.textContent.trim());
 
-  it('should wrap tick if there is available space', () => {
+  it('should wrap tick if there is available space', waitForAsync(async () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -183,8 +183,11 @@ describe('x-axis - wrap ticks', () => {
 
     const fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     const xAxisTicks = fixture.debugElement.query(By.directive(XAxisTicksComponent));
+    expect(xAxisTicks).toBeTruthy();
     const axisTicks = xAxisTicks.queryAll(By.css('g.tick > text'));
 
     expect(axisTicks.length).toEqual(5);
@@ -214,9 +217,9 @@ describe('x-axis - wrap ticks', () => {
       'printing and',
       'typesetting...',
     ]);
-  });
+  }));
 
-  it('should show a max of 5 lines for a wrapped tick', () => {
+  it('should show a max of 5 lines for a wrapped tick', waitForAsync(async () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -238,8 +241,11 @@ describe('x-axis - wrap ticks', () => {
 
     const fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     const xAxisTicks = fixture.debugElement.query(By.directive(XAxisTicksComponent));
+    expect(xAxisTicks).toBeTruthy();
     const axisTicks = xAxisTicks.queryAll(By.css('g.tick > text'));
 
     expect(axisTicks.length).toEqual(2);
@@ -255,5 +261,5 @@ describe('x-axis - wrap ticks', () => {
       'industry. Lorem Ipsum',
       'has been the industrys...',
     ]);
-  });
+  }));
 });
