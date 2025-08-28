@@ -1,3 +1,5 @@
+import 'zone.js';
+import 'zone.js/testing';
 import { NgModule, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { getTestBed } from '@angular/core/testing';
 import {

@@ -24,7 +24,7 @@
               "base": "dist/ngx-charts"
             },
             "index": "src/index.html",
-            "polyfills": ["src/polyfills.ts"],
+            "polyfills": ["src/polyfills.ts", "zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
