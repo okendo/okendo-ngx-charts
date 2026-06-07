@@ -49,6 +49,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
           [tickFormatting]="xAxisTickFormatting"
           [ticks]="xAxisTicks"
           [xAxisOffset]="dataLabelMaxHeight.negative"
+          [chartLeftOffset]="chartLeftOffset"
           [wrapTicks]="wrapTicks"
           (dimensionsChanged)="updateXAxisHeight($event)"
         ></svg:g>
@@ -88,7 +89,9 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
               [showDataLabel]="showDataLabel"
               [dataLabelFormatting]="dataLabelFormatting"
               [seriesName]="group.name"
+              [roundEdges]="roundEdges"
               [animations]="animations"
+              [chartLeftOffset]="chartLeftOffset"
               [noBarWhenZero]="noBarWhenZero"
               (select)="onClick($event, group)"
               (activate)="onActivate($event, group)"
@@ -117,7 +120,9 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
               [showDataLabel]="showDataLabel"
               [dataLabelFormatting]="dataLabelFormatting"
               [seriesName]="group.name"
+              [roundEdges]="roundEdges"
               [animations]="animations"
+              [chartLeftOffset]="chartLeftOffset"
               [noBarWhenZero]="noBarWhenZero"
               (select)="onClick($event, group)"
               (activate)="onActivate($event, group)"
@@ -170,11 +175,14 @@ export class BarVerticalStackedComponent extends BaseChartComponent {
   @Input() xAxisTicks: any[];
   @Input() yAxisTicks: any[];
   @Input() barPadding: number = 8;
+  @Input() roundEdges: boolean = true;
   @Input() roundDomains: boolean = false;
+  @Input() yScaleMin: number;
   @Input() yScaleMax: number;
   @Input() showDataLabel: boolean = false;
   @Input() dataLabelFormatting: any;
   @Input() noBarWhenZero: boolean = true;
+  @Input() barMaxWidth: number = 100;
   @Input() wrapTicks = false;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
@@ -197,6 +205,7 @@ export class BarVerticalStackedComponent extends BaseChartComponent {
   legendOptions: LegendOptions;
   dataLabelMaxHeight: any = { negative: 0, positive: 0 };
   isSSR = false;
+  chartLeftOffset: number = 0;
 
   barChartType = BarChartType;
 
@@ -245,6 +254,15 @@ export class BarVerticalStackedComponent extends BaseChartComponent {
 
     this.xScale = this.getXScale();
     this.yScale = this.getYScale();
+
+    if (this.results.length > 0) {
+      const firstGroupName = this.results[0].name;
+      const lastGroupName = this.results[this.results.length - 1].name;
+      const chartWidth =
+        this.xScale(lastGroupName) - this.xScale(firstGroupName) + this.xScale.bandwidth();
+
+      this.chartLeftOffset = (this.dims.width - chartWidth) / 2 - this.xScale(firstGroupName);
+    }
 
     this.setColors();
     this.legendOptions = this.getLegendOptions();
@@ -296,14 +314,19 @@ export class BarVerticalStackedComponent extends BaseChartComponent {
     domain.push(smallest);
     domain.push(biggest);
 
-    const min = Math.min(0, ...domain);
+    const min = this.yScaleMin ? Math.min(this.yScaleMin, ...domain) : Math.min(0, ...domain);
     const max = this.yScaleMax ? Math.max(this.yScaleMax, ...domain) : Math.max(...domain);
     return [min, max];
   }
 
   getXScale(): any {
     const spacing = this.groupDomain.length / (this.dims.width / this.barPadding + 1);
-    return scaleBand().rangeRound([0, this.dims.width]).paddingInner(spacing).domain(this.groupDomain);
+    const maxWidth = Math.min(this.barMaxWidth * this.groupDomain.length, this.dims.width);
+
+    return scaleBand()
+      .rangeRound([0, this.barMaxWidth ? maxWidth : this.dims.width])
+      .paddingInner(spacing)
+      .domain(this.groupDomain);
   }
 
   getYScale(): any {

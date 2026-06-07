@@ -133,6 +133,7 @@ export class SeriesVerticalComponent implements OnChanges {
   @Input() showDataLabel: boolean = false;
   @Input() dataLabelFormatting: any;
   @Input() noBarWhenZero: boolean = true;
+  @Input() chartLeftOffset: number = 0;
 
   @Output() select: EventEmitter<DataItem> = new EventEmitter();
   @Output() activate = new EventEmitter();
@@ -181,12 +182,27 @@ export class SeriesVerticalComponent implements OnChanges {
       total = this.series.map(d => d.value).reduce((sum, d) => sum + d, 0);
     }
 
+    let topNameOfGroup: string | undefined;
+
+    for (let i = this.series.length - 1; i >= 0; i--) {
+      if (this.series[i].value !== 0) {
+        topNameOfGroup = this.series[i].name as string;
+        break;
+      }
+    }
+
     this.bars = this.series.map((d, index) => {
       let value = d.value as any;
       const label = this.getLabel(d);
       const formattedLabel = formatLabel(label);
-      const roundEdges = this.roundEdges;
       d0Type = value > 0 ? D0Types.positive : D0Types.negative;
+      let roundEdges;
+
+      if (this.type === BarChartType.Stacked && (d.name !== topNameOfGroup || d0Type === D0Types.negative)) {
+        roundEdges = false;
+      } else {
+        roundEdges = this.roundEdges;
+      }
 
       const bar: any = {
         value,
@@ -215,7 +231,7 @@ export class SeriesVerticalComponent implements OnChanges {
         d0[d0Type] += value;
 
         bar.height = this.yScale(offset0) - this.yScale(offset1);
-        bar.x = 0;
+        bar.x = this.chartLeftOffset;
         bar.y = this.yScale(offset1);
         bar.offset0 = offset0;
         bar.offset1 = offset1;
