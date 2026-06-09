@@ -258,8 +258,7 @@ export class BarVerticalStackedComponent extends BaseChartComponent {
     if (this.results.length > 0) {
       const firstGroupName = this.results[0].name;
       const lastGroupName = this.results[this.results.length - 1].name;
-      const chartWidth =
-        this.xScale(lastGroupName) - this.xScale(firstGroupName) + this.xScale.bandwidth();
+      const chartWidth = this.xScale(lastGroupName) - this.xScale(firstGroupName) + this.xScale.bandwidth();
 
       this.chartLeftOffset = (this.dims.width - chartWidth) / 2 - this.xScale(firstGroupName);
     }
